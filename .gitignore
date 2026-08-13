@@ -1,0 +1,38 @@
+# Vivado auto-generated files
+*.jou
+*.log
+*.str
+*.xmsgs
+*.xml
+
+# Simulation and synthesis outputs
+*.wdb
+*.pb
+*.bit
+*.bin
+*.svf
+*.dcp
+*.ngc
+*.ncd
+*.rpt
+
+# Temporary and cache directories
+.cache/
+.hw/
+.ip_user_files/
+.sim/
+.xpr/
+.Xil/
+.webtalk/
+
+# Checkpoints and runs
+runs/
+project_*/project.cache/
+project_*/project.hw/
+project_*/project.ip_user_files/
+project_*/project.sim/
+project_*/project.runs/
+
+# OS-specific
+.DS_Store
+Thumbs.db
