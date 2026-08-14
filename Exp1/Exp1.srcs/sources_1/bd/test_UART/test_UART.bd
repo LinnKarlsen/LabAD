@@ -1,0 +1,143 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x0",
+      "device": "xc7a35tcpg236-1",
+      "name": "test_UART",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2020.1"
+    },
+    "design_tree": {
+      "divisor_de_clk_0": "",
+      "UART_RX_0": "",
+      "UART_TX_0": ""
+    },
+    "ports": {
+      "clk_0": {
+        "type": "clk",
+        "direction": "I"
+      },
+      "tx_start_0": {
+        "direction": "I"
+      },
+      "uart_rx_out_0": {
+        "direction": "O",
+        "left": "7",
+        "right": "0"
+      },
+      "uart_tx_in_0": {
+        "direction": "I",
+        "left": "7",
+        "right": "0"
+      }
+    },
+    "components": {
+      "divisor_de_clk_0": {
+        "vlnv": "xilinx.com:module_ref:divisor_de_clk:1.0",
+        "xci_name": "test_UART_divisor_de_clk_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "divisor_de_clk",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk_in": {
+            "direction": "I"
+          },
+          "clk_out": {
+            "direction": "O"
+          }
+        }
+      },
+      "UART_RX_0": {
+        "vlnv": "xilinx.com:module_ref:UART_RX:1.0",
+        "xci_name": "test_UART_UART_RX_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "UART_RX",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "uart_rx_in": {
+            "direction": "I"
+          },
+          "clk": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "uart_rx_out": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          }
+        }
+      },
+      "UART_TX_0": {
+        "vlnv": "xilinx.com:module_ref:UART_TX:1.0",
+        "xci_name": "test_UART_UART_TX_0_1",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "UART_TX",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "uart_tx_in": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "tx_start": {
+            "direction": "I"
+          },
+          "clk": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "uart_tx_out": {
+            "direction": "O"
+          }
+        }
+      }
+    },
+    "nets": {
+      "divisor_de_clk_0_clk_out": {
+        "ports": [
+          "divisor_de_clk_0/clk_out",
+          "UART_RX_0/clk"
+        ]
+      },
+      "clk_0_1": {
+        "ports": [
+          "clk_0",
+          "divisor_de_clk_0/clk_in",
+          "UART_TX_0/clk"
+        ]
+      },
+      "UART_RX_0_uart_rx_out": {
+        "ports": [
+          "UART_RX_0/uart_rx_out",
+          "uart_rx_out_0"
+        ]
+      },
+      "UART_TX_0_uart_tx_out": {
+        "ports": [
+          "UART_TX_0/uart_tx_out",
+          "UART_RX_0/uart_rx_in"
+        ]
+      },
+      "tx_start_0_1": {
+        "ports": [
+          "tx_start_0",
+          "UART_TX_0/tx_start"
+        ]
+      },
+      "uart_tx_in_0_1": {
+        "ports": [
+          "uart_tx_in_0",
+          "UART_TX_0/uart_tx_in"
+        ]
+      }
+    }
+  }
+}

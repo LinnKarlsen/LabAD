@@ -1,0 +1,11 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../Exp1.srcs/sources_1/new/UART_TX.vhd" \
+"../../../../Exp1.srcs/sources_1/new/UART_RX.vhd" \
+"../../../../Exp1.ip_user_files/bd/UART_test/ip/UART_test_UART_TX_0_0/sim/UART_test_UART_TX_0_0.vhd" \
+"../../../../Exp1.ip_user_files/bd/UART_test/ip/UART_test_UART_RX_0_0_1/sim/UART_test_UART_RX_0_0.vhd" \
+"../../../../Exp1.ip_user_files/bd/UART_test/sim/UART_test.vhd" \
+"../../../../Exp1.srcs/sources_1/bd/UART_test/hdl/UART_test_wrapper.vhd" \
+
+# Do not sort compile order
+nosort

@@ -1,14 +1,24 @@
 {
    "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"1.25",
-   "Default View_TopLeft":"-190,-220",
+   "Default View_ScaleFactor":"1.21023",
+   "Default View_TopLeft":"-150,-122",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.0r6  2020-01-29 bk=1.5227 VDI=41 GEI=36 GUI=JA:9.0 non-TLS
 #  -string -flagsOSRD
-preplace inst xlconstant_0 -pg 1 -lvl 1 -x 90 -y -10 -defaultsOSRD
-preplace inst divisor_de_clk_0 -pg 1 -lvl 2 -x 320 -y 40 -defaultsOSRD
-levelinfo -pg 1 0 90 320 470
-pagesize -pg 1 -db -bbox -sgen 0 -70 470 210
+preplace port clk_0 -pg 1 -lvl 0 -x 0 -y 130 -defaultsOSRD
+preplace port tx_start_0 -pg 1 -lvl 0 -x 0 -y 70 -defaultsOSRD
+preplace port serial -pg 1 -lvl 3 -x 570 -y 100 -defaultsOSRD
+preplace portBus uart_tx_in_0 -pg 1 -lvl 0 -x 0 -y 40 -defaultsOSRD
+preplace portBus uart_rx_out_0 -pg 1 -lvl 3 -x 570 -y 150 -defaultsOSRD
+preplace inst UART_TX_0 -pg 1 -lvl 1 -x 150 -y 80 -defaultsOSRD
+preplace inst UART_RX_0 -pg 1 -lvl 2 -x 420 -y 150 -defaultsOSRD
+preplace netloc clk_0_1 1 0 2 20 160 NJ
+preplace netloc tx_start_0_1 1 0 1 20J 70n
+preplace netloc uart_tx_in_0_1 1 0 1 20J 40n
+preplace netloc UART_RX_0_uart_rx_out 1 2 1 NJ 150
+preplace netloc UART_TX_0_uart_tx_out 1 1 2 280 80 550
+levelinfo -pg 1 0 150 420 570
+pagesize -pg 1 -db -bbox -sgen -150 -20 730 220
 "
 }
-
+0

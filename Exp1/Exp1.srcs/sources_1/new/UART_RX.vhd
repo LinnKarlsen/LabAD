@@ -11,7 +11,7 @@ architecture Behavioral of UART_RX is
     
     -- Estados
     type state_type is (IDLE, LECTURA, PARIDAD, END_OF_PACKAGE);
-    signal state, next_state : state_type := IDLE;
+    signal state : state_type := IDLE;
 
     -- Señales internas
     signal data_out: STD_LOGIC_VECTOR (7 downto 0):= "00000000";
@@ -28,21 +28,21 @@ begin
             case state is
                 when IDLE =>
                     if uart_rx_in = '0' then
-                        next_state <= LECTURA;
+                        state <= LECTURA;
                     end if;
                     
                 when LECTURA =>
                     index <= index + 1;
                     data_out(index) <= uart_rx_in;
-                    if index = 9 then
-                        next_state <= PARIDAD;
+                    if index = 7 then
+                        state <= PARIDAD;
                     end if;
                     
                 when PARIDAD =>
                     -- Se resetea el contador
                     index <= 0;
                     parity_bit := uart_rx_in;
-                    -- Control del paquete de datos
+                    state <= END_OF_PACKAGE; 
     
                 when END_OF_PACKAGE =>
                     -- Controlamos integridad del paquete
@@ -51,11 +51,11 @@ begin
                         -- Retornamos paquete
                         uart_rx_out_internal <= data_out;          
                     end if;
-                    next_state <= IDLE;
+                    state <= IDLE;
                     
                 -- Default state es IDLE
                 when others =>
-                    next_state <= IDLE;
+                    state <= IDLE;
             end case;
         end if;
     end process;
