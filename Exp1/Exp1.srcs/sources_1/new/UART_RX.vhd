@@ -26,12 +26,15 @@ begin
     begin
         if rising_edge(clk) then
             case state is
+            
                 when IDLE =>
+                    -- Esperamos hasta detectar el comienzo del paquete
                     if uart_rx_in = '0' then
                         state <= LECTURA;
                     end if;
                     
                 when LECTURA =>
+                    -- Leemos los 8 bits de data
                     index <= index + 1;
                     data_out(index) <= uart_rx_in;
                     if index = 7 then
@@ -41,11 +44,12 @@ begin
                 when PARIDAD =>
                     -- Se resetea el contador
                     index <= 0;
+                    -- Almacenamos bit de paridad
                     parity_bit := uart_rx_in;
                     state <= END_OF_PACKAGE; 
     
                 when END_OF_PACKAGE =>
-                    -- Controlamos integridad del paquete
+                    -- Controlamos integridad del paquete (bit de paridad + señal END)
                     pass_parity_check := data_out(0) xor data_out(1) xor data_out(2) xor data_out(3) xor data_out(4) xor data_out(5) xor data_out(6) xor data_out(7) xor uart_rx_in;
                     if (uart_rx_in = '1') AND (pass_parity_check = '1') then
                         -- Retornamos paquete
@@ -60,6 +64,7 @@ begin
         end if;
     end process;
     
+    -- Asignamos señal interna al output
     uart_rx_out <= uart_rx_out_internal;
 end Behavioral;
 

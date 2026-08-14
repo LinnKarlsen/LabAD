@@ -32,7 +32,7 @@ begin
             
                 when IDLE =>
                     bit_out <= '1';
-                    -- Asumimos que es muy improbable recibir un 0 exacto
+                    -- Utilizamos tx_start para detectar cada dato recibido
                     if (tx_start = '1') then
                         data_in <= uart_tx_in;
                         state <= TX;
