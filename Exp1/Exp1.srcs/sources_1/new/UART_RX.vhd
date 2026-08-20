@@ -2,9 +2,12 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity UART_RX is
-    Port ( uart_rx_in : in STD_LOGIC;
-           clk : in STD_LOGIC;
-           uart_rx_out : out STD_LOGIC_VECTOR (7 downto 0));
+    Port ( baud_rate_clk : in STD_LOGIC;
+           package_rate_clk : in STD_LOGIC;
+           uart_rx_in : in STD_LOGIC;
+           uart_rx_out : out STD_LOGIC_VECTOR (7 downto 0);
+           uart_rx_out_flag : out STD_LOGIC_VECTOR
+           );
 end UART_RX;
 
 architecture Behavioral of UART_RX is
@@ -16,18 +19,24 @@ architecture Behavioral of UART_RX is
     -- Señales internas
     signal data_out: STD_LOGIC_VECTOR (7 downto 0):= "00000000";
     signal uart_rx_out_internal: STD_LOGIC_VECTOR (7 downto 0):= "00000000";
+    signal uart_rx_out_flag_internal: STD_LOGIC := '0';
     signal index: INTEGER:= 0;
 
 begin
-    -- Se ejecuta cuando hay un flanco de subida del clock
-    process(clk)
+    -- Se ejecuta usando baud_rate_clk, definido por el baud rate de la comunicación serial
+    process(baud_rate_clk)
         variable pass_parity_check: STD_LOGIC;
         variable parity_bit: STD_LOGIC;
     begin
-        if rising_edge(clk) then
+        if rising_edge(baud_rate_clk) then
             case state is
             
                 when IDLE =>
+                
+                    -- Inicializamos el output
+                    uart_rx_out_internal <= "0000000";
+                    uart_rx_out_flag_internal <= '0';
+                
                     -- Esperamos hasta detectar el comienzo del paquete
                     if uart_rx_in = '0' then
                         state <= LECTURA;
@@ -53,7 +62,8 @@ begin
                     pass_parity_check := data_out(0) xor data_out(1) xor data_out(2) xor data_out(3) xor data_out(4) xor data_out(5) xor data_out(6) xor data_out(7) xor uart_rx_in;
                     if (uart_rx_in = '1') AND (pass_parity_check = '1') then
                         -- Retornamos paquete
-                        uart_rx_out_internal <= data_out;          
+                        uart_rx_out_internal <= data_out;  
+                        uart_rx_out_flag_internal <= '1';        
                     end if;
                     state <= IDLE;
                     
@@ -64,7 +74,12 @@ begin
         end if;
     end process;
     
-    -- Asignamos señal interna al output
-    uart_rx_out <= uart_rx_out_internal;
+    -- Asignamos señal interna al output usando package_rate_clk
+    process(package_rate_clk)
+    begin
+        uart_rx_out <= uart_rx_out_internal;
+        uart_rx_out_flag <= uart_rx_out_flag_internal;
+    end process;
+    
 end Behavioral;
 

@@ -1,0 +1,136 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0xB5FB3D2D7FF4047A",
+      "device": "xc7a35tcpg236-1",
+      "name": "exp1",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2020.1"
+    },
+    "design_tree": {
+      "vio_1": "",
+      "display_interface_0": ""
+    },
+    "ports": {
+      "clk": {
+        "type": "clk",
+        "direction": "I"
+      },
+      "seg": {
+        "direction": "O",
+        "left": "6",
+        "right": "0"
+      },
+      "dp": {
+        "direction": "O"
+      },
+      "an": {
+        "direction": "O",
+        "left": "3",
+        "right": "0"
+      }
+    },
+    "components": {
+      "vio_1": {
+        "vlnv": "xilinx.com:ip:vio:3.0",
+        "xci_name": "exp1_vio_1_1",
+        "parameters": {
+          "C_NUM_PROBE_IN": {
+            "value": "0"
+          },
+          "C_NUM_PROBE_OUT": {
+            "value": "3"
+          },
+          "C_PROBE_OUT0_WIDTH": {
+            "value": "4"
+          },
+          "C_PROBE_OUT1_WIDTH": {
+            "value": "3"
+          }
+        }
+      },
+      "display_interface_0": {
+        "vlnv": "xilinx.com:module_ref:display_interface:1.0",
+        "xci_name": "exp1_display_interface_0_1",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "display_interface",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "digit_value": {
+            "direction": "I",
+            "left": "3",
+            "right": "0"
+          },
+          "digit_index": {
+            "direction": "I",
+            "left": "2",
+            "right": "0"
+          },
+          "decimal_point": {
+            "direction": "I"
+          },
+          "seg": {
+            "direction": "O",
+            "left": "6",
+            "right": "0"
+          },
+          "dp": {
+            "direction": "O"
+          },
+          "an": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          }
+        }
+      }
+    },
+    "nets": {
+      "clk_1": {
+        "ports": [
+          "clk",
+          "vio_1/clk"
+        ]
+      },
+      "vio_1_probe_out1": {
+        "ports": [
+          "vio_1/probe_out1",
+          "display_interface_0/digit_index"
+        ]
+      },
+      "vio_1_probe_out0": {
+        "ports": [
+          "vio_1/probe_out0",
+          "display_interface_0/digit_value"
+        ]
+      },
+      "vio_1_probe_out2": {
+        "ports": [
+          "vio_1/probe_out2",
+          "display_interface_0/decimal_point"
+        ]
+      },
+      "display_interface_0_dp": {
+        "ports": [
+          "display_interface_0/dp",
+          "dp"
+        ]
+      },
+      "display_interface_0_seg": {
+        "ports": [
+          "display_interface_0/seg",
+          "seg"
+        ]
+      },
+      "display_interface_0_an": {
+        "ports": [
+          "display_interface_0/an",
+          "an"
+        ]
+      }
+    }
+  }
+}

@@ -6,6 +6,6 @@ C:/Users/linnh/LabAD/Exp1/Exp1.ip_user_files/bd/UART_test/ip/UART_test_UART_RX_0
 C:/Users/linnh/LabAD/Exp1/Exp1.ip_user_files/bd/UART_test/ip/UART_test_UART_TX_0_0/sim/UART_test_UART_TX_0_0.vhd,1786678738,vhdl,,,,uart_test_uart_tx_0_0,,,,,,,,
 C:/Users/linnh/LabAD/Exp1/Exp1.ip_user_files/bd/UART_test/sim/UART_test.vhd,1786679290,vhdl,,,,uart_test,,,,,,,,
 C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/UART_test/hdl/UART_test_wrapper.vhd,1786679290,vhdl,,,,uart_test_wrapper,,,,,,,,
-C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/new/UART_RX.vhd,1786677352,vhdl,,,,uart_rx,,,,,,,,
-C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/new/UART_TX.vhd,1786678289,vhdl,,,,uart_tx,,,,,,,,
+C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/new/UART_RX.vhd,1786680055,vhdl,,,,uart_rx,,,,,,,,
+C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/new/UART_TX.vhd,1786680092,vhdl,,,,uart_tx,,,,,,,,
 C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/new/divisor_de_clk.vhd,1786671451,vhdl,,,,divisor_de_clk,,,,,,,,

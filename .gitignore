@@ -17,7 +17,7 @@
 *.rpt
 
 # Temporary and cache directories
-.cache/
+.Exp1.cache/
 .hw/
 .ip_user_files/
 .sim/
