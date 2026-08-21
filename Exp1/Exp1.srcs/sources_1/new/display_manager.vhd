@@ -2,8 +2,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity display_manager is
-    Port ( clk : in STD_LOGIC;
-           package_rate_clk : in STD_LOGIC;
+    Port ( display_update_rate_clk : in STD_LOGIC;
            switch : in STD_LOGIC;
            digit_1_A : in STD_LOGIC_VECTOR (3 downto 0);
            digit_2_A : in STD_LOGIC_VECTOR (3 downto 0);
@@ -31,10 +30,10 @@ architecture Behavioral of display_manager is
 
 begin
 
-    process(clk)
+    process(display_update_rate_clk)
     begin
     
-        if rising_edge(clk) then
+        if rising_edge(display_update_rate_clk) then
     
             case state is
                 when DIGIT1 =>
