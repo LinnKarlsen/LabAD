@@ -6,7 +6,7 @@ entity UART_RX is
            package_rate_clk : in STD_LOGIC;
            uart_rx_in : in STD_LOGIC;
            uart_rx_out : out STD_LOGIC_VECTOR (7 downto 0);
-           uart_rx_out_flag : out STD_LOGIC_VECTOR
+           uart_rx_out_flag : out STD_LOGIC
            );
 end UART_RX;
 
@@ -70,6 +70,7 @@ begin
                 -- Default state es IDLE
                 when others =>
                     state <= IDLE;
+                    
             end case;
         end if;
     end process;

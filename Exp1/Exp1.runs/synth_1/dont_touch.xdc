@@ -3,13 +3,43 @@
 
 # XDC: imports/Downloads/Basys3_Master.xdc
 
-# Block Designs: bd/exp1/exp1.bd
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==exp1 || ORIG_REF_NAME==exp1} -quiet] -quiet
+# Block Designs: bd/TEST_package_decoder/TEST_package_decoder.bd
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==TEST_package_decoder || ORIG_REF_NAME==TEST_package_decoder} -quiet] -quiet
 
-# IP: bd/exp1/ip/exp1_vio_1_1/exp1_vio_1_1.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==exp1_vio_1_1 || ORIG_REF_NAME==exp1_vio_1_1} -quiet] -quiet
+# IP: bd/TEST_package_decoder/ip/TEST_package_decoder_TESTER_package_digit_0_0/TEST_package_decoder_TESTER_package_digit_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==TEST_package_decoder_TESTER_package_digit_0_0 || ORIG_REF_NAME==TEST_package_decoder_TESTER_package_digit_0_0} -quiet] -quiet
 
-# IP: bd/exp1/ip/exp1_display_interface_0_1/exp1_display_interface_0_1.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==exp1_display_interface_0_1 || ORIG_REF_NAME==exp1_display_interface_0_1} -quiet] -quiet
+# IP: bd/TEST_package_decoder/ip/TEST_package_decoder_package_digit_decoder_0_0/TEST_package_decoder_package_digit_decoder_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==TEST_package_decoder_package_digit_decoder_0_0 || ORIG_REF_NAME==TEST_package_decoder_package_digit_decoder_0_0} -quiet] -quiet
 
-# XDC: bd/exp1/exp1_ooc.xdc
+# IP: bd/TEST_package_decoder/ip/TEST_package_decoder_display_manager_0_0/TEST_package_decoder_display_manager_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==TEST_package_decoder_display_manager_0_0 || ORIG_REF_NAME==TEST_package_decoder_display_manager_0_0} -quiet] -quiet
+
+# IP: bd/TEST_package_decoder/ip/TEST_package_decoder_display_interface_0_0/TEST_package_decoder_display_interface_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==TEST_package_decoder_display_interface_0_0 || ORIG_REF_NAME==TEST_package_decoder_display_interface_0_0} -quiet] -quiet
+
+# IP: bd/TEST_package_decoder/ip/TEST_package_decoder_divisor_de_clk_0_0/TEST_package_decoder_divisor_de_clk_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==TEST_package_decoder_divisor_de_clk_0_0 || ORIG_REF_NAME==TEST_package_decoder_divisor_de_clk_0_0} -quiet] -quiet
+
+# IP: bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_0_0/TEST_package_decoder_xlconstant_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==TEST_package_decoder_xlconstant_0_0 || ORIG_REF_NAME==TEST_package_decoder_xlconstant_0_0} -quiet] -quiet
+
+# IP: bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_1_0/TEST_package_decoder_xlconstant_1_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==TEST_package_decoder_xlconstant_1_0 || ORIG_REF_NAME==TEST_package_decoder_xlconstant_1_0} -quiet] -quiet
+
+# IP: bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_2_0/TEST_package_decoder_xlconstant_2_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==TEST_package_decoder_xlconstant_2_0 || ORIG_REF_NAME==TEST_package_decoder_xlconstant_2_0} -quiet] -quiet
+
+# IP: bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_3_0/TEST_package_decoder_xlconstant_3_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==TEST_package_decoder_xlconstant_3_0 || ORIG_REF_NAME==TEST_package_decoder_xlconstant_3_0} -quiet] -quiet
+
+# IP: bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_4_0/TEST_package_decoder_xlconstant_4_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==TEST_package_decoder_xlconstant_4_0 || ORIG_REF_NAME==TEST_package_decoder_xlconstant_4_0} -quiet] -quiet
+
+# IP: bd/TEST_package_decoder/ip/TEST_package_decoder_divisor_de_clk_1_0/TEST_package_decoder_divisor_de_clk_1_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==TEST_package_decoder_divisor_de_clk_1_0 || ORIG_REF_NAME==TEST_package_decoder_divisor_de_clk_1_0} -quiet] -quiet
+
+# IP: bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_5_0/TEST_package_decoder_xlconstant_5_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==TEST_package_decoder_xlconstant_5_0 || ORIG_REF_NAME==TEST_package_decoder_xlconstant_5_0} -quiet] -quiet
+
+# XDC: bd/TEST_package_decoder/TEST_package_decoder_ooc.xdc

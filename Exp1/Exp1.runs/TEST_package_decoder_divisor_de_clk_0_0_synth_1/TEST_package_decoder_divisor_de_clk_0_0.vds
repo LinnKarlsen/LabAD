@@ -1,0 +1,196 @@
+#-----------------------------------------------------------
+# Vivado v2020.1 (64-bit)
+# SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Thu Aug 20 21:26:05 2026
+# Process ID: 27356
+# Current directory: C:/Users/linnh/LabAD/Exp1/Exp1.runs/TEST_package_decoder_divisor_de_clk_0_0_synth_1
+# Command line: vivado.exe -log TEST_package_decoder_divisor_de_clk_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source TEST_package_decoder_divisor_de_clk_0_0.tcl
+# Log file: C:/Users/linnh/LabAD/Exp1/Exp1.runs/TEST_package_decoder_divisor_de_clk_0_0_synth_1/TEST_package_decoder_divisor_de_clk_0_0.vds
+# Journal file: C:/Users/linnh/LabAD/Exp1/Exp1.runs/TEST_package_decoder_divisor_de_clk_0_0_synth_1\vivado.jou
+#-----------------------------------------------------------
+source TEST_package_decoder_divisor_de_clk_0_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:12 . Memory (MB): peak = 1051.188 ; gain = 0.000
+Command: synth_design -top TEST_package_decoder_divisor_de_clk_0_0 -part xc7a35tcpg236-1 -mode out_of_context
+Starting synth_design
+WARNING: [IP_Flow 19-3571] IP 'TEST_package_decoder_divisor_de_clk_0_0' is restricted:
+* Module reference is stale and needs refreshing.
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 33088
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:09 ; elapsed = 00:00:12 . Memory (MB): peak = 1051.188 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'TEST_package_decoder_divisor_de_clk_0_0' [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_divisor_de_clk_0_0/synth/TEST_package_decoder_divisor_de_clk_0_0.vhd:64]
+INFO: [Synth 8-3491] module 'divisor_de_clk' declared at 'C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/new/divisor_de_clk.vhd:5' bound to instance 'U0' of component 'divisor_de_clk' [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_divisor_de_clk_0_0/synth/TEST_package_decoder_divisor_de_clk_0_0.vhd:83]
+INFO: [Synth 8-638] synthesizing module 'divisor_de_clk' [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/new/divisor_de_clk.vhd:11]
+WARNING: [Synth 8-614] signal 'clk_in_out_ratio_internal' is read in the process but is not in the sensitivity list [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/new/divisor_de_clk.vhd:15]
+WARNING: [Synth 8-614] signal 'clk_out_internal' is read in the process but is not in the sensitivity list [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/new/divisor_de_clk.vhd:15]
+INFO: [Synth 8-256] done synthesizing module 'divisor_de_clk' (1#1) [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/new/divisor_de_clk.vhd:11]
+INFO: [Synth 8-256] done synthesizing module 'TEST_package_decoder_divisor_de_clk_0_0' (2#1) [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_divisor_de_clk_0_0/synth/TEST_package_decoder_divisor_de_clk_0_0.vhd:64]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 1051.188 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:15 . Memory (MB): peak = 1051.188 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:15 . Memory (MB): peak = 1051.188 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+WARNING: [Synth 8-327] inferring latch for variable 'clk_out_internal_reg' [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/new/divisor_de_clk.vhd:22]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:16 . Memory (MB): peak = 1051.188 ; gain = 0.000
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:49 . Memory (MB): peak = 1051.188 ; gain = 0.000
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:49 . Memory (MB): peak = 1051.188 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:23 ; elapsed = 00:00:49 . Memory (MB): peak = 1051.188 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:31 ; elapsed = 00:00:58 . Memory (MB): peak = 1051.188 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:31 ; elapsed = 00:00:58 . Memory (MB): peak = 1051.188 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:31 ; elapsed = 00:00:58 . Memory (MB): peak = 1051.188 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:31 ; elapsed = 00:00:58 . Memory (MB): peak = 1051.188 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:31 ; elapsed = 00:00:58 . Memory (MB): peak = 1051.188 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:31 ; elapsed = 00:00:58 . Memory (MB): peak = 1051.188 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |CARRY4 |    11|
+|2     |LUT1   |     2|
+|3     |LUT2   |     1|
+|4     |LUT3   |     5|
+|5     |LUT5   |     1|
+|6     |LUT6   |     4|
+|7     |FDCE   |    32|
+|8     |LD     |     1|
++------+-------+------+
+
+Report Instance Areas: 
++------+---------+---------------+------+
+|      |Instance |Module         |Cells |
++------+---------+---------------+------+
+|1     |top      |               |    57|
+|2     |  U0     |divisor_de_clk |    57|
++------+---------+---------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:31 ; elapsed = 00:00:58 . Memory (MB): peak = 1051.188 ; gain = 0.000
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 3 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:31 ; elapsed = 00:00:58 . Memory (MB): peak = 1051.188 ; gain = 0.000
+Synthesis Optimization Complete : Time (s): cpu = 00:00:31 ; elapsed = 00:00:58 . Memory (MB): peak = 1051.188 ; gain = 0.000
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1051.188 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 12 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1073.945 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  LD => LDCE: 1 instance 
+
+INFO: [Common 17-83] Releasing license: Synthesis
+17 Infos, 4 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:36 ; elapsed = 00:01:05 . Memory (MB): peak = 1073.945 ; gain = 22.758
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Common 17-1381] The checkpoint 'C:/Users/linnh/LabAD/Exp1/Exp1.runs/TEST_package_decoder_divisor_de_clk_0_0_synth_1/TEST_package_decoder_divisor_de_clk_0_0.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1474.363 ; gain = 400.418
+WARNING: [Common 17-576] 'use_project_ipc' is deprecated. This option is deprecated and no longer used.
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint 'C:/Users/linnh/LabAD/Exp1/Exp1.runs/TEST_package_decoder_divisor_de_clk_0_0_synth_1/TEST_package_decoder_divisor_de_clk_0_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file TEST_package_decoder_divisor_de_clk_0_0_utilization_synth.rpt -pb TEST_package_decoder_divisor_de_clk_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Thu Aug 20 21:28:13 2026...

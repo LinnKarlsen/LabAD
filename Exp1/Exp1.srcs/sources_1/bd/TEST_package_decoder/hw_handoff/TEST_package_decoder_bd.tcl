@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# TESTER_package_digit_decoder, package_digit_decoder
+# TESTER_package_digit_decoder, display_interface, display_manager, divisor_de_clk, divisor_de_clk, package_digit_decoder
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -165,11 +165,11 @@ proc create_root_design { parentCell } {
   # Create interface ports
 
   # Create ports
+  set an [ create_bd_port -dir O -from 3 -to 0 an ]
   set clk [ create_bd_port -dir I -type clk clk ]
-  set digit_1_0 [ create_bd_port -dir O -from 3 -to 0 digit_1_0 ]
-  set digit_2_0 [ create_bd_port -dir O -from 3 -to 0 digit_2_0 ]
-  set digit_3_0 [ create_bd_port -dir O -from 3 -to 0 digit_3_0 ]
-  set digit_4_0 [ create_bd_port -dir O -from 3 -to 0 digit_4_0 ]
+  set dp [ create_bd_port -dir O dp ]
+  set seg [ create_bd_port -dir O -from 6 -to 0 seg ]
+  set sw1 [ create_bd_port -dir I sw1 ]
 
   # Create instance: TESTER_package_digit_0, and set properties
   set block_name TESTER_package_digit_decoder
@@ -178,6 +178,50 @@ proc create_root_design { parentCell } {
      catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    } elseif { $TESTER_package_digit_0 eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: display_interface_0, and set properties
+  set block_name display_interface
+  set block_cell_name display_interface_0
+  if { [catch {set display_interface_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $display_interface_0 eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: display_manager_0, and set properties
+  set block_name display_manager
+  set block_cell_name display_manager_0
+  if { [catch {set display_manager_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $display_manager_0 eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: divisor_de_clk_0, and set properties
+  set block_name divisor_de_clk
+  set block_cell_name divisor_de_clk_0
+  if { [catch {set divisor_de_clk_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $divisor_de_clk_0 eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: divisor_de_clk_1, and set properties
+  set block_name divisor_de_clk
+  set block_cell_name divisor_de_clk_1
+  if { [catch {set divisor_de_clk_1 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $divisor_de_clk_1 eq "" } {
      catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
@@ -193,14 +237,71 @@ proc create_root_design { parentCell } {
      return 1
    }
   
+  # Create instance: xlconstant_0, and set properties
+  set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0 ]
+  set_property -dict [ list \
+   CONFIG.CONST_VAL {10000} \
+   CONFIG.CONST_WIDTH {14} \
+ ] $xlconstant_0
+
+  # Create instance: xlconstant_1, and set properties
+  set xlconstant_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_1 ]
+  set_property -dict [ list \
+   CONFIG.CONST_VAL {0} \
+   CONFIG.CONST_WIDTH {4} \
+ ] $xlconstant_1
+
+  # Create instance: xlconstant_2, and set properties
+  set xlconstant_2 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_2 ]
+  set_property -dict [ list \
+   CONFIG.CONST_VAL {9} \
+   CONFIG.CONST_WIDTH {4} \
+ ] $xlconstant_2
+
+  # Create instance: xlconstant_3, and set properties
+  set xlconstant_3 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_3 ]
+  set_property -dict [ list \
+   CONFIG.CONST_VAL {7} \
+   CONFIG.CONST_WIDTH {4} \
+ ] $xlconstant_3
+
+  # Create instance: xlconstant_4, and set properties
+  set xlconstant_4 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_4 ]
+  set_property -dict [ list \
+   CONFIG.CONST_VAL {6} \
+   CONFIG.CONST_WIDTH {4} \
+ ] $xlconstant_4
+
+  # Create instance: xlconstant_5, and set properties
+  set xlconstant_5 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_5 ]
+  set_property -dict [ list \
+   CONFIG.CONST_VAL {10} \
+   CONFIG.CONST_WIDTH {14} \
+ ] $xlconstant_5
+
   # Create port connections
   connect_bd_net -net TESTER_package_digit_0_data_out [get_bd_pins TESTER_package_digit_0/data_out] [get_bd_pins package_digit_decoder_0/data_in]
   connect_bd_net -net TESTER_package_digit_0_data_valid [get_bd_pins TESTER_package_digit_0/data_valid] [get_bd_pins package_digit_decoder_0/valid_data_in_flag]
-  connect_bd_net -net clk_0_1 [get_bd_ports clk] [get_bd_pins TESTER_package_digit_0/clk] [get_bd_pins package_digit_decoder_0/package_rate_clk]
-  connect_bd_net -net package_digit_decoder_0_digit_1 [get_bd_ports digit_1_0] [get_bd_pins package_digit_decoder_0/digit_1]
-  connect_bd_net -net package_digit_decoder_0_digit_2 [get_bd_ports digit_2_0] [get_bd_pins package_digit_decoder_0/digit_2]
-  connect_bd_net -net package_digit_decoder_0_digit_3 [get_bd_ports digit_3_0] [get_bd_pins package_digit_decoder_0/digit_3]
-  connect_bd_net -net package_digit_decoder_0_digit_4 [get_bd_ports digit_4_0] [get_bd_pins package_digit_decoder_0/digit_4]
+  connect_bd_net -net clk_1 [get_bd_ports clk] [get_bd_pins divisor_de_clk_0/clk_in]
+  connect_bd_net -net display_interface_0_an [get_bd_ports an] [get_bd_pins display_interface_0/an]
+  connect_bd_net -net display_interface_0_dp [get_bd_ports dp] [get_bd_pins display_interface_0/dp]
+  connect_bd_net -net display_interface_0_seg [get_bd_ports seg] [get_bd_pins display_interface_0/seg]
+  connect_bd_net -net display_manager_0_decimal_point [get_bd_pins display_interface_0/decimal_point] [get_bd_pins display_manager_0/decimal_point]
+  connect_bd_net -net display_manager_0_digit_index [get_bd_pins display_interface_0/digit_index] [get_bd_pins display_manager_0/digit_index]
+  connect_bd_net -net display_manager_0_digit_value [get_bd_pins display_interface_0/digit_value] [get_bd_pins display_manager_0/digit_value]
+  connect_bd_net -net divisor_de_clk_0_clk_out [get_bd_pins TESTER_package_digit_0/clk] [get_bd_pins display_manager_0/package_rate_clk] [get_bd_pins divisor_de_clk_0/clk_out] [get_bd_pins divisor_de_clk_1/clk_in] [get_bd_pins package_digit_decoder_0/package_rate_clk]
+  connect_bd_net -net divisor_de_clk_1_clk_out [get_bd_pins display_manager_0/clk] [get_bd_pins divisor_de_clk_1/clk_out]
+  connect_bd_net -net package_digit_decoder_0_digit_1 [get_bd_pins display_manager_0/digit_1_A] [get_bd_pins package_digit_decoder_0/digit_1]
+  connect_bd_net -net package_digit_decoder_0_digit_2 [get_bd_pins display_manager_0/digit_2_A] [get_bd_pins package_digit_decoder_0/digit_2]
+  connect_bd_net -net package_digit_decoder_0_digit_3 [get_bd_pins display_manager_0/digit_3_A] [get_bd_pins package_digit_decoder_0/digit_3]
+  connect_bd_net -net package_digit_decoder_0_digit_4 [get_bd_pins display_manager_0/digit_4_A] [get_bd_pins package_digit_decoder_0/digit_4]
+  connect_bd_net -net switch_0_1 [get_bd_ports sw1] [get_bd_pins display_manager_0/switch]
+  connect_bd_net -net xlconstant_0_dout [get_bd_pins divisor_de_clk_0/clk_in_out_ratio] [get_bd_pins xlconstant_0/dout]
+  connect_bd_net -net xlconstant_1_dout [get_bd_pins display_manager_0/digit_1_B] [get_bd_pins xlconstant_1/dout]
+  connect_bd_net -net xlconstant_2_dout [get_bd_pins display_manager_0/digit_2_B] [get_bd_pins xlconstant_2/dout]
+  connect_bd_net -net xlconstant_3_dout [get_bd_pins display_manager_0/digit_3_B] [get_bd_pins xlconstant_3/dout]
+  connect_bd_net -net xlconstant_4_dout [get_bd_pins display_manager_0/digit_4_B] [get_bd_pins xlconstant_4/dout]
+  connect_bd_net -net xlconstant_5_dout [get_bd_pins divisor_de_clk_1/clk_in_out_ratio] [get_bd_pins xlconstant_5/dout]
 
   # Create address segments
 

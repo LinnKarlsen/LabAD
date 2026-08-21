@@ -1,33 +1,32 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Aug 20 20:36:07 2026" VIVADOVERSION="2020.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Aug 20 21:52:21 2026" VIVADOVERSION="2020.1">
 
   <SYSTEMINFO ARCH="artix7" BOARD="digilentinc.com:basys3:part0:1.2" DEVICE="7a35t" NAME="TEST_package_decoder" PACKAGE="cpg236" SPEEDGRADE="-1"/>
 
   <EXTERNALPORTS>
     <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="package_digit_decoder_0" PORT="package_rate_clk"/>
-        <CONNECTION INSTANCE="TESTER_package_digit_0" PORT="clk"/>
+        <CONNECTION INSTANCE="divisor_de_clk_0" PORT="clk_in"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" LEFT="3" NAME="digit_1_0" RIGHT="0" SIGIS="undef" SIGNAME="package_digit_decoder_0_digit_1">
+    <PORT DIR="O" LEFT="6" NAME="seg" RIGHT="0" SIGIS="undef" SIGNAME="display_interface_0_seg">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="package_digit_decoder_0" PORT="digit_1"/>
+        <CONNECTION INSTANCE="display_interface_0" PORT="seg"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" LEFT="3" NAME="digit_2_0" RIGHT="0" SIGIS="undef" SIGNAME="package_digit_decoder_0_digit_2">
+    <PORT DIR="O" NAME="dp" SIGIS="undef" SIGNAME="display_interface_0_dp">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="package_digit_decoder_0" PORT="digit_2"/>
+        <CONNECTION INSTANCE="display_interface_0" PORT="dp"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" LEFT="3" NAME="digit_3_0" RIGHT="0" SIGIS="undef" SIGNAME="package_digit_decoder_0_digit_3">
+    <PORT DIR="O" LEFT="3" NAME="an" RIGHT="0" SIGIS="undef" SIGNAME="display_interface_0_an">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="package_digit_decoder_0" PORT="digit_3"/>
+        <CONNECTION INSTANCE="display_interface_0" PORT="an"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" LEFT="3" NAME="digit_4_0" RIGHT="0" SIGIS="undef" SIGNAME="package_digit_decoder_0_digit_4">
+    <PORT DIR="I" NAME="sw1" SIGIS="undef" SIGNAME="External_Ports_sw1">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="package_digit_decoder_0" PORT="digit_4"/>
+        <CONNECTION INSTANCE="display_manager_0" PORT="switch"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -42,9 +41,9 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="divisor_de_clk_0_clk_out">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="clk"/>
+            <CONNECTION INSTANCE="divisor_de_clk_0" PORT="clk_out"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="7" NAME="data_out" RIGHT="0" SIGIS="undef" SIGNAME="TESTER_package_digit_0_data_out">
@@ -60,6 +59,179 @@
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/display_interface_0" HWVERSION="1.0" INSTANCE="display_interface_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="display_interface" VLNV="xilinx.com:module_ref:display_interface:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="TEST_package_decoder_display_interface_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="3" NAME="digit_value" RIGHT="0" SIGIS="undef" SIGNAME="display_manager_0_digit_value">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="display_manager_0" PORT="digit_value"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="2" NAME="digit_index" RIGHT="0" SIGIS="undef" SIGNAME="display_manager_0_digit_index">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="display_manager_0" PORT="digit_index"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="decimal_point" SIGIS="undef" SIGNAME="display_manager_0_decimal_point">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="display_manager_0" PORT="decimal_point"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="6" NAME="seg" RIGHT="0" SIGIS="undef" SIGNAME="display_interface_0_seg">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="seg"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="dp" SIGIS="undef" SIGNAME="display_interface_0_dp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="dp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="an" RIGHT="0" SIGIS="undef" SIGNAME="display_interface_0_an">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="an"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/display_manager_0" HWVERSION="1.0" INSTANCE="display_manager_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="display_manager" VLNV="xilinx.com:module_ref:display_manager:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="TEST_package_decoder_display_manager_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="divisor_de_clk_1_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="divisor_de_clk_1" PORT="clk_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="package_rate_clk" SIGIS="clk" SIGNAME="divisor_de_clk_0_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="divisor_de_clk_0" PORT="clk_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="switch" SIGIS="undef" SIGNAME="External_Ports_sw1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sw1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="digit_1_A" RIGHT="0" SIGIS="undef" SIGNAME="package_digit_decoder_0_digit_1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="package_digit_decoder_0" PORT="digit_1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="digit_2_A" RIGHT="0" SIGIS="undef" SIGNAME="package_digit_decoder_0_digit_2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="package_digit_decoder_0" PORT="digit_2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="digit_3_A" RIGHT="0" SIGIS="undef" SIGNAME="package_digit_decoder_0_digit_3">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="package_digit_decoder_0" PORT="digit_3"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="digit_4_A" RIGHT="0" SIGIS="undef" SIGNAME="package_digit_decoder_0_digit_4">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="package_digit_decoder_0" PORT="digit_4"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="digit_1_B" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_1_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="xlconstant_1" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="digit_2_B" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_2_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="xlconstant_2" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="digit_3_B" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_3_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="xlconstant_3" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="digit_4_B" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_4_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="xlconstant_4" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="digit_value" RIGHT="0" SIGIS="undef" SIGNAME="display_manager_0_digit_value">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="display_interface_0" PORT="digit_value"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="2" NAME="digit_index" RIGHT="0" SIGIS="undef" SIGNAME="display_manager_0_digit_index">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="display_interface_0" PORT="digit_index"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="decimal_point" SIGIS="undef" SIGNAME="display_manager_0_decimal_point">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="display_interface_0" PORT="decimal_point"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/divisor_de_clk_0" HWVERSION="1.0" INSTANCE="divisor_de_clk_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="divisor_de_clk" VLNV="xilinx.com:module_ref:divisor_de_clk:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="TEST_package_decoder_divisor_de_clk_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="clk_in" SIGIS="undef" SIGNAME="External_Ports_clk">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="clk"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="clk_out" SIGIS="undef" SIGNAME="divisor_de_clk_0_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TESTER_package_digit_0" PORT="clk"/>
+            <CONNECTION INSTANCE="package_digit_decoder_0" PORT="package_rate_clk"/>
+            <CONNECTION INSTANCE="display_manager_0" PORT="package_rate_clk"/>
+            <CONNECTION INSTANCE="divisor_de_clk_1" PORT="clk_in"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="13" NAME="clk_in_out_ratio" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_0_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="xlconstant_0" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/divisor_de_clk_1" HWVERSION="1.0" INSTANCE="divisor_de_clk_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="divisor_de_clk" VLNV="xilinx.com:module_ref:divisor_de_clk:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="TEST_package_decoder_divisor_de_clk_1_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="clk_in" SIGIS="undef" SIGNAME="divisor_de_clk_0_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="divisor_de_clk_0" PORT="clk_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="clk_out" SIGIS="undef" SIGNAME="divisor_de_clk_1_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="display_manager_0" PORT="clk"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="13" NAME="clk_in_out_ratio" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_5_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="xlconstant_5" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
     <MODULE COREREVISION="1" FULLNAME="/package_digit_decoder_0" HWVERSION="1.0" INSTANCE="package_digit_decoder_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="package_digit_decoder" VLNV="xilinx.com:module_ref:package_digit_decoder:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
@@ -67,9 +239,9 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="package_rate_clk" SIGIS="clk" SIGNAME="External_Ports_clk">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="package_rate_clk" SIGIS="clk" SIGNAME="divisor_de_clk_0_clk_out">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="clk"/>
+            <CONNECTION INSTANCE="divisor_de_clk_0" PORT="clk_out"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="7" NAME="data_in" RIGHT="0" SIGIS="undef" SIGNAME="TESTER_package_digit_0_data_out">
@@ -84,22 +256,124 @@
         </PORT>
         <PORT DIR="O" LEFT="3" NAME="digit_1" RIGHT="0" SIGIS="undef" SIGNAME="package_digit_decoder_0_digit_1">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="digit_1_0"/>
+            <CONNECTION INSTANCE="display_manager_0" PORT="digit_1_A"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="3" NAME="digit_2" RIGHT="0" SIGIS="undef" SIGNAME="package_digit_decoder_0_digit_2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="digit_2_0"/>
+            <CONNECTION INSTANCE="display_manager_0" PORT="digit_2_A"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="3" NAME="digit_3" RIGHT="0" SIGIS="undef" SIGNAME="package_digit_decoder_0_digit_3">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="digit_3_0"/>
+            <CONNECTION INSTANCE="display_manager_0" PORT="digit_3_A"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="3" NAME="digit_4" RIGHT="0" SIGIS="undef" SIGNAME="package_digit_decoder_0_digit_4">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="digit_4_0"/>
+            <CONNECTION INSTANCE="display_manager_0" PORT="digit_4_A"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="7" FULLNAME="/xlconstant_0" HWVERSION="1.1" INSTANCE="xlconstant_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconstant" VLNV="xilinx.com:ip:xlconstant:1.1">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="CONST_WIDTH" VALUE="14"/>
+        <PARAMETER NAME="CONST_VAL" VALUE="0x2710"/>
+        <PARAMETER NAME="Component_Name" VALUE="TEST_package_decoder_xlconstant_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="O" LEFT="13" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_0_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="divisor_de_clk_0" PORT="clk_in_out_ratio"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="7" FULLNAME="/xlconstant_1" HWVERSION="1.1" INSTANCE="xlconstant_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconstant" VLNV="xilinx.com:ip:xlconstant:1.1">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="CONST_WIDTH" VALUE="4"/>
+        <PARAMETER NAME="CONST_VAL" VALUE="0x0"/>
+        <PARAMETER NAME="Component_Name" VALUE="TEST_package_decoder_xlconstant_1_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="O" LEFT="3" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_1_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="display_manager_0" PORT="digit_1_B"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="7" FULLNAME="/xlconstant_2" HWVERSION="1.1" INSTANCE="xlconstant_2" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconstant" VLNV="xilinx.com:ip:xlconstant:1.1">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="CONST_WIDTH" VALUE="4"/>
+        <PARAMETER NAME="CONST_VAL" VALUE="0x9"/>
+        <PARAMETER NAME="Component_Name" VALUE="TEST_package_decoder_xlconstant_2_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="O" LEFT="3" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_2_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="display_manager_0" PORT="digit_2_B"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="7" FULLNAME="/xlconstant_3" HWVERSION="1.1" INSTANCE="xlconstant_3" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconstant" VLNV="xilinx.com:ip:xlconstant:1.1">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="CONST_WIDTH" VALUE="4"/>
+        <PARAMETER NAME="CONST_VAL" VALUE="0x7"/>
+        <PARAMETER NAME="Component_Name" VALUE="TEST_package_decoder_xlconstant_3_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="O" LEFT="3" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_3_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="display_manager_0" PORT="digit_3_B"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="7" FULLNAME="/xlconstant_4" HWVERSION="1.1" INSTANCE="xlconstant_4" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconstant" VLNV="xilinx.com:ip:xlconstant:1.1">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="CONST_WIDTH" VALUE="4"/>
+        <PARAMETER NAME="CONST_VAL" VALUE="0x6"/>
+        <PARAMETER NAME="Component_Name" VALUE="TEST_package_decoder_xlconstant_4_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="O" LEFT="3" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_4_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="display_manager_0" PORT="digit_4_B"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="7" FULLNAME="/xlconstant_5" HWVERSION="1.1" INSTANCE="xlconstant_5" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconstant" VLNV="xilinx.com:ip:xlconstant:1.1">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="CONST_WIDTH" VALUE="14"/>
+        <PARAMETER NAME="CONST_VAL" VALUE="0x000A"/>
+        <PARAMETER NAME="Component_Name" VALUE="TEST_package_decoder_xlconstant_5_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="O" LEFT="13" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_5_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="divisor_de_clk_1" PORT="clk_in_out_ratio"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

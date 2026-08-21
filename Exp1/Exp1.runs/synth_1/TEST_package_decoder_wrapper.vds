@@ -1,0 +1,298 @@
+#-----------------------------------------------------------
+# Vivado v2020.1 (64-bit)
+# SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Thu Aug 20 21:53:33 2026
+# Process ID: 37384
+# Current directory: C:/Users/linnh/LabAD/Exp1/Exp1.runs/synth_1
+# Command line: vivado.exe -log TEST_package_decoder_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source TEST_package_decoder_wrapper.tcl
+# Log file: C:/Users/linnh/LabAD/Exp1/Exp1.runs/synth_1/TEST_package_decoder_wrapper.vds
+# Journal file: C:/Users/linnh/LabAD/Exp1/Exp1.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source TEST_package_decoder_wrapper.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2020.1/data/ip'.
+add_files: Time (s): cpu = 00:00:01 ; elapsed = 00:00:06 . Memory (MB): peak = 1070.691 ; gain = 0.000
+Command: synth_design -top TEST_package_decoder_wrapper -part xc7a35tcpg236-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 31492
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1070.691 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'TEST_package_decoder_wrapper' [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/hdl/TEST_package_decoder_wrapper.vhd:24]
+INFO: [Synth 8-3491] module 'TEST_package_decoder' declared at 'C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/synth/TEST_package_decoder.vhd:14' bound to instance 'TEST_package_decoder_i' of component 'TEST_package_decoder' [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/hdl/TEST_package_decoder_wrapper.vhd:35]
+INFO: [Synth 8-638] synthesizing module 'TEST_package_decoder' [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/synth/TEST_package_decoder.vhd:28]
+INFO: [Synth 8-3491] module 'TEST_package_decoder_TESTER_package_digit_0_0' declared at 'C:/Users/linnh/LabAD/Exp1/Exp1.runs/synth_1/.Xil/Vivado-37384-TROND-ENVYX360/realtime/TEST_package_decoder_TESTER_package_digit_0_0_stub.vhdl:5' bound to instance 'TESTER_package_digit_0' of component 'TEST_package_decoder_TESTER_package_digit_0_0' [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/synth/TEST_package_decoder.vhd:151]
+INFO: [Synth 8-638] synthesizing module 'TEST_package_decoder_TESTER_package_digit_0_0' [C:/Users/linnh/LabAD/Exp1/Exp1.runs/synth_1/.Xil/Vivado-37384-TROND-ENVYX360/realtime/TEST_package_decoder_TESTER_package_digit_0_0_stub.vhdl:14]
+INFO: [Synth 8-3491] module 'TEST_package_decoder_display_interface_0_0' declared at 'C:/Users/linnh/LabAD/Exp1/Exp1.runs/synth_1/.Xil/Vivado-37384-TROND-ENVYX360/realtime/TEST_package_decoder_display_interface_0_0_stub.vhdl:5' bound to instance 'display_interface_0' of component 'TEST_package_decoder_display_interface_0_0' [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/synth/TEST_package_decoder.vhd:157]
+INFO: [Synth 8-638] synthesizing module 'TEST_package_decoder_display_interface_0_0' [C:/Users/linnh/LabAD/Exp1/Exp1.runs/synth_1/.Xil/Vivado-37384-TROND-ENVYX360/realtime/TEST_package_decoder_display_interface_0_0_stub.vhdl:17]
+INFO: [Synth 8-3491] module 'TEST_package_decoder_display_manager_0_0' declared at 'C:/Users/linnh/LabAD/Exp1/Exp1.runs/synth_1/.Xil/Vivado-37384-TROND-ENVYX360/realtime/TEST_package_decoder_display_manager_0_0_stub.vhdl:5' bound to instance 'display_manager_0' of component 'TEST_package_decoder_display_manager_0_0' [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/synth/TEST_package_decoder.vhd:166]
+INFO: [Synth 8-638] synthesizing module 'TEST_package_decoder_display_manager_0_0' [C:/Users/linnh/LabAD/Exp1/Exp1.runs/synth_1/.Xil/Vivado-37384-TROND-ENVYX360/realtime/TEST_package_decoder_display_manager_0_0_stub.vhdl:25]
+INFO: [Synth 8-3491] module 'TEST_package_decoder_divisor_de_clk_0_0' declared at 'C:/Users/linnh/LabAD/Exp1/Exp1.runs/synth_1/.Xil/Vivado-37384-TROND-ENVYX360/realtime/TEST_package_decoder_divisor_de_clk_0_0_stub.vhdl:5' bound to instance 'divisor_de_clk_0' of component 'TEST_package_decoder_divisor_de_clk_0_0' [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/synth/TEST_package_decoder.vhd:183]
+INFO: [Synth 8-638] synthesizing module 'TEST_package_decoder_divisor_de_clk_0_0' [C:/Users/linnh/LabAD/Exp1/Exp1.runs/synth_1/.Xil/Vivado-37384-TROND-ENVYX360/realtime/TEST_package_decoder_divisor_de_clk_0_0_stub.vhdl:14]
+INFO: [Synth 8-3491] module 'TEST_package_decoder_divisor_de_clk_1_0' declared at 'C:/Users/linnh/LabAD/Exp1/Exp1.runs/synth_1/.Xil/Vivado-37384-TROND-ENVYX360/realtime/TEST_package_decoder_divisor_de_clk_1_0_stub.vhdl:5' bound to instance 'divisor_de_clk_1' of component 'TEST_package_decoder_divisor_de_clk_1_0' [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/synth/TEST_package_decoder.vhd:189]
+INFO: [Synth 8-638] synthesizing module 'TEST_package_decoder_divisor_de_clk_1_0' [C:/Users/linnh/LabAD/Exp1/Exp1.runs/synth_1/.Xil/Vivado-37384-TROND-ENVYX360/realtime/TEST_package_decoder_divisor_de_clk_1_0_stub.vhdl:14]
+INFO: [Synth 8-3491] module 'TEST_package_decoder_package_digit_decoder_0_0' declared at 'C:/Users/linnh/LabAD/Exp1/Exp1.runs/synth_1/.Xil/Vivado-37384-TROND-ENVYX360/realtime/TEST_package_decoder_package_digit_decoder_0_0_stub.vhdl:5' bound to instance 'package_digit_decoder_0' of component 'TEST_package_decoder_package_digit_decoder_0_0' [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/synth/TEST_package_decoder.vhd:195]
+INFO: [Synth 8-638] synthesizing module 'TEST_package_decoder_package_digit_decoder_0_0' [C:/Users/linnh/LabAD/Exp1/Exp1.runs/synth_1/.Xil/Vivado-37384-TROND-ENVYX360/realtime/TEST_package_decoder_package_digit_decoder_0_0_stub.vhdl:18]
+INFO: [Synth 8-3491] module 'TEST_package_decoder_xlconstant_0_0' declared at 'c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_0_0/synth/TEST_package_decoder_xlconstant_0_0.v:57' bound to instance 'xlconstant_0' of component 'TEST_package_decoder_xlconstant_0_0' [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/synth/TEST_package_decoder.vhd:205]
+INFO: [Synth 8-6157] synthesizing module 'TEST_package_decoder_xlconstant_0_0' [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_0_0/synth/TEST_package_decoder_xlconstant_0_0.v:57]
+INFO: [Synth 8-6157] synthesizing module 'xlconstant_v1_1_7_xlconstant' [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ipshared/fcfc/hdl/xlconstant_v1_1_vl_rfs.v:23]
+	Parameter CONST_VAL bound to: 10000 - type: integer 
+	Parameter CONST_WIDTH bound to: 14 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xlconstant_v1_1_7_xlconstant' (1#1) [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ipshared/fcfc/hdl/xlconstant_v1_1_vl_rfs.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'TEST_package_decoder_xlconstant_0_0' (2#1) [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_0_0/synth/TEST_package_decoder_xlconstant_0_0.v:57]
+INFO: [Synth 8-3491] module 'TEST_package_decoder_xlconstant_1_0' declared at 'c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_1_0/synth/TEST_package_decoder_xlconstant_1_0.v:57' bound to instance 'xlconstant_1' of component 'TEST_package_decoder_xlconstant_1_0' [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/synth/TEST_package_decoder.vhd:209]
+INFO: [Synth 8-6157] synthesizing module 'TEST_package_decoder_xlconstant_1_0' [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_1_0/synth/TEST_package_decoder_xlconstant_1_0.v:57]
+INFO: [Synth 8-6157] synthesizing module 'xlconstant_v1_1_7_xlconstant__parameterized0' [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ipshared/fcfc/hdl/xlconstant_v1_1_vl_rfs.v:23]
+	Parameter CONST_VAL bound to: 0 - type: integer 
+	Parameter CONST_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xlconstant_v1_1_7_xlconstant__parameterized0' (2#1) [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ipshared/fcfc/hdl/xlconstant_v1_1_vl_rfs.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'TEST_package_decoder_xlconstant_1_0' (3#1) [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_1_0/synth/TEST_package_decoder_xlconstant_1_0.v:57]
+INFO: [Synth 8-3491] module 'TEST_package_decoder_xlconstant_2_0' declared at 'c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_2_0/synth/TEST_package_decoder_xlconstant_2_0.v:57' bound to instance 'xlconstant_2' of component 'TEST_package_decoder_xlconstant_2_0' [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/synth/TEST_package_decoder.vhd:213]
+INFO: [Synth 8-6157] synthesizing module 'TEST_package_decoder_xlconstant_2_0' [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_2_0/synth/TEST_package_decoder_xlconstant_2_0.v:57]
+INFO: [Synth 8-6157] synthesizing module 'xlconstant_v1_1_7_xlconstant__parameterized1' [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ipshared/fcfc/hdl/xlconstant_v1_1_vl_rfs.v:23]
+	Parameter CONST_VAL bound to: 9 - type: integer 
+	Parameter CONST_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xlconstant_v1_1_7_xlconstant__parameterized1' (3#1) [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ipshared/fcfc/hdl/xlconstant_v1_1_vl_rfs.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'TEST_package_decoder_xlconstant_2_0' (4#1) [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_2_0/synth/TEST_package_decoder_xlconstant_2_0.v:57]
+INFO: [Synth 8-3491] module 'TEST_package_decoder_xlconstant_3_0' declared at 'c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_3_0/synth/TEST_package_decoder_xlconstant_3_0.v:57' bound to instance 'xlconstant_3' of component 'TEST_package_decoder_xlconstant_3_0' [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/synth/TEST_package_decoder.vhd:217]
+INFO: [Synth 8-6157] synthesizing module 'TEST_package_decoder_xlconstant_3_0' [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_3_0/synth/TEST_package_decoder_xlconstant_3_0.v:57]
+INFO: [Synth 8-6157] synthesizing module 'xlconstant_v1_1_7_xlconstant__parameterized2' [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ipshared/fcfc/hdl/xlconstant_v1_1_vl_rfs.v:23]
+	Parameter CONST_VAL bound to: 7 - type: integer 
+	Parameter CONST_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xlconstant_v1_1_7_xlconstant__parameterized2' (4#1) [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ipshared/fcfc/hdl/xlconstant_v1_1_vl_rfs.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'TEST_package_decoder_xlconstant_3_0' (5#1) [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_3_0/synth/TEST_package_decoder_xlconstant_3_0.v:57]
+INFO: [Synth 8-3491] module 'TEST_package_decoder_xlconstant_4_0' declared at 'c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_4_0/synth/TEST_package_decoder_xlconstant_4_0.v:57' bound to instance 'xlconstant_4' of component 'TEST_package_decoder_xlconstant_4_0' [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/synth/TEST_package_decoder.vhd:221]
+INFO: [Synth 8-6157] synthesizing module 'TEST_package_decoder_xlconstant_4_0' [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_4_0/synth/TEST_package_decoder_xlconstant_4_0.v:57]
+INFO: [Synth 8-6157] synthesizing module 'xlconstant_v1_1_7_xlconstant__parameterized3' [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ipshared/fcfc/hdl/xlconstant_v1_1_vl_rfs.v:23]
+	Parameter CONST_VAL bound to: 6 - type: integer 
+	Parameter CONST_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xlconstant_v1_1_7_xlconstant__parameterized3' (5#1) [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ipshared/fcfc/hdl/xlconstant_v1_1_vl_rfs.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'TEST_package_decoder_xlconstant_4_0' (6#1) [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_4_0/synth/TEST_package_decoder_xlconstant_4_0.v:57]
+INFO: [Synth 8-3491] module 'TEST_package_decoder_xlconstant_5_0' declared at 'c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_5_0/synth/TEST_package_decoder_xlconstant_5_0.v:57' bound to instance 'xlconstant_5' of component 'TEST_package_decoder_xlconstant_5_0' [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/synth/TEST_package_decoder.vhd:225]
+INFO: [Synth 8-6157] synthesizing module 'TEST_package_decoder_xlconstant_5_0' [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_5_0/synth/TEST_package_decoder_xlconstant_5_0.v:57]
+INFO: [Synth 8-6157] synthesizing module 'xlconstant_v1_1_7_xlconstant__parameterized4' [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ipshared/fcfc/hdl/xlconstant_v1_1_vl_rfs.v:23]
+	Parameter CONST_VAL bound to: 10 - type: integer 
+	Parameter CONST_WIDTH bound to: 14 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xlconstant_v1_1_7_xlconstant__parameterized4' (6#1) [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ipshared/fcfc/hdl/xlconstant_v1_1_vl_rfs.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'TEST_package_decoder_xlconstant_5_0' (7#1) [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_xlconstant_5_0/synth/TEST_package_decoder_xlconstant_5_0.v:57]
+INFO: [Synth 8-256] done synthesizing module 'TEST_package_decoder' (8#1) [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/synth/TEST_package_decoder.vhd:28]
+INFO: [Synth 8-256] done synthesizing module 'TEST_package_decoder_wrapper' (9#1) [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/hdl/TEST_package_decoder_wrapper.vhd:24]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1070.691 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1070.691 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1070.691 ; gain = 0.000
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1070.691 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_TESTER_package_digit_0_0/TEST_package_decoder_TESTER_package_digit_0_0/TEST_package_decoder_TESTER_package_digit_0_0_in_context.xdc] for cell 'TEST_package_decoder_i/TESTER_package_digit_0'
+Finished Parsing XDC File [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_TESTER_package_digit_0_0/TEST_package_decoder_TESTER_package_digit_0_0/TEST_package_decoder_TESTER_package_digit_0_0_in_context.xdc] for cell 'TEST_package_decoder_i/TESTER_package_digit_0'
+Parsing XDC File [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_package_digit_decoder_0_0/TEST_package_decoder_package_digit_decoder_0_0/TEST_package_decoder_package_digit_decoder_0_0_in_context.xdc] for cell 'TEST_package_decoder_i/package_digit_decoder_0'
+Finished Parsing XDC File [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_package_digit_decoder_0_0/TEST_package_decoder_package_digit_decoder_0_0/TEST_package_decoder_package_digit_decoder_0_0_in_context.xdc] for cell 'TEST_package_decoder_i/package_digit_decoder_0'
+Parsing XDC File [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_display_manager_0_0/TEST_package_decoder_display_manager_0_0/TEST_package_decoder_display_manager_0_0_in_context.xdc] for cell 'TEST_package_decoder_i/display_manager_0'
+Finished Parsing XDC File [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_display_manager_0_0/TEST_package_decoder_display_manager_0_0/TEST_package_decoder_display_manager_0_0_in_context.xdc] for cell 'TEST_package_decoder_i/display_manager_0'
+Parsing XDC File [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_display_interface_0_0/TEST_package_decoder_display_interface_0_0/TEST_package_decoder_display_interface_0_0_in_context.xdc] for cell 'TEST_package_decoder_i/display_interface_0'
+Finished Parsing XDC File [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_display_interface_0_0/TEST_package_decoder_display_interface_0_0/TEST_package_decoder_display_interface_0_0_in_context.xdc] for cell 'TEST_package_decoder_i/display_interface_0'
+Parsing XDC File [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_divisor_de_clk_0_0/TEST_package_decoder_divisor_de_clk_0_0/TEST_package_decoder_divisor_de_clk_0_0_in_context.xdc] for cell 'TEST_package_decoder_i/divisor_de_clk_0'
+Finished Parsing XDC File [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_divisor_de_clk_0_0/TEST_package_decoder_divisor_de_clk_0_0/TEST_package_decoder_divisor_de_clk_0_0_in_context.xdc] for cell 'TEST_package_decoder_i/divisor_de_clk_0'
+Parsing XDC File [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_divisor_de_clk_1_0/TEST_package_decoder_divisor_de_clk_1_0/TEST_package_decoder_divisor_de_clk_1_0_in_context.xdc] for cell 'TEST_package_decoder_i/divisor_de_clk_1'
+Finished Parsing XDC File [c:/Users/linnh/LabAD/Exp1/Exp1.srcs/sources_1/bd/TEST_package_decoder/ip/TEST_package_decoder_divisor_de_clk_1_0/TEST_package_decoder_divisor_de_clk_1_0/TEST_package_decoder_divisor_de_clk_1_0_in_context.xdc] for cell 'TEST_package_decoder_i/divisor_de_clk_1'
+Parsing XDC File [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/constrs_1/imports/Downloads/Basys3_Master.xdc]
+Finished Parsing XDC File [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/constrs_1/imports/Downloads/Basys3_Master.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/linnh/LabAD/Exp1/Exp1.srcs/constrs_1/imports/Downloads/Basys3_Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/TEST_package_decoder_wrapper_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/TEST_package_decoder_wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [C:/Users/linnh/LabAD/Exp1/Exp1.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/Users/linnh/LabAD/Exp1/Exp1.runs/synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1131.324 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1131.324 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1131.324 ; gain = 60.633
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1131.324 ; gain = 60.633
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property DONT_TOUCH = true for TEST_package_decoder_i. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for TEST_package_decoder_i/TESTER_package_digit_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for TEST_package_decoder_i/package_digit_decoder_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for TEST_package_decoder_i/display_manager_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for TEST_package_decoder_i/display_interface_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for TEST_package_decoder_i/divisor_de_clk_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for TEST_package_decoder_i/xlconstant_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for TEST_package_decoder_i/xlconstant_1. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for TEST_package_decoder_i/xlconstant_2. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for TEST_package_decoder_i/xlconstant_3. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for TEST_package_decoder_i/xlconstant_4. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for TEST_package_decoder_i/divisor_de_clk_1. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for TEST_package_decoder_i/xlconstant_5. (constraint file  auto generated constraint, line ).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1131.324 ; gain = 60.633
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1131.324 ; gain = 60.633
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1131.324 ; gain = 60.633
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1146.254 ; gain = 75.562
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1146.254 ; gain = 75.562
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1165.379 ; gain = 94.688
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 1171.035 ; gain = 100.344
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 1171.035 ; gain = 100.344
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 1171.035 ; gain = 100.344
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 1171.035 ; gain = 100.344
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 1171.035 ; gain = 100.344
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 1171.035 ; gain = 100.344
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+-----------------------------------------------+----------+
+|      |BlackBox name                                  |Instances |
++------+-----------------------------------------------+----------+
+|1     |TEST_package_decoder_TESTER_package_digit_0_0  |         1|
+|2     |TEST_package_decoder_display_interface_0_0     |         1|
+|3     |TEST_package_decoder_display_manager_0_0       |         1|
+|4     |TEST_package_decoder_divisor_de_clk_0_0        |         1|
+|5     |TEST_package_decoder_divisor_de_clk_1_0        |         1|
+|6     |TEST_package_decoder_package_digit_decoder_0_0 |         1|
++------+-----------------------------------------------+----------+
+
+Report Cell Usage: 
++------+----------------------------------------------------+------+
+|      |Cell                                                |Count |
++------+----------------------------------------------------+------+
+|1     |TEST_package_decoder_TESTER_package_digit_0_0_bbox  |     1|
+|2     |TEST_package_decoder_display_interface_0_0_bbox     |     1|
+|3     |TEST_package_decoder_display_manager_0_0_bbox       |     1|
+|4     |TEST_package_decoder_divisor_de_clk_0_0_bbox        |     1|
+|5     |TEST_package_decoder_divisor_de_clk_1_0_bbox        |     1|
+|6     |TEST_package_decoder_package_digit_decoder_0_0_bbox |     1|
+|7     |IBUF                                                |     2|
+|8     |OBUF                                                |    12|
++------+----------------------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 1171.035 ; gain = 100.344
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:23 ; elapsed = 00:00:32 . Memory (MB): peak = 1171.035 ; gain = 39.711
+Synthesis Optimization Complete : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 1171.035 ; gain = 100.344
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1183.062 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1187.027 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+63 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:41 ; elapsed = 00:00:45 . Memory (MB): peak = 1187.027 ; gain = 116.336
+INFO: [Common 17-1381] The checkpoint 'C:/Users/linnh/LabAD/Exp1/Exp1.runs/synth_1/TEST_package_decoder_wrapper.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file TEST_package_decoder_wrapper_utilization_synth.rpt -pb TEST_package_decoder_wrapper_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Thu Aug 20 21:54:35 2026...

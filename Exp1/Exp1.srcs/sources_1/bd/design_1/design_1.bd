@@ -13,8 +13,8 @@
       "xlconstant_0": "",
       "divisor_de_clk_1": "",
       "xlconstant_1": "",
-      "UART_RX_0": "",
-      "package_digit_decoder_0": ""
+      "package_digit_decoder_0": "",
+      "UART_RX_0": ""
     },
     "ports": {
       "clk": {
@@ -90,36 +90,6 @@
           }
         }
       },
-      "UART_RX_0": {
-        "vlnv": "xilinx.com:module_ref:UART_RX:1.0",
-        "xci_name": "design_1_UART_RX_0_1",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "UART_RX",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "baud_rate_clk": {
-            "type": "clk",
-            "direction": "I"
-          },
-          "package_rate_clk": {
-            "type": "clk",
-            "direction": "I"
-          },
-          "uart_rx_in": {
-            "direction": "I"
-          },
-          "uart_rx_out": {
-            "direction": "O",
-            "left": "7",
-            "right": "0"
-          },
-          "uart_rx_out_flag": {
-            "direction": "O"
-          }
-        }
-      },
       "package_digit_decoder_0": {
         "vlnv": "xilinx.com:module_ref:package_digit_decoder:1.0",
         "xci_name": "design_1_package_digit_decoder_0_0",
@@ -162,6 +132,36 @@
             "right": "0"
           }
         }
+      },
+      "UART_RX_0": {
+        "vlnv": "xilinx.com:module_ref:UART_RX:1.0",
+        "xci_name": "design_1_UART_RX_0_1",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "UART_RX",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "baud_rate_clk": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "package_rate_clk": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "uart_rx_in": {
+            "direction": "I"
+          },
+          "uart_rx_out": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "uart_rx_out_flag": {
+            "direction": "O"
+          }
+        }
       }
     },
     "nets": {
@@ -193,8 +193,8 @@
       "divisor_de_clk_1_clk_out": {
         "ports": [
           "divisor_de_clk_1/clk_out",
-          "UART_RX_0/package_rate_clk",
-          "package_digit_decoder_0/package_rate_clk"
+          "package_digit_decoder_0/package_rate_clk",
+          "UART_RX_0/package_rate_clk"
         ]
       },
       "UART_RX_0_uart_rx_out": {
