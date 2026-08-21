@@ -52,7 +52,7 @@ begin
                 
                     if valid_data_in_flag = '1' then
                         digit_1_internal <= data_in(7 downto 4);
-                        digit_2_internal <= data_in(7 downto 4);
+                        digit_2_internal <= data_in(3 downto 0);
                         state <= PACKAGE2;
                     else
                         state <= IDLE;
@@ -62,7 +62,7 @@ begin
                 
                     if valid_data_in_flag = '1' then
                         digit_3_internal <= data_in(7 downto 4);
-                        digit_4_internal <= data_in(7 downto 4);
+                        digit_4_internal <= data_in(3 downto 0);
                         package_decoding_completed <= '1';
                         state <= IDLE;
                     else

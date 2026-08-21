@@ -1,0 +1,11 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../Exp1.srcs/sources_1/new/TESTER_package_digit_decoder.vhd" \
+"../../../../Exp1.srcs/sources_1/new/package_decoder.vhd" \
+"../../../../Exp1.ip_user_files/bd/TEST_package_decoder/ip/TEST_package_decoder_TESTER_package_digit_0_0/sim/TEST_package_decoder_TESTER_package_digit_0_0.vhd" \
+"../../../../Exp1.ip_user_files/bd/TEST_package_decoder/ip/TEST_package_decoder_package_digit_decoder_0_0/sim/TEST_package_decoder_package_digit_decoder_0_0.vhd" \
+"../../../../Exp1.ip_user_files/bd/TEST_package_decoder/sim/TEST_package_decoder.vhd" \
+"../../../../Exp1.srcs/sources_1/bd/TEST_package_decoder/hdl/TEST_package_decoder_wrapper.vhd" \
+
+# Do not sort compile order
+nosort

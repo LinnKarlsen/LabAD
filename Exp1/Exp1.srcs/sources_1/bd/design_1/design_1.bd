@@ -2,11 +2,213 @@
   "design": {
     "design_info": {
       "boundary_crc": "0x0",
+      "device": "xc7a35tcpg236-1",
       "name": "design_1",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
       "tool_version": "2020.1"
     },
-    "design_tree": {}
+    "design_tree": {
+      "divisor_de_clk_0": "",
+      "xlconstant_0": "",
+      "divisor_de_clk_1": "",
+      "xlconstant_1": "",
+      "UART_RX_0": "",
+      "package_digit_decoder_0": ""
+    },
+    "ports": {
+      "clk": {
+        "direction": "I"
+      }
+    },
+    "components": {
+      "divisor_de_clk_0": {
+        "vlnv": "xilinx.com:module_ref:divisor_de_clk:1.0",
+        "xci_name": "design_1_divisor_de_clk_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "divisor_de_clk",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk_in": {
+            "direction": "I"
+          },
+          "clk_out": {
+            "direction": "O"
+          },
+          "clk_in_out_ratio": {
+            "direction": "I",
+            "left": "13",
+            "right": "0"
+          }
+        }
+      },
+      "xlconstant_0": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "design_1_xlconstant_0_0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "10000"
+          },
+          "CONST_WIDTH": {
+            "value": "14"
+          }
+        }
+      },
+      "divisor_de_clk_1": {
+        "vlnv": "xilinx.com:module_ref:divisor_de_clk:1.0",
+        "xci_name": "design_1_divisor_de_clk_1_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "divisor_de_clk",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk_in": {
+            "direction": "I"
+          },
+          "clk_out": {
+            "direction": "O"
+          },
+          "clk_in_out_ratio": {
+            "direction": "I",
+            "left": "13",
+            "right": "0"
+          }
+        }
+      },
+      "xlconstant_1": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "design_1_xlconstant_1_0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "11"
+          },
+          "CONST_WIDTH": {
+            "value": "14"
+          }
+        }
+      },
+      "UART_RX_0": {
+        "vlnv": "xilinx.com:module_ref:UART_RX:1.0",
+        "xci_name": "design_1_UART_RX_0_1",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "UART_RX",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "baud_rate_clk": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "package_rate_clk": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "uart_rx_in": {
+            "direction": "I"
+          },
+          "uart_rx_out": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "uart_rx_out_flag": {
+            "direction": "O"
+          }
+        }
+      },
+      "package_digit_decoder_0": {
+        "vlnv": "xilinx.com:module_ref:package_digit_decoder:1.0",
+        "xci_name": "design_1_package_digit_decoder_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "package_digit_decoder",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "package_rate_clk": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "data_in": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "valid_data_in_flag": {
+            "direction": "I"
+          },
+          "digit_1": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "digit_2": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "digit_3": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "digit_4": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          }
+        }
+      }
+    },
+    "nets": {
+      "xlconstant_0_dout": {
+        "ports": [
+          "xlconstant_0/dout",
+          "divisor_de_clk_0/clk_in_out_ratio"
+        ]
+      },
+      "clk_1": {
+        "ports": [
+          "clk",
+          "divisor_de_clk_0/clk_in"
+        ]
+      },
+      "divisor_de_clk_0_clk_out": {
+        "ports": [
+          "divisor_de_clk_0/clk_out",
+          "divisor_de_clk_1/clk_in",
+          "UART_RX_0/baud_rate_clk"
+        ]
+      },
+      "xlconstant_1_dout": {
+        "ports": [
+          "xlconstant_1/dout",
+          "divisor_de_clk_1/clk_in_out_ratio"
+        ]
+      },
+      "divisor_de_clk_1_clk_out": {
+        "ports": [
+          "divisor_de_clk_1/clk_out",
+          "UART_RX_0/package_rate_clk",
+          "package_digit_decoder_0/package_rate_clk"
+        ]
+      },
+      "UART_RX_0_uart_rx_out": {
+        "ports": [
+          "UART_RX_0/uart_rx_out",
+          "package_digit_decoder_0/data_in"
+        ]
+      },
+      "UART_RX_0_uart_rx_out_flag": {
+        "ports": [
+          "UART_RX_0/uart_rx_out_flag",
+          "package_digit_decoder_0/valid_data_in_flag"
+        ]
+      }
+    }
   }
 }

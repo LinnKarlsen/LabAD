@@ -1,0 +1,26 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"1.25",
+   "Default View_TopLeft":"-166,-55",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0r6  2020-01-29 bk=1.5227 VDI=41 GEI=36 GUI=JA:9.0 non-TLS
+#  -string -flagsOSRD
+preplace port clk -pg 1 -lvl 0 -x -100 -y 160 -defaultsOSRD
+preplace portBus digit_1_0 -pg 1 -lvl 3 -x 560 -y 110 -defaultsOSRD
+preplace portBus digit_2_0 -pg 1 -lvl 3 -x 560 -y 140 -defaultsOSRD
+preplace portBus digit_3_0 -pg 1 -lvl 3 -x 560 -y 170 -defaultsOSRD
+preplace portBus digit_4_0 -pg 1 -lvl 3 -x 560 -y 200 -defaultsOSRD
+preplace inst package_digit_decoder_0 -pg 1 -lvl 2 -x 370 -y 170 -defaultsOSRD
+preplace inst TESTER_package_digit_0 -pg 1 -lvl 1 -x 40 -y 160 -defaultsOSRD
+preplace netloc TESTER_package_digit_0_data_out 1 1 1 160 150n
+preplace netloc TESTER_package_digit_0_data_valid 1 1 1 150 170n
+preplace netloc clk_0_1 1 0 2 -80 90 170
+preplace netloc package_digit_decoder_0_digit_1 1 2 1 510 110n
+preplace netloc package_digit_decoder_0_digit_2 1 2 1 520 140n
+preplace netloc package_digit_decoder_0_digit_3 1 2 1 510 170n
+preplace netloc package_digit_decoder_0_digit_4 1 2 1 N 200
+levelinfo -pg 1 -100 40 370 560
+pagesize -pg 1 -db -bbox -sgen -170 0 700 340
+"
+}
+0

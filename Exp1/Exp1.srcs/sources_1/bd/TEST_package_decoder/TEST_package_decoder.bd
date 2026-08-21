@@ -1,0 +1,190 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0xEBC91F55AD9B026D",
+      "device": "xc7a35tcpg236-1",
+      "name": "TEST_package_decoder",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2020.1",
+      "validated": "true"
+    },
+    "design_tree": {
+      "package_digit_decoder_0": "",
+      "TESTER_package_digit_0": ""
+    },
+    "ports": {
+      "clk": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "TEST_package_decoder_clk",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.000",
+            "value_src": "default"
+          }
+        }
+      },
+      "digit_1_0": {
+        "direction": "O",
+        "left": "3",
+        "right": "0"
+      },
+      "digit_2_0": {
+        "direction": "O",
+        "left": "3",
+        "right": "0"
+      },
+      "digit_3_0": {
+        "direction": "O",
+        "left": "3",
+        "right": "0"
+      },
+      "digit_4_0": {
+        "direction": "O",
+        "left": "3",
+        "right": "0"
+      }
+    },
+    "components": {
+      "package_digit_decoder_0": {
+        "vlnv": "xilinx.com:module_ref:package_digit_decoder:1.0",
+        "xci_name": "TEST_package_decoder_package_digit_decoder_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "package_digit_decoder",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "package_rate_clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "CLK_DOMAIN": {
+                "value": "TEST_package_decoder_clk",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "data_in": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "valid_data_in_flag": {
+            "direction": "I"
+          },
+          "digit_1": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "digit_2": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "digit_3": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "digit_4": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          }
+        }
+      },
+      "TESTER_package_digit_0": {
+        "vlnv": "xilinx.com:module_ref:TESTER_package_digit_decoder:1.0",
+        "xci_name": "TEST_package_decoder_TESTER_package_digit_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "TESTER_package_digit_decoder",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "CLK_DOMAIN": {
+                "value": "TEST_package_decoder_clk",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "data_out": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "data_valid": {
+            "direction": "O"
+          }
+        }
+      }
+    },
+    "nets": {
+      "TESTER_package_digit_0_data_out": {
+        "ports": [
+          "TESTER_package_digit_0/data_out",
+          "package_digit_decoder_0/data_in"
+        ]
+      },
+      "TESTER_package_digit_0_data_valid": {
+        "ports": [
+          "TESTER_package_digit_0/data_valid",
+          "package_digit_decoder_0/valid_data_in_flag"
+        ]
+      },
+      "clk_0_1": {
+        "ports": [
+          "clk",
+          "package_digit_decoder_0/package_rate_clk",
+          "TESTER_package_digit_0/clk"
+        ]
+      },
+      "package_digit_decoder_0_digit_1": {
+        "ports": [
+          "package_digit_decoder_0/digit_1",
+          "digit_1_0"
+        ]
+      },
+      "package_digit_decoder_0_digit_2": {
+        "ports": [
+          "package_digit_decoder_0/digit_2",
+          "digit_2_0"
+        ]
+      },
+      "package_digit_decoder_0_digit_3": {
+        "ports": [
+          "package_digit_decoder_0/digit_3",
+          "digit_3_0"
+        ]
+      },
+      "package_digit_decoder_0_digit_4": {
+        "ports": [
+          "package_digit_decoder_0/digit_4",
+          "digit_4_0"
+        ]
+      }
+    }
+  }
+}

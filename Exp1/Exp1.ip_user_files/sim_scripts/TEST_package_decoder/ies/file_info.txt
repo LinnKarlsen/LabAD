@@ -1,0 +1,3 @@
+TEST_package_decoder_TESTER_package_digit_0_0.vhd,vhdl,xil_defaultlib,../../../bd/TEST_package_decoder/ip/TEST_package_decoder_TESTER_package_digit_0_0/sim/TEST_package_decoder_TESTER_package_digit_0_0.vhd,
+TEST_package_decoder_package_digit_decoder_0_0.vhd,vhdl,xil_defaultlib,../../../bd/TEST_package_decoder/ip/TEST_package_decoder_package_digit_decoder_0_0/sim/TEST_package_decoder_package_digit_decoder_0_0.vhd,
+TEST_package_decoder.vhd,vhdl,xil_defaultlib,../../../bd/TEST_package_decoder/sim/TEST_package_decoder.vhd,
