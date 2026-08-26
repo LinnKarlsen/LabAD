@@ -1,7 +1,7 @@
 --Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
---Date        : Fri Aug 21 13:15:14 2026
+--Date        : Fri Aug 21 17:14:50 2026
 --Host        : TROND-ENVYX360 running 64-bit major release  (build 9200)
 --Command     : generate_target Exp1_bd_wrapper.bd
 --Design      : Exp1_bd_wrapper

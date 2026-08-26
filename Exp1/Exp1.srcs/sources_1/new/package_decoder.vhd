@@ -31,6 +31,7 @@ begin
 
     -- Utilizamos clk del package rate para actualizar este bloque
     process(package_rate_clk)
+        
     begin
         
         if rising_edge(package_rate_clk) then
@@ -47,15 +48,13 @@ begin
                             state <= PACKAGE1;
                         end if;
                     end if;
-                                        
-                when PACKAGE1 =>
+                                                               
+                when PACKAGE1 => 
                 
                     if valid_data_in_flag = '1' then
                         digit_1_internal <= data_in(7 downto 4);
                         digit_2_internal <= data_in(3 downto 0);
                         state <= PACKAGE2;
-                    else
-                        state <= IDLE;
                     end if;
                     
                 when PACKAGE2 =>
@@ -64,8 +63,6 @@ begin
                         digit_3_internal <= data_in(7 downto 4);
                         digit_4_internal <= data_in(3 downto 0);
                         package_decoding_completed <= '1';
-                        state <= IDLE;
-                    else
                         state <= IDLE;
                     end if;
                     

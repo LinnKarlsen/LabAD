@@ -6,49 +6,26 @@
       "name": "TEST_package_decoder",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2020.1",
-      "validated": "true"
+      "tool_version": "2020.1"
     },
     "design_tree": {
-      "package_digit_decoder_0": "",
       "TESTER_package_digit_0": "",
-      "display_manager_0": "",
-      "display_interface_0": "",
-      "divisor_de_clk_0": "",
       "xlconstant_0": "",
       "xlconstant_1": "",
       "xlconstant_2": "",
       "xlconstant_3": "",
       "xlconstant_4": "",
+      "xlconstant_5": "",
+      "display_manager_0": "",
+      "display_interface_0": "",
+      "divisor_de_clk_0": "",
       "divisor_de_clk_1": "",
-      "xlconstant_5": ""
+      "package_digit_decoder_0": ""
     },
     "ports": {
       "clk": {
         "type": "clk",
-        "direction": "I",
-        "parameters": {
-          "CLK_DOMAIN": {
-            "value": "TEST_package_decoder_clk",
-            "value_src": "default"
-          },
-          "FREQ_HZ": {
-            "value": "100000000",
-            "value_src": "default"
-          },
-          "FREQ_TOLERANCE_HZ": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "PHASE": {
-            "value": "0.000",
-            "value_src": "default"
-          }
-        }
+        "direction": "I"
       },
       "seg": {
         "direction": "O",
@@ -68,55 +45,6 @@
       }
     },
     "components": {
-      "package_digit_decoder_0": {
-        "vlnv": "xilinx.com:module_ref:package_digit_decoder:1.0",
-        "xci_name": "TEST_package_decoder_package_digit_decoder_0_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "package_digit_decoder",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "package_rate_clk": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "CLK_DOMAIN": {
-                "value": "TEST_package_decoder_clk",
-                "value_src": "default_prop"
-              }
-            }
-          },
-          "data_in": {
-            "direction": "I",
-            "left": "7",
-            "right": "0"
-          },
-          "valid_data_in_flag": {
-            "direction": "I"
-          },
-          "digit_1": {
-            "direction": "O",
-            "left": "3",
-            "right": "0"
-          },
-          "digit_2": {
-            "direction": "O",
-            "left": "3",
-            "right": "0"
-          },
-          "digit_3": {
-            "direction": "O",
-            "left": "3",
-            "right": "0"
-          },
-          "digit_4": {
-            "direction": "O",
-            "left": "3",
-            "right": "0"
-          }
-        }
-      },
       "TESTER_package_digit_0": {
         "vlnv": "xilinx.com:module_ref:TESTER_package_digit_decoder:1.0",
         "xci_name": "TEST_package_decoder_TESTER_package_digit_0_0",
@@ -128,13 +56,7 @@
         "ports": {
           "clk": {
             "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "CLK_DOMAIN": {
-                "value": "TEST_package_decoder_clk",
-                "value_src": "default_prop"
-              }
-            }
+            "direction": "I"
           },
           "data_out": {
             "direction": "O",
@@ -143,6 +65,78 @@
           },
           "data_valid": {
             "direction": "O"
+          }
+        }
+      },
+      "xlconstant_0": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "TEST_package_decoder_xlconstant_0_0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "10000"
+          },
+          "CONST_WIDTH": {
+            "value": "14"
+          }
+        }
+      },
+      "xlconstant_1": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "TEST_package_decoder_xlconstant_1_0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "0"
+          },
+          "CONST_WIDTH": {
+            "value": "4"
+          }
+        }
+      },
+      "xlconstant_2": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "TEST_package_decoder_xlconstant_2_0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "9"
+          },
+          "CONST_WIDTH": {
+            "value": "4"
+          }
+        }
+      },
+      "xlconstant_3": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "TEST_package_decoder_xlconstant_3_0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "7"
+          },
+          "CONST_WIDTH": {
+            "value": "4"
+          }
+        }
+      },
+      "xlconstant_4": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "TEST_package_decoder_xlconstant_4_0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "6"
+          },
+          "CONST_WIDTH": {
+            "value": "4"
+          }
+        }
+      },
+      "xlconstant_5": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "TEST_package_decoder_xlconstant_5_0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "10"
+          },
+          "CONST_WIDTH": {
+            "value": "14"
           }
         }
       },
@@ -155,17 +149,7 @@
           "boundary_crc": "0x0"
         },
         "ports": {
-          "clk": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "CLK_DOMAIN": {
-                "value": "TEST_package_decoder_clk",
-                "value_src": "default_prop"
-              }
-            }
-          },
-          "package_rate_clk": {
+          "display_update_rate_clk": {
             "type": "clk",
             "direction": "I"
           },
@@ -274,103 +258,15 @@
         },
         "ports": {
           "clk_in": {
-            "direction": "I",
-            "parameters": {
-              "CLK_DOMAIN": {
-                "value": "TEST_package_decoder_clk",
-                "value_src": "default_prop"
-              },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "default_prop"
-              },
-              "PHASE": {
-                "value": "0.000",
-                "value_src": "default_prop"
-              }
-            }
+            "direction": "I"
           },
           "clk_out": {
-            "direction": "O",
-            "parameters": {
-              "CLK_DOMAIN": {
-                "value": "",
-                "value_src": "weak"
-              },
-              "FREQ_HZ": {
-                "value": "",
-                "value_src": "weak"
-              },
-              "PHASE": {
-                "value": "",
-                "value_src": "weak"
-              }
-            }
+            "direction": "O"
           },
           "clk_in_out_ratio": {
             "direction": "I",
             "left": "13",
             "right": "0"
-          }
-        }
-      },
-      "xlconstant_0": {
-        "vlnv": "xilinx.com:ip:xlconstant:1.1",
-        "xci_name": "TEST_package_decoder_xlconstant_0_0",
-        "parameters": {
-          "CONST_VAL": {
-            "value": "10000"
-          },
-          "CONST_WIDTH": {
-            "value": "14"
-          }
-        }
-      },
-      "xlconstant_1": {
-        "vlnv": "xilinx.com:ip:xlconstant:1.1",
-        "xci_name": "TEST_package_decoder_xlconstant_1_0",
-        "parameters": {
-          "CONST_VAL": {
-            "value": "0"
-          },
-          "CONST_WIDTH": {
-            "value": "4"
-          }
-        }
-      },
-      "xlconstant_2": {
-        "vlnv": "xilinx.com:ip:xlconstant:1.1",
-        "xci_name": "TEST_package_decoder_xlconstant_2_0",
-        "parameters": {
-          "CONST_VAL": {
-            "value": "9"
-          },
-          "CONST_WIDTH": {
-            "value": "4"
-          }
-        }
-      },
-      "xlconstant_3": {
-        "vlnv": "xilinx.com:ip:xlconstant:1.1",
-        "xci_name": "TEST_package_decoder_xlconstant_3_0",
-        "parameters": {
-          "CONST_VAL": {
-            "value": "7"
-          },
-          "CONST_WIDTH": {
-            "value": "4"
-          }
-        }
-      },
-      "xlconstant_4": {
-        "vlnv": "xilinx.com:ip:xlconstant:1.1",
-        "xci_name": "TEST_package_decoder_xlconstant_4_0",
-        "parameters": {
-          "CONST_VAL": {
-            "value": "6"
-          },
-          "CONST_WIDTH": {
-            "value": "4"
           }
         }
       },
@@ -387,21 +283,7 @@
             "direction": "I"
           },
           "clk_out": {
-            "direction": "O",
-            "parameters": {
-              "CLK_DOMAIN": {
-                "value": "",
-                "value_src": "weak"
-              },
-              "FREQ_HZ": {
-                "value": "",
-                "value_src": "weak"
-              },
-              "PHASE": {
-                "value": "",
-                "value_src": "weak"
-              }
-            }
+            "direction": "O"
           },
           "clk_in_out_ratio": {
             "direction": "I",
@@ -410,15 +292,46 @@
           }
         }
       },
-      "xlconstant_5": {
-        "vlnv": "xilinx.com:ip:xlconstant:1.1",
-        "xci_name": "TEST_package_decoder_xlconstant_5_0",
-        "parameters": {
-          "CONST_VAL": {
-            "value": "10"
+      "package_digit_decoder_0": {
+        "vlnv": "xilinx.com:module_ref:package_digit_decoder:1.0",
+        "xci_name": "TEST_package_decoder_package_digit_decoder_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "package_digit_decoder",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "package_rate_clk": {
+            "type": "clk",
+            "direction": "I"
           },
-          "CONST_WIDTH": {
-            "value": "14"
+          "data_in": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "valid_data_in_flag": {
+            "direction": "I"
+          },
+          "digit_1": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "digit_2": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "digit_3": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "digit_4": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
           }
         }
       }
@@ -518,9 +431,8 @@
         "ports": [
           "divisor_de_clk_0/clk_out",
           "TESTER_package_digit_0/clk",
-          "package_digit_decoder_0/package_rate_clk",
-          "display_manager_0/package_rate_clk",
-          "divisor_de_clk_1/clk_in"
+          "divisor_de_clk_1/clk_in",
+          "package_digit_decoder_0/package_rate_clk"
         ]
       },
       "xlconstant_1_dout": {
@@ -555,8 +467,7 @@
       },
       "divisor_de_clk_1_clk_out": {
         "ports": [
-          "divisor_de_clk_1/clk_out",
-          "display_manager_0/clk"
+          "divisor_de_clk_1/clk_out"
         ]
       }
     }
