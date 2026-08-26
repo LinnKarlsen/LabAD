@@ -1,7 +1,7 @@
 --Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
---Date        : Tue Aug 25 22:05:13 2026
+--Date        : Wed Aug 26 19:43:47 2026
 --Host        : TROND-ENVYX360 running 64-bit major release  (build 9200)
 --Command     : generate_target Exp1_final.bd
 --Design      : Exp1_final
@@ -20,12 +20,23 @@ entity Exp1_final is
     sw0 : in STD_LOGIC
   );
   attribute CORE_GENERATION_INFO : string;
-  attribute CORE_GENERATION_INFO of Exp1_final : entity is "Exp1_final,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=Exp1_final,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=6,numReposBlks=6,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=5,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}";
+  attribute CORE_GENERATION_INFO of Exp1_final : entity is "Exp1_final,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=Exp1_final,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=5,numReposBlks=5,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=5,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}";
   attribute HW_HANDOFF : string;
   attribute HW_HANDOFF of Exp1_final : entity is "Exp1_final.hwdef";
 end Exp1_final;
 
 architecture STRUCTURE of Exp1_final is
+  component Exp1_final_display_manager_0_0 is
+  port (
+    display_update_rate_clk : in STD_LOGIC;
+    switch : in STD_LOGIC;
+    digits_A : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    digits_B : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    digit_value : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    digit_index : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    decimal_point : out STD_LOGIC
+  );
+  end component Exp1_final_display_manager_0_0;
   component Exp1_final_divisor_de_clk_0_0 is
   port (
     clk_in : in STD_LOGIC;
@@ -42,25 +53,6 @@ architecture STRUCTURE of Exp1_final is
     an : out STD_LOGIC_VECTOR ( 3 downto 0 )
   );
   end component Exp1_final_display_interface_0_0;
-  component Exp1_final_vio_0_0 is
-  port (
-    clk : in STD_LOGIC;
-    probe_in0 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    probe_in1 : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    probe_in2 : in STD_LOGIC_VECTOR ( 15 downto 0 )
-  );
-  end component Exp1_final_vio_0_0;
-  component Exp1_final_display_manager_0_0 is
-  port (
-    display_update_rate_clk : in STD_LOGIC;
-    switch : in STD_LOGIC;
-    digits_A : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    digits_B : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    digit_value : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    digit_index : out STD_LOGIC_VECTOR ( 2 downto 0 );
-    decimal_point : out STD_LOGIC
-  );
-  end component Exp1_final_display_manager_0_0;
   component Exp1_final_RX_uart_TESTER_0_0 is
   port (
     baud_rate_clk : in STD_LOGIC;
@@ -128,12 +120,5 @@ divisor_de_clk_0: component Exp1_final_divisor_de_clk_0_0
      port map (
       clk_in => clk_in_0_1,
       clk_out => divisor_de_clk_0_clk_out
-    );
-vio_0: component Exp1_final_vio_0_0
-     port map (
-      clk => clk_in_0_1,
-      probe_in0(0) => RX_uart_TESTER_0_serial,
-      probe_in1(15 downto 0) => RX_uart_0_digits_A_out(15 downto 0),
-      probe_in2(15 downto 0) => RX_uart_0_digits_B_out(15 downto 0)
     );
 end STRUCTURE;

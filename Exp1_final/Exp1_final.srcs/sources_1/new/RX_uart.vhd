@@ -61,15 +61,16 @@ begin
 
                 when LECTURA =>
                     -- Leemos los 8 bits de data
-                    index <= index + 1;
                     data(index) <= uart_rx_in;
-                    if index = 7 then
+                    if index < 7 then
+                        index <= index + 1;
+                    else
+                        -- Se resetea el contador y transicionamos al estado de PARIDAD
+                        index <= 0;
                         serial_port_state <= PARIDAD;
                     end if;
                     
                 when PARIDAD =>
-                    -- Se resetea el contador
-                    index <= 0;
                     -- Almacenamos bit de paridad
                     parity_bit := uart_rx_in;
                     serial_port_state <= END_OF_PACKAGE; 
@@ -114,19 +115,19 @@ begin
                     -- TODO: revisar como estan enumerados los digitos
                     if source = DATA_A then
                         if esperando_paquete = PACKET1 then
-                            digits_A(7 downto 0) <= paquete_recibido;
+                            digits_A(15 downto 8) <= paquete_recibido;
                             esperando_paquete <= PACKET2;
                         elsif esperando_paquete = PACKET2 then
-                            digits_A(15 downto 8) <= paquete_recibido;
+                            digits_A(7 downto 0) <= paquete_recibido;
                             flag_actualizar_digits_A_out <= '1';
                             esperando_paquete <= SYNC;
                         end if;
                     elsif source = DATA_B then
                         if esperando_paquete = PACKET1 then
-                            digits_B(7 downto 0) <= paquete_recibido;
+                            digits_B(15 downto 8) <= paquete_recibido;
                             esperando_paquete <= PACKET2;
                         elsif esperando_paquete = PACKET2 then
-                            digits_B(15 downto 8) <= paquete_recibido;
+                            digits_B(7 downto 0) <= paquete_recibido;
                             flag_actualizar_digits_B_out <= '1';
                             esperando_paquete <= SYNC;
                         end if;                    

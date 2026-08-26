@@ -90,8 +90,6 @@ OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib C:/Users/linnh/LabAD/Exp1_final/Exp1_final.srcs/sources_1/bd/Exp1_final/hdl/Exp1_final_wrapper.vhd
 add_files C:/Users/linnh/LabAD/Exp1_final/Exp1_final.srcs/sources_1/bd/Exp1_final/Exp1_final.bd
-set_property used_in_implementation false [get_files -all c:/Users/linnh/LabAD/Exp1_final/Exp1_final.srcs/sources_1/bd/Exp1_final/ip/Exp1_final_vio_0_0/Exp1_final_vio_0_0.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/linnh/LabAD/Exp1_final/Exp1_final.srcs/sources_1/bd/Exp1_final/ip/Exp1_final_vio_0_0/Exp1_final_vio_0_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all C:/Users/linnh/LabAD/Exp1_final/Exp1_final.srcs/sources_1/bd/Exp1_final/Exp1_final_ooc.xdc]
 
 OPTRACE "Adding files" END { }

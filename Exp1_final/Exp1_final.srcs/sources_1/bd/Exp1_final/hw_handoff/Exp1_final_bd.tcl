@@ -226,19 +226,11 @@ proc create_root_design { parentCell } {
      return 1
    }
   
-  # Create instance: vio_0, and set properties
-  set vio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:vio:3.0 vio_0 ]
-  set_property -dict [ list \
-   CONFIG.C_NUM_PROBE_IN {3} \
-   CONFIG.C_NUM_PROBE_OUT {0} \
-   CONFIG.C_PROBE_IN3_WIDTH {16} \
- ] $vio_0
-
   # Create port connections
-  connect_bd_net -net RX_uart_0_digits_A_out [get_bd_pins RX_uart_0/digits_A_out] [get_bd_pins display_manager_0/digits_A] [get_bd_pins vio_0/probe_in1]
-  connect_bd_net -net RX_uart_0_digits_B_out [get_bd_pins RX_uart_0/digits_B_out] [get_bd_pins display_manager_0/digits_B] [get_bd_pins vio_0/probe_in2]
-  connect_bd_net -net RX_uart_TESTER_0_serial [get_bd_pins RX_uart_0/uart_rx_in] [get_bd_pins RX_uart_TESTER_0/serial] [get_bd_pins vio_0/probe_in0]
-  connect_bd_net -net clk_in_0_1 [get_bd_ports clk] [get_bd_pins divisor_de_clk_0/clk_in] [get_bd_pins vio_0/clk]
+  connect_bd_net -net RX_uart_0_digits_A_out [get_bd_pins RX_uart_0/digits_A_out] [get_bd_pins display_manager_0/digits_A]
+  connect_bd_net -net RX_uart_0_digits_B_out [get_bd_pins RX_uart_0/digits_B_out] [get_bd_pins display_manager_0/digits_B]
+  connect_bd_net -net RX_uart_TESTER_0_serial [get_bd_pins RX_uart_0/uart_rx_in] [get_bd_pins RX_uart_TESTER_0/serial]
+  connect_bd_net -net clk_in_0_1 [get_bd_ports clk] [get_bd_pins divisor_de_clk_0/clk_in]
   connect_bd_net -net display_interface_0_an [get_bd_ports an] [get_bd_pins display_interface_0/an]
   connect_bd_net -net display_interface_0_dp [get_bd_ports dp] [get_bd_pins display_interface_0/dp]
   connect_bd_net -net display_interface_0_seg [get_bd_ports seg] [get_bd_pins display_interface_0/seg]

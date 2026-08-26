@@ -71,6 +71,7 @@ proc create_report { reportName command } {
 }
 OPTRACE "Exp1_final_display_interface_0_0_synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 4
+set_param xicom.use_bs_reader 1
 set_param project.vivado.isBlockSynthRun true
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
@@ -89,7 +90,7 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib C:/Users/linnh/LabAD/Exp1_final/Exp1_final.srcs/sources_1/new/display_interface.vhd
-read_ip -quiet c:/Users/linnh/LabAD/Exp1_final/Exp1_final.srcs/sources_1/bd/Exp1_final/ip/Exp1_final_display_interface_0_0/Exp1_final_display_interface_0_0.xci
+read_ip -quiet C:/Users/linnh/LabAD/Exp1_final/Exp1_final.srcs/sources_1/bd/Exp1_final/ip/Exp1_final_display_interface_0_0/Exp1_final_display_interface_0_0.xci
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being

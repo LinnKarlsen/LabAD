@@ -18,6 +18,7 @@
 
 # Temporary and cache directories
 .Exp1.cache/
+.Exp1_final.cache/
 .hw/
 .ip_user_files/
 .sim/

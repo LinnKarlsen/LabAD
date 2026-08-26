@@ -21,7 +21,4 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==Exp1_final_disp
 # IP: bd/Exp1_final/ip/Exp1_final_RX_uart_TESTER_0_0/Exp1_final_RX_uart_TESTER_0_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==Exp1_final_RX_uart_TESTER_0_0 || ORIG_REF_NAME==Exp1_final_RX_uart_TESTER_0_0} -quiet] -quiet
 
-# IP: bd/Exp1_final/ip/Exp1_final_vio_0_0/Exp1_final_vio_0_0.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==Exp1_final_vio_0_0 || ORIG_REF_NAME==Exp1_final_vio_0_0} -quiet] -quiet
-
 # XDC: bd/Exp1_final/Exp1_final_ooc.xdc
