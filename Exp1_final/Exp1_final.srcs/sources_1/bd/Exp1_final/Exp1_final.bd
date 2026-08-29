@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x464E7AF9464E7AF9",
+      "boundary_crc": "0x328B427F328B427F",
       "device": "xc7a35tcpg236-1",
       "name": "Exp1_final",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
@@ -13,7 +13,6 @@
       "display_manager_0": "",
       "divisor_de_clk_0": "",
       "display_interface_0": "",
-      "RX_uart_TESTER_0": "",
       "RX_uart_0": ""
     },
     "ports": {
@@ -35,6 +34,9 @@
         "direction": "O",
         "left": "3",
         "right": "0"
+      },
+      "JA1": {
+        "direction": "I"
       }
     },
     "components": {
@@ -147,24 +149,6 @@
           }
         }
       },
-      "RX_uart_TESTER_0": {
-        "vlnv": "xilinx.com:module_ref:RX_uart_TESTER:1.0",
-        "xci_name": "Exp1_final_RX_uart_TESTER_0_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "RX_uart_TESTER",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "baud_rate_clk": {
-            "type": "clk",
-            "direction": "I"
-          },
-          "serial": {
-            "direction": "O"
-          }
-        }
-      },
       "RX_uart_0": {
         "vlnv": "xilinx.com:module_ref:RX_uart:1.0",
         "xci_name": "Exp1_final_RX_uart_0_0",
@@ -217,7 +201,6 @@
         "ports": [
           "divisor_de_clk_0/clk_out",
           "display_manager_0/display_update_rate_clk",
-          "RX_uart_TESTER_0/baud_rate_clk",
           "RX_uart_0/baud_rate_clk"
         ]
       },
@@ -263,9 +246,9 @@
           "an"
         ]
       },
-      "RX_uart_TESTER_0_serial": {
+      "uart_rx_in_0_1": {
         "ports": [
-          "RX_uart_TESTER_0/serial",
+          "JA1",
           "RX_uart_0/uart_rx_in"
         ]
       }

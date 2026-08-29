@@ -1,7 +1,7 @@
 --Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
---Date        : Wed Aug 26 19:43:47 2026
+--Date        : Wed Aug 26 19:52:48 2026
 --Host        : TROND-ENVYX360 running 64-bit major release  (build 9200)
 --Command     : generate_target Exp1_final_wrapper.bd
 --Design      : Exp1_final_wrapper
@@ -13,6 +13,7 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity Exp1_final_wrapper is
   port (
+    JA1 : in STD_LOGIC;
     an : out STD_LOGIC_VECTOR ( 3 downto 0 );
     clk : in STD_LOGIC;
     dp : out STD_LOGIC;
@@ -28,12 +29,14 @@ architecture STRUCTURE of Exp1_final_wrapper is
     clk : in STD_LOGIC;
     seg : out STD_LOGIC_VECTOR ( 6 downto 0 );
     dp : out STD_LOGIC;
-    an : out STD_LOGIC_VECTOR ( 3 downto 0 )
+    an : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    JA1 : in STD_LOGIC
   );
   end component Exp1_final;
 begin
 Exp1_final_i: component Exp1_final
      port map (
+      JA1 => JA1,
       an(3 downto 0) => an(3 downto 0),
       clk => clk,
       dp => dp,

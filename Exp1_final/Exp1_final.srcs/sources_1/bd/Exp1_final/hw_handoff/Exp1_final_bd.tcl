@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# RX_uart, RX_uart_TESTER, display_interface, display_manager, divisor_de_clk
+# RX_uart, display_interface, display_manager, divisor_de_clk
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -165,6 +165,7 @@ proc create_root_design { parentCell } {
   # Create interface ports
 
   # Create ports
+  set JA1 [ create_bd_port -dir I JA1 ]
   set an [ create_bd_port -dir O -from 3 -to 0 an ]
   set clk [ create_bd_port -dir I clk ]
   set dp [ create_bd_port -dir O dp ]
@@ -178,17 +179,6 @@ proc create_root_design { parentCell } {
      catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    } elseif { $RX_uart_0 eq "" } {
-     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: RX_uart_TESTER_0, and set properties
-  set block_name RX_uart_TESTER
-  set block_cell_name RX_uart_TESTER_0
-  if { [catch {set RX_uart_TESTER_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $RX_uart_TESTER_0 eq "" } {
      catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
@@ -229,7 +219,6 @@ proc create_root_design { parentCell } {
   # Create port connections
   connect_bd_net -net RX_uart_0_digits_A_out [get_bd_pins RX_uart_0/digits_A_out] [get_bd_pins display_manager_0/digits_A]
   connect_bd_net -net RX_uart_0_digits_B_out [get_bd_pins RX_uart_0/digits_B_out] [get_bd_pins display_manager_0/digits_B]
-  connect_bd_net -net RX_uart_TESTER_0_serial [get_bd_pins RX_uart_0/uart_rx_in] [get_bd_pins RX_uart_TESTER_0/serial]
   connect_bd_net -net clk_in_0_1 [get_bd_ports clk] [get_bd_pins divisor_de_clk_0/clk_in]
   connect_bd_net -net display_interface_0_an [get_bd_ports an] [get_bd_pins display_interface_0/an]
   connect_bd_net -net display_interface_0_dp [get_bd_ports dp] [get_bd_pins display_interface_0/dp]
@@ -237,8 +226,9 @@ proc create_root_design { parentCell } {
   connect_bd_net -net display_manager_0_decimal_point [get_bd_pins display_interface_0/decimal_point] [get_bd_pins display_manager_0/decimal_point]
   connect_bd_net -net display_manager_0_digit_index [get_bd_pins display_interface_0/digit_index] [get_bd_pins display_manager_0/digit_index]
   connect_bd_net -net display_manager_0_digit_value [get_bd_pins display_interface_0/digit_value] [get_bd_pins display_manager_0/digit_value]
-  connect_bd_net -net divisor_de_clk_0_clk_out [get_bd_pins RX_uart_0/baud_rate_clk] [get_bd_pins RX_uart_TESTER_0/baud_rate_clk] [get_bd_pins display_manager_0/display_update_rate_clk] [get_bd_pins divisor_de_clk_0/clk_out]
+  connect_bd_net -net divisor_de_clk_0_clk_out [get_bd_pins RX_uart_0/baud_rate_clk] [get_bd_pins display_manager_0/display_update_rate_clk] [get_bd_pins divisor_de_clk_0/clk_out]
   connect_bd_net -net switch_0_1 [get_bd_ports sw0] [get_bd_pins display_manager_0/switch]
+  connect_bd_net -net uart_rx_in_0_1 [get_bd_ports JA1] [get_bd_pins RX_uart_0/uart_rx_in]
 
   # Create address segments
 
