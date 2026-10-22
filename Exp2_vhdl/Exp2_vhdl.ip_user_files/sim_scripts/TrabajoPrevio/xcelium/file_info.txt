@@ -1,0 +1,2 @@
+TrabajoPrevio_generador_de_sinusoi_0_0.vhd,vhdl,xil_defaultlib,../../../bd/TrabajoPrevio/ip/TrabajoPrevio_generador_de_sinusoi_0_0/sim/TrabajoPrevio_generador_de_sinusoi_0_0.vhd,
+TrabajoPrevio.vhd,vhdl,xil_defaultlib,../../../bd/TrabajoPrevio/sim/TrabajoPrevio.vhd,

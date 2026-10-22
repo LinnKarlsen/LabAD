@@ -1,0 +1,9 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../Exp2_vhdl.srcs/sources_1/new/generador_de_sinusoide.vhd" \
+"../../../../Exp2_vhdl.ip_user_files/bd/TrabajoPrevio/ip/TrabajoPrevio_generador_de_sinusoi_0_0/sim/TrabajoPrevio_generador_de_sinusoi_0_0.vhd" \
+"../../../../Exp2_vhdl.ip_user_files/bd/TrabajoPrevio/sim/TrabajoPrevio.vhd" \
+"../../../../Exp2_vhdl.srcs/sources_1/bd/TrabajoPrevio/hdl/TrabajoPrevio_wrapper.vhd" \
+
+# Do not sort compile order
+nosort

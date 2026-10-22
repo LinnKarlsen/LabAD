@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Oct  8 13:56:01 2026" VIVADOVERSION="2020.1">
+
+  <SYSTEMINFO ARCH="artix7" BOARD="digilentinc.com:basys3:part0:1.2" DEVICE="7a35t" NAME="TrabajoPrevio" PACKAGE="cpg236" SPEEDGRADE="-1"/>
+
+  <EXTERNALPORTS>
+    <PORT DIR="I" NAME="clk" SIGIS="undef" SIGNAME="External_Ports_clk">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="divisor_de_clk_displ_0" PORT="clk_in"/>
+        <CONNECTION INSTANCE="divisor_de_clk_con_s_0" PORT="clk_in"/>
+        <CONNECTION INSTANCE="divisor_de_clk_sierra_0" PORT="clk_in"/>
+        <CONNECTION INSTANCE="divisor_de_clk_uart_0" PORT="clk_in"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="sw0" SIGIS="undef" SIGNAME="External_Ports_sw0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="divisor_de_clk_con_s_0" PORT="sw0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="sw1" SIGIS="undef" SIGNAME="External_Ports_sw1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="divisor_de_clk_con_s_0" PORT="sw1"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="6" NAME="seg" RIGHT="0" SIGIS="undef" SIGNAME="display_interface_0_seg">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="display_interface_0" PORT="seg"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="dp" SIGIS="undef" SIGNAME="display_interface_0_dp">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="display_interface_0" PORT="dp"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="3" NAME="an" RIGHT="0" SIGIS="undef" SIGNAME="display_interface_0_an">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="display_interface_0" PORT="an"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="JB1" SIGIS="undef" SIGNAME="External_Ports_JB1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="RX_uart_0" PORT="uart_rx_in"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="sw2" SIGIS="undef" SIGNAME="External_Ports_sw2">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="wave_mux_0" PORT="sw"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="JA1" SIGIS="undef" SIGNAME="comparador_0_comparacion">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="comparador_0" PORT="comparacion"/>
+      </CONNECTIONS>
+    </PORT>
+  </EXTERNALPORTS>
+
+  <EXTERNALINTERFACES/>
+
+  <MODULES>
+    <MODULE COREREVISION="1" FULLNAME="/RX_uart_0" HWVERSION="1.0" INSTANCE="RX_uart_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="RX_uart" VLNV="xilinx.com:module_ref:RX_uart:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="TrabajoPrevio_RX_uart_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="baud_rate_clk" SIGIS="clk" SIGNAME="divisor_de_clk_uart_0_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="divisor_de_clk_uart_0" PORT="clk_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="uart_rx_in" SIGIS="undef" SIGNAME="External_Ports_JB1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="JB1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="wave_out" RIGHT="0" SIGIS="undef" SIGNAME="RX_uart_0_wave_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="wave_mux_0" PORT="music"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/comparador_0" HWVERSION="1.0" INSTANCE="comparador_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="comparador" VLNV="xilinx.com:module_ref:comparador:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="TrabajoPrevio_comparador_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="7" NAME="positivo" RIGHT="0" SIGIS="undef" SIGNAME="generador_de_sierra_0_sierra">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="generador_de_sierra_0" PORT="sierra"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="7" NAME="negativo" RIGHT="0" SIGIS="undef" SIGNAME="wave_mux_0_wave_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="wave_mux_0" PORT="wave_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="comparacion" SIGIS="undef" SIGNAME="comparador_0_comparacion">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="JA1"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/display_interface_0" HWVERSION="1.0" INSTANCE="display_interface_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="display_interface" VLNV="xilinx.com:module_ref:display_interface:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="TrabajoPrevio_display_interface_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="3" NAME="digit_value" RIGHT="0" SIGIS="undef" SIGNAME="display_manager_0_digit_value">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="display_manager_0" PORT="digit_value"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="2" NAME="digit_index" RIGHT="0" SIGIS="undef" SIGNAME="display_manager_0_digit_index">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="display_manager_0" PORT="digit_index"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="decimal_point" SIGIS="undef" SIGNAME="display_manager_0_decimal_point">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="display_manager_0" PORT="decimal_point"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="6" NAME="seg" RIGHT="0" SIGIS="undef" SIGNAME="display_interface_0_seg">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="seg"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="dp" SIGIS="undef" SIGNAME="display_interface_0_dp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="dp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="an" RIGHT="0" SIGIS="undef" SIGNAME="display_interface_0_an">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="an"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/display_manager_0" HWVERSION="1.0" INSTANCE="display_manager_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="display_manager" VLNV="xilinx.com:module_ref:display_manager:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="TrabajoPrevio_display_manager_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="display_update_rate_clk" SIGIS="clk" SIGNAME="divisor_de_clk_displ_0_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="divisor_de_clk_displ_0" PORT="clk_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="digits" RIGHT="0" SIGIS="undef" SIGNAME="divisor_de_clk_con_s_0_clk_out_disp_freq">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="divisor_de_clk_con_s_0" PORT="clk_out_disp_freq"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="digit_value" RIGHT="0" SIGIS="undef" SIGNAME="display_manager_0_digit_value">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="display_interface_0" PORT="digit_value"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="2" NAME="digit_index" RIGHT="0" SIGIS="undef" SIGNAME="display_manager_0_digit_index">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="display_interface_0" PORT="digit_index"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="decimal_point" SIGIS="undef" SIGNAME="display_manager_0_decimal_point">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="display_interface_0" PORT="decimal_point"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/divisor_de_clk_con_s_0" HWVERSION="1.0" INSTANCE="divisor_de_clk_con_s_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="divisor_de_clk_con_switch" VLNV="xilinx.com:module_ref:divisor_de_clk_con_switch:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="TrabajoPrevio_divisor_de_clk_con_s_0_2"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="clk_in" SIGIS="undef" SIGNAME="External_Ports_clk">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="clk"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="sw0" SIGIS="undef" SIGNAME="External_Ports_sw0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sw0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="sw1" SIGIS="undef" SIGNAME="External_Ports_sw1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sw1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="clk_out" SIGIS="undef" SIGNAME="divisor_de_clk_con_s_0_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="generador_de_sinusoi_0" PORT="clk"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="clk_out_disp_freq" RIGHT="0" SIGIS="undef" SIGNAME="divisor_de_clk_con_s_0_clk_out_disp_freq">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="display_manager_0" PORT="digits"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/divisor_de_clk_displ_0" HWVERSION="1.0" INSTANCE="divisor_de_clk_displ_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="divisor_de_clk_display" VLNV="xilinx.com:module_ref:divisor_de_clk_display:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="TrabajoPrevio_divisor_de_clk_displ_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="clk_in" SIGIS="undef" SIGNAME="External_Ports_clk">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="clk"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="clk_out" SIGIS="undef" SIGNAME="divisor_de_clk_displ_0_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="display_manager_0" PORT="display_update_rate_clk"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/divisor_de_clk_sierra_0" HWVERSION="1.0" INSTANCE="divisor_de_clk_sierra_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="divisor_de_clk_sierra" VLNV="xilinx.com:module_ref:divisor_de_clk_sierra:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="TrabajoPrevio_divisor_de_clk_sierra_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="clk_in" SIGIS="undef" SIGNAME="External_Ports_clk">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="clk"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="clk_out" SIGIS="undef" SIGNAME="divisor_de_clk_sierra_0_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="generador_de_sierra_0" PORT="clk"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/divisor_de_clk_uart_0" HWVERSION="1.0" INSTANCE="divisor_de_clk_uart_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="divisor_de_clk_uart" VLNV="xilinx.com:module_ref:divisor_de_clk_uart:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="TrabajoPrevio_divisor_de_clk_uart_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="clk_in" SIGIS="undef" SIGNAME="External_Ports_clk">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="clk"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="clk_out" SIGIS="undef" SIGNAME="divisor_de_clk_uart_0_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="RX_uart_0" PORT="baud_rate_clk"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/generador_de_sierra_0" HWVERSION="1.0" INSTANCE="generador_de_sierra_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="generador_de_sierra" VLNV="xilinx.com:module_ref:generador_de_sierra:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="TrabajoPrevio_generador_de_sierra_0_1"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="divisor_de_clk_sierra_0_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="divisor_de_clk_sierra_0" PORT="clk_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="sierra" RIGHT="0" SIGIS="undef" SIGNAME="generador_de_sierra_0_sierra">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="comparador_0" PORT="positivo"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/generador_de_sinusoi_0" HWVERSION="1.0" INSTANCE="generador_de_sinusoi_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="generador_de_sinusoide" VLNV="xilinx.com:module_ref:generador_de_sinusoide:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="TrabajoPrevio_generador_de_sinusoi_0_1"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="divisor_de_clk_con_s_0_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="divisor_de_clk_con_s_0" PORT="clk_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="sinusoide" RIGHT="0" SIGIS="undef" SIGNAME="generador_de_sinusoi_0_sinusoide">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="wave_mux_0" PORT="sinusoid"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/wave_mux_0" HWVERSION="1.0" INSTANCE="wave_mux_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="wave_mux" VLNV="xilinx.com:module_ref:wave_mux:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="TrabajoPrevio_wave_mux_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="7" NAME="sinusoid" RIGHT="0" SIGIS="undef" SIGNAME="generador_de_sinusoi_0_sinusoide">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="generador_de_sinusoi_0" PORT="sinusoide"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="7" NAME="music" RIGHT="0" SIGIS="undef" SIGNAME="RX_uart_0_wave_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="RX_uart_0" PORT="wave_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="sw" SIGIS="undef" SIGNAME="External_Ports_sw2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sw2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="wave_out" RIGHT="0" SIGIS="undef" SIGNAME="wave_mux_0_wave_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="comparador_0" PORT="negativo"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+  </MODULES>
+
+</EDKSYSTEM>

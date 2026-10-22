@@ -1,0 +1,53 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"1.01882",
+   "Default View_TopLeft":"-130,-130",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0r6  2020-01-29 bk=1.5227 VDI=41 GEI=36 GUI=JA:9.0 non-TLS
+#  -string -flagsOSRD
+preplace port clk -pg 1 -lvl 0 -x -60 -y -30 -defaultsOSRD
+preplace port sw0 -pg 1 -lvl 0 -x -60 -y 230 -defaultsOSRD
+preplace port sw1 -pg 1 -lvl 0 -x -60 -y 260 -defaultsOSRD
+preplace port dp -pg 1 -lvl 5 -x 1310 -y -40 -defaultsOSRD
+preplace port JB1 -pg 1 -lvl 0 -x -60 -y 440 -defaultsOSRD
+preplace port sw2 -pg 1 -lvl 0 -x -60 -y 330 -defaultsOSRD
+preplace port JA1 -pg 1 -lvl 5 -x 1310 -y 120 -defaultsOSRD
+preplace portBus seg -pg 1 -lvl 5 -x 1310 -y -70 -defaultsOSRD
+preplace portBus an -pg 1 -lvl 5 -x 1310 -y -10 -defaultsOSRD
+preplace inst comparador_0 -pg 1 -lvl 4 -x 1120 -y 120 -defaultsOSRD
+preplace inst generador_de_sinusoi_0 -pg 1 -lvl 2 -x 480 -y 240 -defaultsOSRD
+preplace inst generador_de_sierra_0 -pg 1 -lvl 2 -x 480 -y 110 -defaultsOSRD
+preplace inst display_manager_0 -pg 1 -lvl 2 -x 480 -y -50 -defaultsOSRD
+preplace inst display_interface_0 -pg 1 -lvl 3 -x 820 -y -40 -defaultsOSRD
+preplace inst divisor_de_clk_displ_0 -pg 1 -lvl 1 -x 130 -y -30 -defaultsOSRD
+preplace inst divisor_de_clk_con_s_0 -pg 1 -lvl 1 -x 130 -y 240 -defaultsOSRD
+preplace inst divisor_de_clk_sierra_0 -pg 1 -lvl 1 -x 130 -y 110 -defaultsOSRD
+preplace inst RX_uart_0 -pg 1 -lvl 2 -x 480 -y 400 -defaultsOSRD
+preplace inst divisor_de_clk_uart_0 -pg 1 -lvl 1 -x 130 -y 390 -defaultsOSRD
+preplace inst wave_mux_0 -pg 1 -lvl 3 -x 820 -y 260 -defaultsOSRD
+preplace netloc generador_de_sierra_0_sierra 1 2 2 N 110 NJ
+preplace netloc clk_1 1 0 1 -30 -30n
+preplace netloc display_manager_0_digit_value 1 2 1 660 -70n
+preplace netloc display_manager_0_digit_index 1 2 1 660 -50n
+preplace netloc display_manager_0_decimal_point 1 2 1 660 -30n
+preplace netloc display_interface_0_seg 1 3 2 970 -70 NJ
+preplace netloc display_interface_0_dp 1 3 2 N -40 NJ
+preplace netloc display_interface_0_an 1 3 2 970 -10 NJ
+preplace netloc divisor_de_clk_displ_0_clk_out 1 1 1 280 -60n
+preplace netloc sw0_1 1 0 1 -40J 230n
+preplace netloc sw1_1 1 0 1 NJ 260
+preplace netloc divisor_de_clk_con_s_0_clk_out 1 1 1 280 230n
+preplace netloc divisor_de_clk_con_s_0_clk_out_disp_freq 1 1 1 290J -40n
+preplace netloc divisor_de_clk_sierra_0_clk_out 1 1 1 N 110
+preplace netloc divisor_de_clk_uart_0_clk_out 1 1 1 NJ 390
+preplace netloc uart_rx_in_0_1 1 0 2 -40J 450 290J
+preplace netloc wave_mux_0_wave_out 1 3 1 970 130n
+preplace netloc generador_de_sinusoi_0_sinusoide 1 2 1 NJ 240
+preplace netloc RX_uart_0_wave_out 1 2 1 660 260n
+preplace netloc sw_0_1 1 0 3 NJ 330 NJ 330 670J
+preplace netloc comparador_0_comparacion 1 4 1 N 120
+levelinfo -pg 1 -60 130 480 820 1120 1310
+pagesize -pg 1 -db -bbox -sgen -130 -130 1420 550
+"
+}
+0

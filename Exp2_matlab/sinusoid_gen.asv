@@ -1,0 +1,14 @@
+t = 0:1:255;
+sinusoide = 256/2 + 256/2 * sin(2 * pi * 1/256 * t);
+
+plot(t, sinusoide);
+xlabel('s');
+ylabel('valor');
+title('sinusoide generada');
+grid on;
+
+sinusoide_redondeada = round(sinusoide);
+
+
+
+print(sinusoide_redondeada)

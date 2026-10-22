@@ -1,0 +1,513 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0xF65D9D53F65D9D53",
+      "device": "xc7a35tcpg236-1",
+      "name": "TrabajoPrevio",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2020.1",
+      "validated": "true"
+    },
+    "design_tree": {
+      "comparador_0": "",
+      "generador_de_sinusoi_0": "",
+      "generador_de_sierra_0": "",
+      "display_manager_0": "",
+      "display_interface_0": "",
+      "divisor_de_clk_displ_0": "",
+      "divisor_de_clk_con_s_0": "",
+      "divisor_de_clk_sierra_0": "",
+      "RX_uart_0": "",
+      "divisor_de_clk_uart_0": "",
+      "wave_mux_0": ""
+    },
+    "ports": {
+      "clk": {
+        "direction": "I"
+      },
+      "sw0": {
+        "direction": "I"
+      },
+      "sw1": {
+        "direction": "I"
+      },
+      "seg": {
+        "direction": "O",
+        "left": "6",
+        "right": "0"
+      },
+      "dp": {
+        "direction": "O"
+      },
+      "an": {
+        "direction": "O",
+        "left": "3",
+        "right": "0"
+      },
+      "JB1": {
+        "direction": "I"
+      },
+      "sw2": {
+        "direction": "I"
+      },
+      "JA1": {
+        "direction": "O"
+      }
+    },
+    "components": {
+      "comparador_0": {
+        "vlnv": "xilinx.com:module_ref:comparador:1.0",
+        "xci_name": "TrabajoPrevio_comparador_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "comparador",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "positivo": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "negativo": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "comparacion": {
+            "direction": "O"
+          }
+        }
+      },
+      "generador_de_sinusoi_0": {
+        "vlnv": "xilinx.com:module_ref:generador_de_sinusoide:1.0",
+        "xci_name": "TrabajoPrevio_generador_de_sinusoi_0_1",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "generador_de_sinusoide",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "sinusoide": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          }
+        }
+      },
+      "generador_de_sierra_0": {
+        "vlnv": "xilinx.com:module_ref:generador_de_sierra:1.0",
+        "xci_name": "TrabajoPrevio_generador_de_sierra_0_1",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "generador_de_sierra",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "sierra": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          }
+        }
+      },
+      "display_manager_0": {
+        "vlnv": "xilinx.com:module_ref:display_manager:1.0",
+        "xci_name": "TrabajoPrevio_display_manager_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "display_manager",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "display_update_rate_clk": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "digits": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "digit_value": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "digit_index": {
+            "direction": "O",
+            "left": "2",
+            "right": "0"
+          },
+          "decimal_point": {
+            "direction": "O"
+          }
+        }
+      },
+      "display_interface_0": {
+        "vlnv": "xilinx.com:module_ref:display_interface:1.0",
+        "xci_name": "TrabajoPrevio_display_interface_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "display_interface",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "digit_value": {
+            "direction": "I",
+            "left": "3",
+            "right": "0"
+          },
+          "digit_index": {
+            "direction": "I",
+            "left": "2",
+            "right": "0"
+          },
+          "decimal_point": {
+            "direction": "I"
+          },
+          "seg": {
+            "direction": "O",
+            "left": "6",
+            "right": "0"
+          },
+          "dp": {
+            "direction": "O"
+          },
+          "an": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          }
+        }
+      },
+      "divisor_de_clk_displ_0": {
+        "vlnv": "xilinx.com:module_ref:divisor_de_clk_display:1.0",
+        "xci_name": "TrabajoPrevio_divisor_de_clk_displ_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "divisor_de_clk_display",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk_in": {
+            "direction": "I"
+          },
+          "clk_out": {
+            "direction": "O",
+            "parameters": {
+              "CLK_DOMAIN": {
+                "value": "",
+                "value_src": "weak"
+              },
+              "FREQ_HZ": {
+                "value": "",
+                "value_src": "weak"
+              },
+              "PHASE": {
+                "value": "",
+                "value_src": "weak"
+              }
+            }
+          }
+        }
+      },
+      "divisor_de_clk_con_s_0": {
+        "vlnv": "xilinx.com:module_ref:divisor_de_clk_con_switch:1.0",
+        "xci_name": "TrabajoPrevio_divisor_de_clk_con_s_0_2",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "divisor_de_clk_con_switch",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk_in": {
+            "direction": "I"
+          },
+          "sw0": {
+            "direction": "I"
+          },
+          "sw1": {
+            "direction": "I"
+          },
+          "clk_out": {
+            "direction": "O",
+            "parameters": {
+              "CLK_DOMAIN": {
+                "value": "",
+                "value_src": "weak"
+              },
+              "FREQ_HZ": {
+                "value": "",
+                "value_src": "weak"
+              },
+              "PHASE": {
+                "value": "",
+                "value_src": "weak"
+              }
+            }
+          },
+          "clk_out_disp_freq": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          }
+        }
+      },
+      "divisor_de_clk_sierra_0": {
+        "vlnv": "xilinx.com:module_ref:divisor_de_clk_sierra:1.0",
+        "xci_name": "TrabajoPrevio_divisor_de_clk_sierra_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "divisor_de_clk_sierra",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk_in": {
+            "direction": "I"
+          },
+          "clk_out": {
+            "direction": "O",
+            "parameters": {
+              "CLK_DOMAIN": {
+                "value": "",
+                "value_src": "weak"
+              },
+              "FREQ_HZ": {
+                "value": "",
+                "value_src": "weak"
+              },
+              "PHASE": {
+                "value": "",
+                "value_src": "weak"
+              }
+            }
+          }
+        }
+      },
+      "RX_uart_0": {
+        "vlnv": "xilinx.com:module_ref:RX_uart:1.0",
+        "xci_name": "TrabajoPrevio_RX_uart_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "RX_uart",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "baud_rate_clk": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "uart_rx_in": {
+            "direction": "I"
+          },
+          "wave_out": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          }
+        }
+      },
+      "divisor_de_clk_uart_0": {
+        "vlnv": "xilinx.com:module_ref:divisor_de_clk_uart:1.0",
+        "xci_name": "TrabajoPrevio_divisor_de_clk_uart_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "divisor_de_clk_uart",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk_in": {
+            "direction": "I"
+          },
+          "clk_out": {
+            "direction": "O",
+            "parameters": {
+              "CLK_DOMAIN": {
+                "value": "",
+                "value_src": "weak"
+              },
+              "FREQ_HZ": {
+                "value": "",
+                "value_src": "weak"
+              },
+              "PHASE": {
+                "value": "",
+                "value_src": "weak"
+              }
+            }
+          }
+        }
+      },
+      "wave_mux_0": {
+        "vlnv": "xilinx.com:module_ref:wave_mux:1.0",
+        "xci_name": "TrabajoPrevio_wave_mux_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "wave_mux",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sinusoid": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "music": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "sw": {
+            "direction": "I"
+          },
+          "wave_out": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          }
+        }
+      }
+    },
+    "nets": {
+      "generador_de_sierra_0_sierra": {
+        "ports": [
+          "generador_de_sierra_0/sierra",
+          "comparador_0/positivo"
+        ]
+      },
+      "clk_1": {
+        "ports": [
+          "clk",
+          "divisor_de_clk_displ_0/clk_in",
+          "divisor_de_clk_con_s_0/clk_in",
+          "divisor_de_clk_sierra_0/clk_in",
+          "divisor_de_clk_uart_0/clk_in"
+        ]
+      },
+      "display_manager_0_digit_value": {
+        "ports": [
+          "display_manager_0/digit_value",
+          "display_interface_0/digit_value"
+        ]
+      },
+      "display_manager_0_digit_index": {
+        "ports": [
+          "display_manager_0/digit_index",
+          "display_interface_0/digit_index"
+        ]
+      },
+      "display_manager_0_decimal_point": {
+        "ports": [
+          "display_manager_0/decimal_point",
+          "display_interface_0/decimal_point"
+        ]
+      },
+      "display_interface_0_seg": {
+        "ports": [
+          "display_interface_0/seg",
+          "seg"
+        ]
+      },
+      "display_interface_0_dp": {
+        "ports": [
+          "display_interface_0/dp",
+          "dp"
+        ]
+      },
+      "display_interface_0_an": {
+        "ports": [
+          "display_interface_0/an",
+          "an"
+        ]
+      },
+      "divisor_de_clk_displ_0_clk_out": {
+        "ports": [
+          "divisor_de_clk_displ_0/clk_out",
+          "display_manager_0/display_update_rate_clk"
+        ]
+      },
+      "sw0_1": {
+        "ports": [
+          "sw0",
+          "divisor_de_clk_con_s_0/sw0"
+        ]
+      },
+      "sw1_1": {
+        "ports": [
+          "sw1",
+          "divisor_de_clk_con_s_0/sw1"
+        ]
+      },
+      "divisor_de_clk_con_s_0_clk_out": {
+        "ports": [
+          "divisor_de_clk_con_s_0/clk_out",
+          "generador_de_sinusoi_0/clk"
+        ]
+      },
+      "divisor_de_clk_con_s_0_clk_out_disp_freq": {
+        "ports": [
+          "divisor_de_clk_con_s_0/clk_out_disp_freq",
+          "display_manager_0/digits"
+        ]
+      },
+      "divisor_de_clk_sierra_0_clk_out": {
+        "ports": [
+          "divisor_de_clk_sierra_0/clk_out",
+          "generador_de_sierra_0/clk"
+        ]
+      },
+      "divisor_de_clk_uart_0_clk_out": {
+        "ports": [
+          "divisor_de_clk_uart_0/clk_out",
+          "RX_uart_0/baud_rate_clk"
+        ]
+      },
+      "uart_rx_in_0_1": {
+        "ports": [
+          "JB1",
+          "RX_uart_0/uart_rx_in"
+        ]
+      },
+      "wave_mux_0_wave_out": {
+        "ports": [
+          "wave_mux_0/wave_out",
+          "comparador_0/negativo"
+        ]
+      },
+      "generador_de_sinusoi_0_sinusoide": {
+        "ports": [
+          "generador_de_sinusoi_0/sinusoide",
+          "wave_mux_0/sinusoid"
+        ]
+      },
+      "RX_uart_0_wave_out": {
+        "ports": [
+          "RX_uart_0/wave_out",
+          "wave_mux_0/music"
+        ]
+      },
+      "sw_0_1": {
+        "ports": [
+          "sw2",
+          "wave_mux_0/sw"
+        ]
+      },
+      "comparador_0_comparacion": {
+        "ports": [
+          "comparador_0/comparacion",
+          "JA1"
+        ]
+      }
+    }
+  }
+}
