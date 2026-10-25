@@ -37,6 +37,13 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 # To test this script, run the following commands from Vivado Tcl console:
 # source design_1_script.tcl
 
+
+# The design that will be created by this Tcl script contains the following 
+# module references:
+# Generador_sinusoide, Memory_manager
+
+# Please add the sources of those modules before sourcing this Tcl script.
+
 # If there is no project opened, this script will create a
 # project, but make sure you do not have an existing project
 # <./myproj/project_1.xpr> in the current working folder.
@@ -159,7 +166,30 @@ proc create_root_design { parentCell } {
 
   # Create ports
   set clk [ create_bd_port -dir I -type clk clk ]
+  set sine [ create_bd_port -dir O -from 7 -to 0 sine ]
 
+  # Create instance: Generador_sinusoide_0, and set properties
+  set block_name Generador_sinusoide
+  set block_cell_name Generador_sinusoide_0
+  if { [catch {set Generador_sinusoide_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $Generador_sinusoide_0 eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: Memory_manager_0, and set properties
+  set block_name Memory_manager
+  set block_cell_name Memory_manager_0
+  if { [catch {set Memory_manager_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $Memory_manager_0 eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
   # Create instance: blk_mem_gen_0, and set properties
   set blk_mem_gen_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 blk_mem_gen_0 ]
   set_property -dict [ list \
@@ -185,13 +215,16 @@ proc create_root_design { parentCell } {
   # Create instance: vio_0, and set properties
   set vio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:vio:3.0 vio_0 ]
   set_property -dict [ list \
-   CONFIG.C_PROBE_OUT0_WIDTH {7} \
+   CONFIG.C_PROBE_OUT0_WIDTH {5} \
  ] $vio_0
 
   # Create port connections
-  connect_bd_net -net blk_mem_gen_0_douta [get_bd_pins blk_mem_gen_0/douta] [get_bd_pins vio_0/probe_in0]
-  connect_bd_net -net clk_0_1 [get_bd_ports clk] [get_bd_pins blk_mem_gen_0/clka] [get_bd_pins vio_0/clk]
-  connect_bd_net -net vio_0_probe_out0 [get_bd_pins blk_mem_gen_0/addra] [get_bd_pins vio_0/probe_out0]
+  connect_bd_net -net Generador_sinusoide_0_sinusoide [get_bd_ports sine] [get_bd_pins Generador_sinusoide_0/sinusoide]
+  connect_bd_net -net Memory_manager_0_addr [get_bd_pins Memory_manager_0/addr] [get_bd_pins blk_mem_gen_0/addra]
+  connect_bd_net -net Memory_manager_0_state [get_bd_pins Generador_sinusoide_0/state] [get_bd_pins Memory_manager_0/state] [get_bd_pins vio_0/probe_in0]
+  connect_bd_net -net blk_mem_gen_0_douta [get_bd_pins Generador_sinusoide_0/data] [get_bd_pins blk_mem_gen_0/douta]
+  connect_bd_net -net clk_0_1 [get_bd_ports clk] [get_bd_pins Memory_manager_0/clk] [get_bd_pins blk_mem_gen_0/clka] [get_bd_pins vio_0/clk]
+  connect_bd_net -net vio_0_probe_out0 [get_bd_pins Memory_manager_0/freq] [get_bd_pins vio_0/probe_out0]
 
   # Create address segments
 

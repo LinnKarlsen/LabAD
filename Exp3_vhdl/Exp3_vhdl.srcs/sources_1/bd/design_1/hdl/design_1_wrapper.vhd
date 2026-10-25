@@ -1,7 +1,7 @@
 --Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
---Date        : Wed Oct 21 20:17:03 2026
+--Date        : Sun Oct 25 00:51:05 2026
 --Host        : TROND-ENVYX360 running 64-bit major release  (build 9200)
 --Command     : generate_target design_1_wrapper.bd
 --Design      : design_1_wrapper
@@ -13,19 +13,22 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity design_1_wrapper is
   port (
-    clk : in STD_LOGIC
+    clk : in STD_LOGIC;
+    sine : out STD_LOGIC_VECTOR ( 7 downto 0 )
   );
 end design_1_wrapper;
 
 architecture STRUCTURE of design_1_wrapper is
   component design_1 is
   port (
-    clk : in STD_LOGIC
+    clk : in STD_LOGIC;
+    sine : out STD_LOGIC_VECTOR ( 7 downto 0 )
   );
   end component design_1;
 begin
 design_1_i: component design_1
      port map (
-      clk => clk
+      clk => clk,
+      sine(7 downto 0) => sine(7 downto 0)
     );
 end STRUCTURE;
