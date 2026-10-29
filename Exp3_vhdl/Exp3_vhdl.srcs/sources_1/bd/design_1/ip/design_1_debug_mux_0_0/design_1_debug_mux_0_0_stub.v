@@ -1,0 +1,24 @@
+// Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+// --------------------------------------------------------------------------------
+// Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
+// Date        : Wed Oct 28 13:15:40 2026
+// Host        : TROND-ENVYX360 running 64-bit major release  (build 9200)
+// Command     : write_verilog -force -mode synth_stub
+//               c:/Users/linnh/LabAD/Exp3_vhdl/Exp3_vhdl.srcs/sources_1/bd/design_1/ip/design_1_debug_mux_0_0/design_1_debug_mux_0_0_stub.v
+// Design      : design_1_debug_mux_0_0
+// Purpose     : Stub declaration of top-level module interface
+// Device      : xc7a35tcpg236-1
+// --------------------------------------------------------------------------------
+
+// This empty module with port declaration file causes synthesis tools to infer a black box for IP.
+// The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
+// Please paste the declaration into a Verilog source file or add the file as an additional source.
+(* x_core_info = "debug_mux,Vivado 2020.1" *)
+module design_1_debug_mux_0_0(clk, sw, num_PS2, num_VIO, num)
+/* synthesis syn_black_box black_box_pad_pin="clk,sw,num_PS2[4:0],num_VIO[4:0],num[4:0]" */;
+  input clk;
+  input sw;
+  input [4:0]num_PS2;
+  input [4:0]num_VIO;
+  output [4:0]num;
+endmodule

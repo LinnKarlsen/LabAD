@@ -22,14 +22,10 @@ para_vhdl = strjoin(join(sinusoide_bits_string, "", 1), ', \n');
 %%
 
 f = 100000000;
-f_target = 739.98;
-muestras = 256;
-
+f_target = 4000;
 T = 1/f;
-T_target = 1/(f_target*muestras);
+T_target = f/(f_target*2);
 
-% Cuantos ciclos de f por cada ciclo de f_target?
-ciclos = T_target / T
 
 
 %% Para el generador de sierra

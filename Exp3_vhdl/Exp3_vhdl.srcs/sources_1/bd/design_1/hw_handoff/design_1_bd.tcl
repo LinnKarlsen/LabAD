@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# Generador_sinusoide, Memory_manager
+# Generador_sinusoide, Memory_manager, PS2Receiver, PS2_decoder, debug_mux, divisor_clk_oscilador
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -165,8 +165,11 @@ proc create_root_design { parentCell } {
   # Create interface ports
 
   # Create ports
+  set PS2Clk [ create_bd_port -dir I PS2Clk ]
+  set PS2Data [ create_bd_port -dir I PS2Data ]
   set clk [ create_bd_port -dir I -type clk clk ]
   set sine [ create_bd_port -dir O -from 7 -to 0 sine ]
+  set sw [ create_bd_port -dir I sw ]
 
   # Create instance: Generador_sinusoide_0, and set properties
   set block_name Generador_sinusoide
@@ -186,6 +189,28 @@ proc create_root_design { parentCell } {
      catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    } elseif { $Memory_manager_0 eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: PS2Receiver_0, and set properties
+  set block_name PS2Receiver
+  set block_cell_name PS2Receiver_0
+  if { [catch {set PS2Receiver_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $PS2Receiver_0 eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: PS2_decoder_0, and set properties
+  set block_name PS2_decoder
+  set block_cell_name PS2_decoder_0
+  if { [catch {set PS2_decoder_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $PS2_decoder_0 eq "" } {
      catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
@@ -212,19 +237,58 @@ proc create_root_design { parentCell } {
    CONFIG.use_bram_block {Stand_Alone} \
  ] $blk_mem_gen_0
 
+  # Create instance: debug_mux_0, and set properties
+  set block_name debug_mux
+  set block_cell_name debug_mux_0
+  if { [catch {set debug_mux_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $debug_mux_0 eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: divisor_clk_oscilador_0, and set properties
+  set block_name divisor_clk_oscilador
+  set block_cell_name divisor_clk_oscilador_0
+  if { [catch {set divisor_clk_oscilador_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $divisor_clk_oscilador_0 eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: ila_0, and set properties
+  set ila_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:ila:6.2 ila_0 ]
+  set_property -dict [ list \
+   CONFIG.C_ENABLE_ILA_AXI_MON {false} \
+   CONFIG.C_MONITOR_TYPE {Native} \
+   CONFIG.C_NUM_OF_PROBES {1} \
+   CONFIG.C_PROBE0_WIDTH {8} \
+ ] $ila_0
+
   # Create instance: vio_0, and set properties
   set vio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:vio:3.0 vio_0 ]
   set_property -dict [ list \
+   CONFIG.C_NUM_PROBE_IN {3} \
    CONFIG.C_PROBE_OUT0_WIDTH {5} \
  ] $vio_0
 
   # Create port connections
-  connect_bd_net -net Generador_sinusoide_0_sinusoide [get_bd_ports sine] [get_bd_pins Generador_sinusoide_0/sinusoide]
+  connect_bd_net -net Generador_sinusoide_0_sinusoide [get_bd_ports sine] [get_bd_pins Generador_sinusoide_0/sinusoide] [get_bd_pins ila_0/probe0]
   connect_bd_net -net Memory_manager_0_addr [get_bd_pins Memory_manager_0/addr] [get_bd_pins blk_mem_gen_0/addra]
   connect_bd_net -net Memory_manager_0_state [get_bd_pins Generador_sinusoide_0/state] [get_bd_pins Memory_manager_0/state] [get_bd_pins vio_0/probe_in0]
+  connect_bd_net -net PS2Receiver_0_keycode [get_bd_pins PS2Receiver_0/keycode] [get_bd_pins PS2_decoder_0/code] [get_bd_pins vio_0/probe_in1]
+  connect_bd_net -net PS2_decoder_0_num [get_bd_pins PS2_decoder_0/num] [get_bd_pins debug_mux_0/num_PS2]
   connect_bd_net -net blk_mem_gen_0_douta [get_bd_pins Generador_sinusoide_0/data] [get_bd_pins blk_mem_gen_0/douta]
-  connect_bd_net -net clk_0_1 [get_bd_ports clk] [get_bd_pins Memory_manager_0/clk] [get_bd_pins blk_mem_gen_0/clka] [get_bd_pins vio_0/clk]
-  connect_bd_net -net vio_0_probe_out0 [get_bd_pins Memory_manager_0/freq] [get_bd_pins vio_0/probe_out0]
+  connect_bd_net -net clk_0_1 [get_bd_ports clk] [get_bd_pins PS2Receiver_0/clk] [get_bd_pins PS2_decoder_0/clk] [get_bd_pins blk_mem_gen_0/clka] [get_bd_pins divisor_clk_oscilador_0/clk_in] [get_bd_pins vio_0/clk]
+  connect_bd_net -net debug_mux_0_num [get_bd_pins Memory_manager_0/freq] [get_bd_pins debug_mux_0/num] [get_bd_pins vio_0/probe_in2]
+  connect_bd_net -net divisor_clk_oscilador_0_clk_out [get_bd_pins Generador_sinusoide_0/clk] [get_bd_pins Memory_manager_0/clk] [get_bd_pins debug_mux_0/clk] [get_bd_pins divisor_clk_oscilador_0/clk_out] [get_bd_pins ila_0/clk]
+  connect_bd_net -net kclk_0_1 [get_bd_ports PS2Clk] [get_bd_pins PS2Receiver_0/kclk]
+  connect_bd_net -net kdata_0_1 [get_bd_ports PS2Data] [get_bd_pins PS2Receiver_0/kdata]
+  connect_bd_net -net sw_0_1 [get_bd_ports sw] [get_bd_pins debug_mux_0/sw]
+  connect_bd_net -net vio_0_probe_out0 [get_bd_pins debug_mux_0/num_VIO] [get_bd_pins vio_0/probe_out0]
 
   # Create address segments
 

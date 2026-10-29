@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-// Date        : Fri Oct 23 17:26:44 2026
+// Date        : Sun Oct 25 10:55:49 2026
 // Host        : TROND-ENVYX360 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
 //               c:/Users/linnh/LabAD/Exp3_vhdl/Exp3_vhdl.srcs/sources_1/bd/design_1/ip/design_1_vio_0_1/design_1_vio_0_1_stub.v
@@ -14,9 +14,11 @@
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
 (* X_CORE_INFO = "vio,Vivado 2020.1" *)
-module design_1_vio_0_1(clk, probe_in0, probe_out0)
-/* synthesis syn_black_box black_box_pad_pin="clk,probe_in0[1:0],probe_out0[4:0]" */;
+module design_1_vio_0_1(clk, probe_in0, probe_in1, probe_in2, probe_out0)
+/* synthesis syn_black_box black_box_pad_pin="clk,probe_in0[1:0],probe_in1[15:0],probe_in2[4:0],probe_out0[4:0]" */;
   input clk;
   input [1:0]probe_in0;
+  input [15:0]probe_in1;
+  input [4:0]probe_in2;
   output [4:0]probe_out0;
 endmodule

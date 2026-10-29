@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xE4C6CAA83FDF153B",
+      "boundary_crc": "0xE024D29EFCB915AA",
       "device": "xc7a35tcpg236-1",
       "name": "design_1",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
@@ -11,9 +11,14 @@
     },
     "design_tree": {
       "blk_mem_gen_0": "",
-      "Generador_sinusoide_0": "",
       "vio_0": "",
-      "Memory_manager_0": ""
+      "PS2Receiver_0": "",
+      "divisor_clk_oscilador_0": "",
+      "Memory_manager_0": "",
+      "Generador_sinusoide_0": "",
+      "PS2_decoder_0": "",
+      "debug_mux_0": "",
+      "ila_0": ""
     },
     "ports": {
       "clk": {
@@ -46,6 +51,15 @@
         "direction": "O",
         "left": "7",
         "right": "0"
+      },
+      "PS2Clk": {
+        "direction": "I"
+      },
+      "PS2Data": {
+        "direction": "I"
+      },
+      "sw": {
+        "direction": "I"
       }
     },
     "components": {
@@ -88,38 +102,95 @@
           }
         }
       },
-      "Generador_sinusoide_0": {
-        "vlnv": "xilinx.com:module_ref:Generador_sinusoide:1.0",
-        "xci_name": "design_1_Generador_sinusoide_0_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "Generador_sinusoide",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "state": {
-            "direction": "I",
-            "left": "1",
-            "right": "0"
-          },
-          "data": {
-            "direction": "I",
-            "left": "7",
-            "right": "0"
-          },
-          "sinusoide": {
-            "direction": "O",
-            "left": "7",
-            "right": "0"
-          }
-        }
-      },
       "vio_0": {
         "vlnv": "xilinx.com:ip:vio:3.0",
         "xci_name": "design_1_vio_0_1",
         "parameters": {
+          "C_NUM_PROBE_IN": {
+            "value": "3"
+          },
           "C_PROBE_OUT0_WIDTH": {
             "value": "5"
+          }
+        }
+      },
+      "PS2Receiver_0": {
+        "vlnv": "xilinx.com:module_ref:PS2Receiver:1.0",
+        "xci_name": "design_1_PS2Receiver_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "PS2Receiver",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "CLK_DOMAIN": {
+                "value": "design_1_clk_0",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "kclk": {
+            "direction": "I"
+          },
+          "kdata": {
+            "direction": "I"
+          },
+          "keycode": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "oflag": {
+            "direction": "O"
+          }
+        }
+      },
+      "divisor_clk_oscilador_0": {
+        "vlnv": "xilinx.com:module_ref:divisor_clk_oscilador:1.0",
+        "xci_name": "design_1_divisor_clk_oscilador_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "divisor_clk_oscilador",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk_in": {
+            "direction": "I",
+            "parameters": {
+              "CLK_DOMAIN": {
+                "value": "design_1_clk_0",
+                "value_src": "default_prop"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "default_prop"
+              },
+              "PHASE": {
+                "value": "0.000",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "clk_out": {
+            "direction": "O",
+            "parameters": {
+              "CLK_DOMAIN": {
+                "value": "",
+                "value_src": "weak"
+              },
+              "FREQ_HZ": {
+                "value": "",
+                "value_src": "weak"
+              },
+              "PHASE": {
+                "value": "",
+                "value_src": "weak"
+              }
+            }
           }
         }
       },
@@ -134,13 +205,7 @@
         "ports": {
           "clk": {
             "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "CLK_DOMAIN": {
-                "value": "design_1_clk_0",
-                "value_src": "default_prop"
-              }
-            }
+            "direction": "I"
           },
           "freq": {
             "direction": "I",
@@ -158,6 +223,118 @@
             "right": "0"
           }
         }
+      },
+      "Generador_sinusoide_0": {
+        "vlnv": "xilinx.com:module_ref:Generador_sinusoide:1.0",
+        "xci_name": "design_1_Generador_sinusoide_0_1",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "Generador_sinusoide",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "state": {
+            "direction": "I",
+            "left": "1",
+            "right": "0"
+          },
+          "data": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "sinusoide": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          }
+        }
+      },
+      "PS2_decoder_0": {
+        "vlnv": "xilinx.com:module_ref:PS2_decoder:1.0",
+        "xci_name": "design_1_PS2_decoder_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "PS2_decoder",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "CLK_DOMAIN": {
+                "value": "design_1_clk_0",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "code": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "num": {
+            "direction": "O",
+            "left": "4",
+            "right": "0"
+          }
+        }
+      },
+      "debug_mux_0": {
+        "vlnv": "xilinx.com:module_ref:debug_mux:1.0",
+        "xci_name": "design_1_debug_mux_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "debug_mux",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "sw": {
+            "direction": "I"
+          },
+          "num_PS2": {
+            "direction": "I",
+            "left": "4",
+            "right": "0"
+          },
+          "num_VIO": {
+            "direction": "I",
+            "left": "4",
+            "right": "0"
+          },
+          "num": {
+            "direction": "O",
+            "left": "4",
+            "right": "0"
+          }
+        }
+      },
+      "ila_0": {
+        "vlnv": "xilinx.com:ip:ila:6.2",
+        "xci_name": "design_1_ila_0_0",
+        "parameters": {
+          "C_ENABLE_ILA_AXI_MON": {
+            "value": "false"
+          },
+          "C_MONITOR_TYPE": {
+            "value": "Native"
+          },
+          "C_NUM_OF_PROBES": {
+            "value": "1"
+          },
+          "C_PROBE0_WIDTH": {
+            "value": "8"
+          }
+        }
       }
     },
     "nets": {
@@ -166,13 +343,9 @@
           "clk",
           "blk_mem_gen_0/clka",
           "vio_0/clk",
-          "Memory_manager_0/clk"
-        ]
-      },
-      "blk_mem_gen_0_douta": {
-        "ports": [
-          "blk_mem_gen_0/douta",
-          "Generador_sinusoide_0/data"
+          "PS2Receiver_0/clk",
+          "divisor_clk_oscilador_0/clk_in",
+          "PS2_decoder_0/clk"
         ]
       },
       "Memory_manager_0_addr": {
@@ -184,20 +357,74 @@
       "Memory_manager_0_state": {
         "ports": [
           "Memory_manager_0/state",
-          "Generador_sinusoide_0/state",
-          "vio_0/probe_in0"
+          "vio_0/probe_in0",
+          "Generador_sinusoide_0/state"
         ]
       },
-      "vio_0_probe_out0": {
+      "PS2Receiver_0_keycode": {
         "ports": [
-          "vio_0/probe_out0",
-          "Memory_manager_0/freq"
+          "PS2Receiver_0/keycode",
+          "vio_0/probe_in1",
+          "PS2_decoder_0/code"
+        ]
+      },
+      "kclk_0_1": {
+        "ports": [
+          "PS2Clk",
+          "PS2Receiver_0/kclk"
+        ]
+      },
+      "kdata_0_1": {
+        "ports": [
+          "PS2Data",
+          "PS2Receiver_0/kdata"
+        ]
+      },
+      "divisor_clk_oscilador_0_clk_out": {
+        "ports": [
+          "divisor_clk_oscilador_0/clk_out",
+          "Memory_manager_0/clk",
+          "debug_mux_0/clk",
+          "ila_0/clk",
+          "Generador_sinusoide_0/clk"
         ]
       },
       "Generador_sinusoide_0_sinusoide": {
         "ports": [
           "Generador_sinusoide_0/sinusoide",
-          "sine"
+          "sine",
+          "ila_0/probe0"
+        ]
+      },
+      "blk_mem_gen_0_douta": {
+        "ports": [
+          "blk_mem_gen_0/douta",
+          "Generador_sinusoide_0/data"
+        ]
+      },
+      "vio_0_probe_out0": {
+        "ports": [
+          "vio_0/probe_out0",
+          "debug_mux_0/num_VIO"
+        ]
+      },
+      "PS2_decoder_0_num": {
+        "ports": [
+          "PS2_decoder_0/num",
+          "debug_mux_0/num_PS2"
+        ]
+      },
+      "sw_0_1": {
+        "ports": [
+          "sw",
+          "debug_mux_0/sw"
+        ]
+      },
+      "debug_mux_0_num": {
+        "ports": [
+          "debug_mux_0/num",
+          "Memory_manager_0/freq",
+          "vio_0/probe_in2"
         ]
       }
     }

@@ -54,6 +54,8 @@ ENTITY design_1_vio_0_1 IS
 PORT (
 CLK : IN STD_LOGIC;
 probe_in0 : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+probe_in1 : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+probe_in2 : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
 probe_out0 : OUT STD_LOGIC_VECTOR(4 DOWNTO 0) := "00000"
 );
 END design_1_vio_0_1;

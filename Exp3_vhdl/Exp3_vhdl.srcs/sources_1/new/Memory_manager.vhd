@@ -17,40 +17,25 @@ architecture Behavioral of Memory_manager is
 
     -- Señales internas para generar counter
     signal step : integer := 0;
-    signal threshold : integer := 1600;
-    signal counter : integer := 0;
-    signal counter_decimal : integer := 0;
     signal idx : integer := 0;
-    signal flag_actualizar_recorrido : std_logic := '0';
+    signal idx_decimal : integer := 0;  -- ponderado por 100
 
 begin
     -- Código secuencial
     process(clk)
+        variable idx_decimal_val : integer := 0;
     begin
         if rising_edge(clk) then
         
-            -------------------- CONTADOR -----------------------------
+            -------------------- IDX -----------------------------
             
-            -- Contamos
-            if counter < 127 then
-                counter_decimal <= counter_decimal + 100;
-                if counter_decimal > threshold then
-                    counter <= counter + 1;
-                    threshold <= threshold + step;
-                end if;
+            idx_decimal_val := idx_decimal + step;
+            if idx_decimal_val/100 < 127 then
+                idx_decimal <= idx_decimal_val;
             else
-                counter <= 0;
-                counter_decimal <= counter_decimal mod 100;
-                threshold <= (threshold mod 100) + step;
-                flag_actualizar_recorrido <= '1';
-            end if;
-            
-            --------------------- RECORRIDO DE SINUSOIDE -----------------------
-            
-            -- recorrido sinusoide se actualiza con 1 flanco de atraso, lo cual compensa por el delay de la memoria
-            if flag_actualizar_recorrido = '1' then
-                flag_actualizar_recorrido <= '0'; 
+                idx_decimal <= idx_decimal_val - 127;
                 
+                -- actualizamos recorrido
                 if recorrido_sinusoide = subir_positivo then
                     recorrido_sinusoide <= bajar_positivo;
                 elsif recorrido_sinusoide = bajar_positivo then
@@ -60,26 +45,26 @@ begin
                 else 
                     recorrido_sinusoide <= subir_positivo;
                 end if;
+                
             end if;
             
             ---------------------- MAPEO A ADDRESS ------------------------------
             
             if recorrido_sinusoide = subir_positivo then
                 state <= "00";
-                idx <= counter;
+                idx <= idx_decimal/100;
             elsif recorrido_sinusoide = bajar_positivo then
                 state <= "01";
-                idx <= 127 - counter;
+                idx <= 127 - idx_decimal/100;
             elsif recorrido_sinusoide = bajar_negativo then
                 state <= "10";
-                idx <= counter;
+                idx <= idx_decimal/100;
             else
                 state <= "11";
-                idx <= 127 - counter;
+                idx <= 127 - idx_decimal/100;
             end if;          
             
-            
-        end if; -- Added missing semicolon
+        end if;
     end process;
     
     ------------------------------ VALOR DEL STEP --------------------------------
