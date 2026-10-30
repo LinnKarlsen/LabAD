@@ -2,95 +2,77 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity PS2_Interface is
-    Port ( baud_rate_clk : in STD_LOGIC;
-           uart_rx_in : in STD_LOGIC;
-           wave_out : out STD_LOGIC_VECTOR (7 downto 0)
-           );
+    Port ( clk : in STD_LOGIC;
+           code : in STD_LOGIC_VECTOR (7 downto 0);
+           num : out STD_LOGIC_VECTOR (4 downto 0) := "11111"
+    );
 end PS2_Interface;
 
 architecture Behavioral of PS2_Interface is
     
-    -- Estados puerto serial
-    type estado_puerto_serial is (IDLE, LECTURA, PARIDAD, END_OF_PACKAGE);
-    signal serial_port_state : estado_puerto_serial := IDLE;
-
-    -- Señales internas el puerto serial
-    signal data: STD_LOGIC_VECTOR (7 downto 0):= "00000000";
-    signal index: INTEGER:= 0;
-    
-    -- Señales internas para el procesamiento de paquete
-    signal paquete_recibido : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
-    signal flag_paquete_recibido : STD_LOGIC := '0';
-
 begin
 
-    -- El proceso se actualiza en los flancos de subida de baud_rate_clk
-    process(baud_rate_clk)
-        -- Variables internas para el control de paridad
-        variable pass_parity_check: STD_LOGIC;
-        variable parity_bit: STD_LOGIC;
+    process(clk)
     begin
-        if rising_edge(baud_rate_clk) then
+        if rising_edge(clk) then
             
-            -------------------------------------------
-            ------------ PUERTO SERIAL ----------------
-            -------------------------------------------
-            
-            case serial_port_state is
-                when IDLE =>
-                    -- Esperamos hasta detectar el comienzo del paquete
-                    if uart_rx_in = '0' then
-                        serial_port_state <= LECTURA;
-                    end if;
-
-                when LECTURA =>
-                    -- Leemos los 8 bits de data
-                    data(index) <= uart_rx_in;
-                    if index < 7 then
-                        index <= index + 1;
-                    else
-                        -- Se resetea el contador y transicionamos al estado de PARIDAD
-                        index <= 0;
-                        serial_port_state <= PARIDAD;
-                    end if;
-                    
-                when PARIDAD =>
-                    -- Almacenamos bit de paridad
-                    parity_bit := uart_rx_in;
-                    serial_port_state <= END_OF_PACKAGE; 
-    
-                when END_OF_PACKAGE =>
-                    -- Controlamos integridad del paquete (bit de paridad + señal END)
-                    pass_parity_check := data(0) xor data(1) xor data(2) xor data(3) xor data(4) xor data(5) xor data(6) xor data(7) xor uart_rx_in;
-                    -- if (uart_rx_in = '1') AND (pass_parity_check = '1') then
-                    if (uart_rx_in = '1') then
-                        -- Guardamos paquete y levantamos flag
-                        paquete_recibido <= data;  
-                        flag_paquete_recibido <= '1';      
-                    end if;
-                    serial_port_state <= IDLE;
-                    
-                -- Estado default es es IDLE
+            -- Store received values as num and num_prev
+            case code is
+                when x"58" => 
+                    num <= "00000";
+                when x"15" => 
+                    num <= "00001";
+                when x"1C" => 
+                    num <= "00010";
+                when x"1D" => 
+                    num <= "00011";
+                when x"1B" => 
+                    num <= "00100";
+                when x"23" => 
+                    num <= "00101";
+                when x"2D" => 
+                    num <= "00110";
+                when x"2B" => 
+                    num <= "00111";
+                when x"2C" => 
+                    num <= "01000";
+                when x"24" => 
+                    num <= "01001";
+                when x"35" => 
+                    num <= "01010";
+                when x"33" => 
+                    num <= "01011";
+                when x"3B" => 
+                    num <= "01100";
+                when x"43" => 
+                    num <= "01101";
+                when x"42" => 
+                    num <= "01110";
+                when x"44" => 
+                    num <= "01111";
+                when x"4B" => 
+                    num <= "10000";
+                when x"4C" => 
+                    num <= "10001";
+                when x"54" => 
+                    num <= "10010";
+                when x"52" => 
+                    num <= "10011";
+                when x"5B" => 
+                    num <= "10100";
+                when x"5A" => 
+                    num <= "10101";
+                when x"5D" => 
+                    num <= "10110";
+                when x"59" => 
+                    num <= "10111";
+                when x"F0" =>
+                    num <= "11111"; -- end flag
                 when others =>
-                    serial_port_state <= IDLE;
-                    
+                    num <= "11110"; -- invalid flag
             end case;
             
-            -------------------------------------------
-            ------- PROCESAMIENTO DE PAQUETES ---------
-            -------------------------------------------
-            
-            -- Procesamiento de paquete recibido
-            if flag_paquete_recibido = '1' then
-                -- Bajamos flag
-                flag_paquete_recibido <= '0';
-                -- Actualizamos salida
-                wave_out <= paquete_recibido;
-            end if; 
-            
         end if;
-        
     end process;
-    
-end Behavioral;
 
+end Behavioral;

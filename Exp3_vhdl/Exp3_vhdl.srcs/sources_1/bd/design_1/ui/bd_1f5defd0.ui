@@ -1,41 +1,43 @@
 {
    "ActiveEmotionalView":"Default View",
    "Default View_ScaleFactor":"1.26953",
-   "Default View_TopLeft":"645,91",
+   "Default View_TopLeft":"210,-12",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.0r6  2020-01-29 bk=1.5227 VDI=41 GEI=36 GUI=JA:9.0 non-TLS
 #  -string -flagsOSRD
-preplace port clk -pg 1 -lvl 0 -x 0 -y 190 -defaultsOSRD
-preplace port PS2Clk -pg 1 -lvl 0 -x 0 -y 260 -defaultsOSRD
-preplace port PS2Data -pg 1 -lvl 0 -x 0 -y 290 -defaultsOSRD
-preplace port sw -pg 1 -lvl 0 -x 0 -y 80 -defaultsOSRD
-preplace portBus sine -pg 1 -lvl 8 -x 1840 -y 290 -defaultsOSRD
-preplace inst blk_mem_gen_0 -pg 1 -lvl 7 -x 1720 -y 200 -defaultsOSRD
-preplace inst vio_0 -pg 1 -lvl 2 -x 420 -y 370 -defaultsOSRD
-preplace inst debug_mux_0 -pg 1 -lvl 3 -x 700 -y 90 -defaultsOSRD
-preplace inst ila_0 -pg 1 -lvl 7 -x 1720 -y 360 -defaultsOSRD
-preplace inst PS2Receiver_0 -pg 1 -lvl 1 -x 140 -y 270 -defaultsOSRD
-preplace inst divisor_clk_oscilador_0 -pg 1 -lvl 3 -x 700 -y 220 -defaultsOSRD
-preplace inst Generador_sinusoide_0 -pg 1 -lvl 6 -x 1470 -y 290 -defaultsOSRD
-preplace inst Memory_manager_0 -pg 1 -lvl 4 -x 950 -y 200 -defaultsOSRD
-preplace inst delay_0 -pg 1 -lvl 5 -x 1200 -y 450 -defaultsOSRD
-preplace inst PS2_decoder_0 -pg 1 -lvl 2 -x 420 -y 200 -defaultsOSRD
-preplace netloc clk_0_1 1 0 7 20 190 260 130 560 300 NJ 300 1060 370 NJ 370 1610
+preplace port clk -pg 1 -lvl 0 -x -30 -y 190 -defaultsOSRD
+preplace port PS2Clk -pg 1 -lvl 0 -x -30 -y 260 -defaultsOSRD
+preplace port PS2Data -pg 1 -lvl 0 -x -30 -y 290 -defaultsOSRD
+preplace port sw -pg 1 -lvl 0 -x -30 -y 80 -defaultsOSRD
+preplace portBus sine -pg 1 -lvl 8 -x 1920 -y 290 -defaultsOSRD
+preplace inst blk_mem_gen_0 -pg 1 -lvl 7 -x 1800 -y 200 -defaultsOSRD
+preplace inst vio_0 -pg 1 -lvl 2 -x 460 -y 370 -defaultsOSRD
+preplace inst debug_mux_0 -pg 1 -lvl 3 -x 740 -y 90 -defaultsOSRD
+preplace inst ila_0 -pg 1 -lvl 7 -x 1800 -y 360 -defaultsOSRD
+preplace inst divisor_clk_oscilador_0 -pg 1 -lvl 3 -x 740 -y 220 -defaultsOSRD
+preplace inst Generador_sinusoide_0 -pg 1 -lvl 6 -x 1540 -y 290 -defaultsOSRD
+preplace inst Memory_manager_0 -pg 1 -lvl 4 -x 990 -y 200 -defaultsOSRD
+preplace inst delay_0 -pg 1 -lvl 5 -x 1250 -y 450 -defaultsOSRD
+preplace inst PS2_Interface_0 -pg 1 -lvl 2 -x 460 -y 150 -defaultsOSRD
+preplace inst PS2_rx_decoder_0 -pg 1 -lvl 1 -x 140 -y 260 -defaultsOSRD
+preplace netloc clk_0_1 1 0 7 -10 180 300 70 600 290 NJ 290 1100 380 NJ 380 1690
 preplace netloc Memory_manager_0_addr 1 4 3 NJ 190 NJ 190 N
-preplace netloc Memory_manager_0_state 1 1 4 280 270 550J 290 NJ 290 1070
-preplace netloc divisor_clk_oscilador_0_clk_out 1 3 3 840 130 NJ 130 1330
-preplace netloc Generador_sinusoide_0_sinusoide 1 6 2 1620 290 NJ
-preplace netloc blk_mem_gen_0_douta 1 5 2 1340 210 1600
-preplace netloc vio_0_probe_out0 1 2 1 570 120n
-preplace netloc PS2_decoder_0_num 1 2 1 550 100n
+preplace netloc Memory_manager_0_state 1 1 4 330 260 590J 280 NJ 280 1110
+preplace netloc divisor_clk_oscilador_0_clk_out 1 3 3 880 270 NJ 270 N
+preplace netloc Generador_sinusoide_0_sinusoide 1 6 2 1680 290 NJ
+preplace netloc blk_mem_gen_0_douta 1 5 2 1390 370 1670
+preplace netloc vio_0_probe_out0 1 2 1 610 120n
 preplace netloc sw_0_1 1 0 3 NJ 80 NJ 80 NJ
-preplace netloc debug_mux_0_num 1 1 3 290 280 NJ 280 830
-preplace netloc PS2Receiver_0_keycode 1 1 1 270 210n
-preplace netloc PS2Clk_1 1 0 1 20J 260n
-preplace netloc PS2Data_1 1 0 1 NJ 290
-preplace netloc delay_0_data_out 1 5 1 1330 290n
-levelinfo -pg 1 0 140 420 700 950 1200 1470 1720 1840
-pagesize -pg 1 -db -bbox -sgen -110 0 1950 520
+preplace netloc debug_mux_0_num 1 1 3 320 0 NJ 0 870
+preplace netloc delay_0_data_out 1 5 1 1380 290n
+preplace netloc PS2Clk_1 1 0 1 N 260
+preplace netloc PS2Data_1 1 0 1 -10 280n
+preplace netloc PS2_rx_decoder_0_pressed_keycode 1 1 1 310 160n
+preplace netloc PS2_Interface_0_num 1 2 1 590 100n
+preplace netloc PS2_rx_decoder_0_keycode 1 1 1 290 240n
+preplace netloc PS2_rx_decoder_0_prev_keycode 1 1 1 280 260n
+levelinfo -pg 1 -30 140 460 740 990 1250 1540 1800 1920
+pagesize -pg 1 -db -bbox -sgen -140 -80 2030 520
 "
 }
 0

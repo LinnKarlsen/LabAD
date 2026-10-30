@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# Generador_sinusoide, Memory_manager, PS2Receiver, PS2_decoder, debug_mux, delay, divisor_clk_oscilador
+# Generador_sinusoide, Memory_manager, PS2_Interface, PS2_rx_decoder, debug_mux, delay, divisor_clk_oscilador
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -193,24 +193,24 @@ proc create_root_design { parentCell } {
      return 1
    }
   
-  # Create instance: PS2Receiver_0, and set properties
-  set block_name PS2Receiver
-  set block_cell_name PS2Receiver_0
-  if { [catch {set PS2Receiver_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+  # Create instance: PS2_Interface_0, and set properties
+  set block_name PS2_Interface
+  set block_cell_name PS2_Interface_0
+  if { [catch {set PS2_Interface_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
      catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
-   } elseif { $PS2Receiver_0 eq "" } {
+   } elseif { $PS2_Interface_0 eq "" } {
      catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
   
-  # Create instance: PS2_decoder_0, and set properties
-  set block_name PS2_decoder
-  set block_cell_name PS2_decoder_0
-  if { [catch {set PS2_decoder_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+  # Create instance: PS2_rx_decoder_0, and set properties
+  set block_name PS2_rx_decoder
+  set block_cell_name PS2_rx_decoder_0
+  if { [catch {set PS2_rx_decoder_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
      catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
-   } elseif { $PS2_decoder_0 eq "" } {
+   } elseif { $PS2_rx_decoder_0 eq "" } {
      catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
@@ -283,7 +283,7 @@ proc create_root_design { parentCell } {
   # Create instance: vio_0, and set properties
   set vio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:vio:3.0 vio_0 ]
   set_property -dict [ list \
-   CONFIG.C_NUM_PROBE_IN {3} \
+   CONFIG.C_NUM_PROBE_IN {5} \
    CONFIG.C_PROBE_OUT0_WIDTH {5} \
  ] $vio_0
 
@@ -291,12 +291,14 @@ proc create_root_design { parentCell } {
   connect_bd_net -net Generador_sinusoide_0_sinusoide [get_bd_ports sine] [get_bd_pins Generador_sinusoide_0/sinusoide] [get_bd_pins ila_0/probe0]
   connect_bd_net -net Memory_manager_0_addr [get_bd_pins Memory_manager_0/addr] [get_bd_pins blk_mem_gen_0/addra]
   connect_bd_net -net Memory_manager_0_state [get_bd_pins Memory_manager_0/state] [get_bd_pins delay_0/data_in] [get_bd_pins vio_0/probe_in0]
-  connect_bd_net -net PS2Clk_1 [get_bd_ports PS2Clk] [get_bd_pins PS2Receiver_0/kclk]
-  connect_bd_net -net PS2Data_1 [get_bd_ports PS2Data] [get_bd_pins PS2Receiver_0/kdata]
-  connect_bd_net -net PS2Receiver_0_keycode [get_bd_pins PS2Receiver_0/keycode] [get_bd_pins PS2_decoder_0/code] [get_bd_pins vio_0/probe_in1]
-  connect_bd_net -net PS2_decoder_0_num [get_bd_pins PS2_decoder_0/num_out] [get_bd_pins debug_mux_0/num_PS2]
+  connect_bd_net -net PS2Clk_1 [get_bd_ports PS2Clk] [get_bd_pins PS2_rx_decoder_0/kclk]
+  connect_bd_net -net PS2Data_1 [get_bd_ports PS2Data] [get_bd_pins PS2_rx_decoder_0/kdata]
+  connect_bd_net -net PS2_Interface_0_num [get_bd_pins PS2_Interface_0/num] [get_bd_pins debug_mux_0/num_PS2]
+  connect_bd_net -net PS2_rx_decoder_0_keycode [get_bd_pins PS2_rx_decoder_0/keycode] [get_bd_pins vio_0/probe_in3]
+  connect_bd_net -net PS2_rx_decoder_0_pressed_keycode [get_bd_pins PS2_Interface_0/code] [get_bd_pins PS2_rx_decoder_0/pressed_keycode] [get_bd_pins vio_0/probe_in1]
+  connect_bd_net -net PS2_rx_decoder_0_prev_keycode [get_bd_pins PS2_rx_decoder_0/prev_keycode] [get_bd_pins vio_0/probe_in4]
   connect_bd_net -net blk_mem_gen_0_douta [get_bd_pins Generador_sinusoide_0/data] [get_bd_pins blk_mem_gen_0/douta]
-  connect_bd_net -net clk_0_1 [get_bd_ports clk] [get_bd_pins PS2Receiver_0/clk] [get_bd_pins PS2_decoder_0/clk] [get_bd_pins blk_mem_gen_0/clka] [get_bd_pins debug_mux_0/clk] [get_bd_pins delay_0/clk] [get_bd_pins divisor_clk_oscilador_0/clk_in] [get_bd_pins ila_0/clk] [get_bd_pins vio_0/clk]
+  connect_bd_net -net clk_0_1 [get_bd_ports clk] [get_bd_pins PS2_Interface_0/clk] [get_bd_pins PS2_rx_decoder_0/clk] [get_bd_pins blk_mem_gen_0/clka] [get_bd_pins debug_mux_0/clk] [get_bd_pins delay_0/clk] [get_bd_pins divisor_clk_oscilador_0/clk_in] [get_bd_pins ila_0/clk] [get_bd_pins vio_0/clk]
   connect_bd_net -net debug_mux_0_num [get_bd_pins Memory_manager_0/freq] [get_bd_pins debug_mux_0/num] [get_bd_pins vio_0/probe_in2]
   connect_bd_net -net delay_0_data_out [get_bd_pins Generador_sinusoide_0/state] [get_bd_pins delay_0/data_out]
   connect_bd_net -net divisor_clk_oscilador_0_clk_out [get_bd_pins Generador_sinusoide_0/clk] [get_bd_pins Memory_manager_0/clk] [get_bd_pins divisor_clk_oscilador_0/clk_out]

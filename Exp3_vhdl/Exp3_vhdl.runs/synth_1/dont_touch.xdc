@@ -24,16 +24,16 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_1_Genera
 # IP: bd/design_1/ip/design_1_debug_mux_0_0/design_1_debug_mux_0_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_1_debug_mux_0_0 || ORIG_REF_NAME==design_1_debug_mux_0_0} -quiet] -quiet
 
-# IP: bd/design_1/ip/design_1_PS2_decoder_0_0/design_1_PS2_decoder_0_0.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_1_PS2_decoder_0_0 || ORIG_REF_NAME==design_1_PS2_decoder_0_0} -quiet] -quiet
-
 # IP: bd/design_1/ip/design_1_ila_0_1/design_1_ila_0_1.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_1_ila_0_1 || ORIG_REF_NAME==design_1_ila_0_1} -quiet] -quiet
 
-# IP: bd/design_1/ip/design_1_PS2Receiver_0_2/design_1_PS2Receiver_0_2.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_1_PS2Receiver_0_2 || ORIG_REF_NAME==design_1_PS2Receiver_0_2} -quiet] -quiet
-
 # IP: bd/design_1/ip/design_1_delay_0_0/design_1_delay_0_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_1_delay_0_0 || ORIG_REF_NAME==design_1_delay_0_0} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_PS2_rx_decoder_0_0/design_1_PS2_rx_decoder_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_1_PS2_rx_decoder_0_0 || ORIG_REF_NAME==design_1_PS2_rx_decoder_0_0} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_PS2_Interface_0_0/design_1_PS2_Interface_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_1_PS2_Interface_0_0 || ORIG_REF_NAME==design_1_PS2_Interface_0_0} -quiet] -quiet
 
 # XDC: bd/design_1/design_1_ooc.xdc

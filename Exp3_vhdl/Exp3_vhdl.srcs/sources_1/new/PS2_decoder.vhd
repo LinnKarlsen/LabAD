@@ -4,12 +4,14 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity PS2_decoder is
     Port ( clk : in STD_LOGIC;
            code : in STD_LOGIC_VECTOR (7 downto 0);
+           prev_code : in STD_LOGIC_VECTOR (7 downto 0);
            num_out : out STD_LOGIC_VECTOR (4 downto 0) := "11111"
     );
 end PS2_decoder;
 
 architecture Behavioral of PS2_decoder is
     
+    signal code_pressed : std_logic_vector (7 downto 0);
     signal num : std_logic_vector (4 downto 0) := "11110";   -- CHANGED: start as "invalid", not F0
     signal num_prev : std_logic_vector (4 downto 0) := "11111";  -- unused, can be deleted
     signal num_out_buffer : std_logic_vector (4 downto 0) := "11111";
@@ -18,15 +20,43 @@ architecture Behavioral of PS2_decoder is
     signal released_key : std_logic_vector (4 downto 0) := "11111";
     constant timer_max : integer := 120000000;               -- CHANGED: 1.2 s at 100 MHz
 
+    constant released : std_logic_vector (7 downto 0) := x"F0";
+    constant invalid : std_logic_vector (7 downto 0) := x"";
+
 begin
 
     process(clk)
     begin
         if rising_edge(clk) then
             
-            -- Store received values as num and num_prev
-            num_prev <= num;
-            case code is
+            -- We know both code and prev_code
+            -- We use both to decide what is being pressed
+            
+            -- If nothing is being pressed, i accept current code
+            if code_pressed = invalid then
+                code_pressed <= code; 
+                timer <= 0;
+            elsif timer > timer_max then
+                code_pressed <= invalid;
+                timer <= 0;
+            -- If we still get the same key, timer stays at 0
+            elsif code_pressed = code then
+                timer <= 0;
+            -- Else, we stay on current code, but count on the timer
+            elsif code_pressed /= code then
+                timer <= timer + 1;
+            -- If it is released, then we return to invalid, and make it available for another key
+            elsif prev_code = released then 
+                if code = code_pressed then
+                    code_pressed <= invalid;
+                    timer <= 0;
+                else 
+                    timer <= timer + 1;
+                end if;
+            end if;
+            
+            -- Code to number interface (using numbers to make things easier)
+            case code_pressed is
                 when x"58" => 
                     num <= "00000";
                 when x"15" => 
@@ -75,53 +105,11 @@ begin
                     num <= "10110";
                 when x"59" => 
                     num <= "10111";
-                when x"F0" =>
-                    num <= "11111"; -- end flag
+                when invalid =>
+                    num <= "11111";
                 when others =>
-                    num <= "11110"; -- invalid flag
+                    num <= "11110"; -- invalid key
             end case;
-            
-            
-            -- Logic to decide num_out value
-            if num = "11111" then
-                -- F0 on the bus: the next valid code is a key being released
-                break_flag <= '1';
-                timer      <= 0;                              -- CHANGED: don't let the watchdog expire mid-release
-
-            elsif num /= "11110" then                         -- valid note code on the bus
-                if break_flag = '1' then
-                    -- This code is the key being released
-                    break_flag   <= '0';
-                    released_key <= num;                      -- ignore it while it stays on the bus
-                    if num = num_out_buffer then              -- stop only if it is the note sounding
-                        num_out        <= "11111";            -- no sound flag
-                        num_out_buffer <= "11111";
-                        timer          <= 0;
-                    end if;
-
-                elsif num = released_key then
-                    null;                                     -- released code still on the bus, not a new press
-
-                elsif (num = num_out_buffer) or (num_out_buffer = "11111") then
-                    -- same key as the one sounding, or no key pressed
-                    released_key   <= "11111";
-                    timer          <= 0;
-                    num_out        <= num;
-                    num_out_buffer <= num;
-                end if;
-
-            else
-                -- Bus idle/invalid: lockout over, run the watchdog timer
-                released_key <= "11111";
-                if timer < timer_max then
-                    timer <= timer + 1;
-                else
-                    timer          <= 0;
-                    break_flag     <= '0';                    -- CHANGED: clear a stale break flag
-                    num_out        <= "11111";
-                    num_out_buffer <= "11111";
-                end if;
-            end if;
             
         end if;
     end process;

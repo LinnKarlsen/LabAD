@@ -10,16 +10,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="180601fs"></ZoomEndTime>
+      <ZoomEndTime time="85094144fs"></ZoomEndTime>
       <Cursor1Time time="33200fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="128"></NameColumnWidth>
+      <NameColumnWidth column_width="113"></NameColumnWidth>
       <ValueColumnWidth column_width="72"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="1" />
-   <wave_markers>
-   </wave_markers>
    <wvobject fp_name="design_1_i/Generador_sinusoide_0_sinusoide" type="array">
       <obj_property name="DisplayName">FullPathName</obj_property>
       <obj_property name="ElementShortName">design_1_i/Generador_sinusoide_0_sinusoide[7:0]</obj_property>
