@@ -11,7 +11,7 @@ architecture Behavioral of divisor_clk_oscilador is
     -- Instanciamos una señal interna para el nuevo clock
     signal clk_out_internal: STD_LOGIC:= '0';
     -- El clk resultante será 1/(2*counter_max) de la frecuencia del original
-    signal counter_max : INTEGER:= 12500;   -- antes:8
+    signal counter_max : INTEGER:= 1250;
     signal counter: INTEGER:= 0;
     
 begin

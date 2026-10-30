@@ -56,8 +56,8 @@ USE ieee.numeric_std.ALL;
 ENTITY design_1_PS2_decoder_0_0 IS
   PORT (
     clk : IN STD_LOGIC;
-    code : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-    num : OUT STD_LOGIC_VECTOR(4 DOWNTO 0)
+    code : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+    num_out : OUT STD_LOGIC_VECTOR(4 DOWNTO 0)
   );
 END design_1_PS2_decoder_0_0;
 
@@ -67,8 +67,8 @@ ARCHITECTURE design_1_PS2_decoder_0_0_arch OF design_1_PS2_decoder_0_0 IS
   COMPONENT PS2_decoder IS
     PORT (
       clk : IN STD_LOGIC;
-      code : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-      num : OUT STD_LOGIC_VECTOR(4 DOWNTO 0)
+      code : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+      num_out : OUT STD_LOGIC_VECTOR(4 DOWNTO 0)
     );
   END COMPONENT PS2_decoder;
   ATTRIBUTE IP_DEFINITION_SOURCE : STRING;
@@ -82,6 +82,6 @@ BEGIN
     PORT MAP (
       clk => clk,
       code => code,
-      num => num
+      num_out => num_out
     );
 END design_1_PS2_decoder_0_0_arch;

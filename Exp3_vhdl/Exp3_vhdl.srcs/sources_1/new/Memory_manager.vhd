@@ -29,23 +29,25 @@ begin
         
             -------------------- IDX -----------------------------
             
-            idx_decimal_val := idx_decimal + step;
-            if idx_decimal_val/100 < 127 then
-                idx_decimal <= idx_decimal_val;
-            else
-                idx_decimal <= idx_decimal_val - 127;
-                
-                -- actualizamos recorrido
-                if recorrido_sinusoide = subir_positivo then
-                    recorrido_sinusoide <= bajar_positivo;
-                elsif recorrido_sinusoide = bajar_positivo then
-                    recorrido_sinusoide <= bajar_negativo;
-                elsif recorrido_sinusoide = bajar_negativo then
-                    recorrido_sinusoide <= subir_negativo;
-                else 
-                    recorrido_sinusoide <= subir_positivo;
+            if step > 0 then
+                idx_decimal_val := idx_decimal + step;
+                if idx_decimal_val < 12700 then
+                    idx_decimal <= idx_decimal_val;
+                else
+                    idx_decimal <= idx_decimal_val - 12700;
+                    
+                    -- actualizamos recorrido
+                    if recorrido_sinusoide = subir_positivo then
+                        recorrido_sinusoide <= bajar_positivo;
+                    elsif recorrido_sinusoide = bajar_positivo then
+                        recorrido_sinusoide <= bajar_negativo;
+                    elsif recorrido_sinusoide = bajar_negativo then
+                        recorrido_sinusoide <= subir_negativo;
+                    else 
+                        recorrido_sinusoide <= subir_positivo;
+                    end if;
+                    
                 end if;
-                
             end if;
             
             ---------------------- MAPEO A ADDRESS ------------------------------

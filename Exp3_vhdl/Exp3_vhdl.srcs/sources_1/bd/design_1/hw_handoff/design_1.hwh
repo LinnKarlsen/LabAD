@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Oct 28 16:59:56 2026" VIVADOVERSION="2020.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Oct 30 08:58:44 2026" VIVADOVERSION="2020.1">
 
   <SYSTEMINFO ARCH="artix7" BOARD="digilentinc.com:basys3:part0:1.2" DEVICE="7a35t" NAME="design_1" PACKAGE="cpg236" SPEEDGRADE="-1"/>
 
@@ -8,8 +8,11 @@
       <CONNECTIONS>
         <CONNECTION INSTANCE="blk_mem_gen_0" PORT="clka"/>
         <CONNECTION INSTANCE="vio_0" PORT="clk"/>
+        <CONNECTION INSTANCE="ila_0" PORT="clk"/>
         <CONNECTION INSTANCE="PS2Receiver_0" PORT="clk"/>
         <CONNECTION INSTANCE="divisor_clk_oscilador_0" PORT="clk_in"/>
+        <CONNECTION INSTANCE="debug_mux_0" PORT="clk"/>
+        <CONNECTION INSTANCE="delay_0" PORT="clk"/>
         <CONNECTION INSTANCE="PS2_decoder_0" PORT="clk"/>
       </CONNECTIONS>
     </PORT>
@@ -50,9 +53,9 @@
             <CONNECTION INSTANCE="divisor_clk_oscilador_0" PORT="clk_out"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="state" RIGHT="0" SIGIS="undef" SIGNAME="Memory_manager_0_state">
+        <PORT DIR="I" LEFT="1" NAME="state" RIGHT="0" SIGIS="undef" SIGNAME="delay_0_data_out">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="Memory_manager_0" PORT="state"/>
+            <CONNECTION INSTANCE="delay_0" PORT="data_out"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="7" NAME="data" RIGHT="0" SIGIS="undef" SIGNAME="blk_mem_gen_0_douta">
@@ -94,7 +97,7 @@
         <PORT DIR="O" LEFT="1" NAME="state" RIGHT="0" SIGIS="undef" SIGNAME="Memory_manager_0_state">
           <CONNECTIONS>
             <CONNECTION INSTANCE="vio_0" PORT="probe_in0"/>
-            <CONNECTION INSTANCE="Generador_sinusoide_0" PORT="state"/>
+            <CONNECTION INSTANCE="delay_0" PORT="data_in"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -103,7 +106,7 @@
     <MODULE COREREVISION="1" FULLNAME="/PS2Receiver_0" HWVERSION="1.0" INSTANCE="PS2Receiver_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="PS2Receiver" VLNV="xilinx.com:module_ref:PS2Receiver:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
-        <PARAMETER NAME="Component_Name" VALUE="design_1_PS2Receiver_0_0"/>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_PS2Receiver_0_2"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
@@ -122,13 +125,12 @@
             <CONNECTION INSTANCE="External_Ports" PORT="PS2Data"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="15" NAME="keycode" RIGHT="0" SIGIS="undef" SIGNAME="PS2Receiver_0_keycode">
+        <PORT DIR="O" LEFT="7" NAME="keycode" RIGHT="0" SIGIS="undef" SIGNAME="PS2Receiver_0_keycode">
           <CONNECTIONS>
             <CONNECTION INSTANCE="vio_0" PORT="probe_in1"/>
             <CONNECTION INSTANCE="PS2_decoder_0" PORT="code"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="oflag" SIGIS="undef"/>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
@@ -144,12 +146,12 @@
             <CONNECTION INSTANCE="External_Ports" PORT="clk"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="15" NAME="code" RIGHT="0" SIGIS="undef" SIGNAME="PS2Receiver_0_keycode">
+        <PORT DIR="I" LEFT="7" NAME="code" RIGHT="0" SIGIS="undef" SIGNAME="PS2Receiver_0_keycode">
           <CONNECTIONS>
             <CONNECTION INSTANCE="PS2Receiver_0" PORT="keycode"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="4" NAME="num" RIGHT="0" SIGIS="undef" SIGNAME="PS2_decoder_0_num">
+        <PORT DIR="O" LEFT="4" NAME="num_out" RIGHT="0" SIGIS="undef" SIGNAME="PS2_decoder_0_num_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="debug_mux_0" PORT="num_PS2"/>
           </CONNECTIONS>
@@ -351,9 +353,9 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="divisor_clk_oscilador_0_clk_out">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="divisor_clk_oscilador_0" PORT="clk_out"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="clk"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="sw" SIGIS="undef" SIGNAME="External_Ports_sw">
@@ -361,9 +363,9 @@
             <CONNECTION INSTANCE="External_Ports" PORT="sw"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="4" NAME="num_PS2" RIGHT="0" SIGIS="undef" SIGNAME="PS2_decoder_0_num">
+        <PORT DIR="I" LEFT="4" NAME="num_PS2" RIGHT="0" SIGIS="undef" SIGNAME="PS2_decoder_0_num_out">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="PS2_decoder_0" PORT="num"/>
+            <CONNECTION INSTANCE="PS2_decoder_0" PORT="num_out"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="4" NAME="num_VIO" RIGHT="0" SIGIS="undef" SIGNAME="vio_0_probe_out0">
@@ -373,8 +375,33 @@
         </PORT>
         <PORT DIR="O" LEFT="4" NAME="num" RIGHT="0" SIGIS="undef" SIGNAME="debug_mux_0_num">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="Memory_manager_0" PORT="freq"/>
             <CONNECTION INSTANCE="vio_0" PORT="probe_in2"/>
+            <CONNECTION INSTANCE="Memory_manager_0" PORT="freq"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/delay_0" HWVERSION="1.0" INSTANCE="delay_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="delay" VLNV="xilinx.com:module_ref:delay:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_delay_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="clk"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="data_in" RIGHT="0" SIGIS="undef" SIGNAME="Memory_manager_0_state">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Memory_manager_0" PORT="state"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="data_out" RIGHT="0" SIGIS="undef" SIGNAME="delay_0_data_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Generador_sinusoide_0" PORT="state"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -394,10 +421,8 @@
         </PORT>
         <PORT DIR="O" NAME="clk_out" SIGIS="undef" SIGNAME="divisor_clk_oscilador_0_clk_out">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="Memory_manager_0" PORT="clk"/>
-            <CONNECTION INSTANCE="debug_mux_0" PORT="clk"/>
-            <CONNECTION INSTANCE="ila_0" PORT="clk"/>
             <CONNECTION INSTANCE="Generador_sinusoide_0" PORT="clk"/>
+            <CONNECTION INSTANCE="Memory_manager_0" PORT="clk"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -424,7 +449,7 @@
         <PARAMETER NAME="C_NUM_MONITOR_SLOTS" VALUE="1"/>
         <PARAMETER NAME="C_ENABLE_ILA_AXI_MON" VALUE="0"/>
         <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="1"/>
-        <PARAMETER NAME="C_DATA_DEPTH" VALUE="1024"/>
+        <PARAMETER NAME="C_DATA_DEPTH" VALUE="131072"/>
         <PARAMETER NAME="C_MAJOR_VERSION" VALUE="2020"/>
         <PARAMETER NAME="C_MINOR_VERSION" VALUE="1"/>
         <PARAMETER NAME="C_BUILD_REVISION" VALUE="0"/>
@@ -3532,7 +3557,7 @@
         <PARAMETER NAME="C_CLKFBOUT_MULT_F" VALUE="10"/>
         <PARAMETER NAME="C_DIVCLK_DIVIDE" VALUE="3"/>
         <PARAMETER NAME="C_CLKOUT0_DIVIDE_F" VALUE="10"/>
-        <PARAMETER NAME="Component_Name" VALUE="design_1_ila_0_0"/>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_ila_0_1"/>
         <PARAMETER NAME="EN_BRAM_DRC" VALUE="TRUE"/>
         <PARAMETER NAME="ALL_PROBE_SAME_MU" VALUE="TRUE"/>
         <PARAMETER NAME="ALL_PROBE_SAME_MU_CNT" VALUE="1"/>
@@ -3543,9 +3568,9 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="divisor_clk_oscilador_0_clk_out">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="divisor_clk_oscilador_0" PORT="clk_out"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="clk"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="7" NAME="probe0" RIGHT="0" SIGIS="undef" SIGNAME="Generador_sinusoide_0_sinusoide">
@@ -3584,7 +3609,7 @@
         <PARAMETER NAME="C_NUM_PROBE_OUT" VALUE="1"/>
         <PARAMETER NAME="C_EN_SYNCHRONIZATION" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_IN0_WIDTH" VALUE="2"/>
-        <PARAMETER NAME="C_PROBE_IN1_WIDTH" VALUE="16"/>
+        <PARAMETER NAME="C_PROBE_IN1_WIDTH" VALUE="8"/>
         <PARAMETER NAME="C_PROBE_IN2_WIDTH" VALUE="5"/>
         <PARAMETER NAME="C_PROBE_IN3_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_IN4_WIDTH" VALUE="1"/>
@@ -4365,7 +4390,7 @@
             <CONNECTION INSTANCE="Memory_manager_0" PORT="state"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="15" NAME="probe_in1" RIGHT="0" SIGIS="undef" SIGNAME="PS2Receiver_0_keycode">
+        <PORT DIR="I" LEFT="7" NAME="probe_in1" RIGHT="0" SIGIS="undef" SIGNAME="PS2Receiver_0_keycode">
           <CONNECTIONS>
             <CONNECTION INSTANCE="PS2Receiver_0" PORT="keycode"/>
           </CONNECTIONS>

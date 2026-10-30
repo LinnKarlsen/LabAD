@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-// Date        : Sun Oct 25 01:50:44 2026
+// Date        : Thu Oct 29 22:24:54 2026
 // Host        : TROND-ENVYX360 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               c:/Users/linnh/LabAD/Exp3_vhdl/Exp3_vhdl.srcs/sources_1/bd/design_1/ip/design_1_divisor_clk_oscilador_0_0/design_1_divisor_clk_oscilador_0_0_sim_netlist.v
@@ -174,14 +174,14 @@ module design_1_divisor_clk_oscilador_0_0_divisor_clk_oscilador
        (.CI(counter1_carry_n_0),
         .CO({counter1_carry__0_n_0,counter1_carry__0_n_1,counter1_carry__0_n_2,counter1_carry__0_n_3}),
         .CYINIT(1'b0),
-        .DI({1'b0,counter1_carry__0_i_1_n_0,1'b0,1'b0}),
+        .DI({1'b0,1'b0,counter1_carry__0_i_1_n_0,1'b0}),
         .O(NLW_counter1_carry__0_O_UNCONNECTED[3:0]),
         .S({counter1_carry__0_i_2_n_0,counter1_carry__0_i_3_n_0,counter1_carry__0_i_4_n_0,counter1_carry__0_i_5_n_0}));
   LUT2 #(
-    .INIT(4'h7)) 
+    .INIT(4'h1)) 
     counter1_carry__0_i_1
-       (.I0(counter_reg[12]),
-        .I1(counter_reg[13]),
+       (.I0(counter_reg[10]),
+        .I1(counter_reg[11]),
         .O(counter1_carry__0_i_1_n_0));
   LUT2 #(
     .INIT(4'h1)) 
@@ -190,13 +190,13 @@ module design_1_divisor_clk_oscilador_0_0_divisor_clk_oscilador
         .I1(counter_reg[15]),
         .O(counter1_carry__0_i_2_n_0));
   LUT2 #(
-    .INIT(4'h8)) 
+    .INIT(4'h1)) 
     counter1_carry__0_i_3
        (.I0(counter_reg[12]),
         .I1(counter_reg[13]),
         .O(counter1_carry__0_i_3_n_0));
   LUT2 #(
-    .INIT(4'h1)) 
+    .INIT(4'h2)) 
     counter1_carry__0_i_4
        (.I0(counter_reg[10]),
         .I1(counter_reg[11]),
@@ -282,14 +282,13 @@ module design_1_divisor_clk_oscilador_0_0_divisor_clk_oscilador
        (.I0(counter_reg[6]),
         .I1(counter_reg[7]),
         .O(counter1_carry_i_1_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
+  LUT1 #(
+    .INIT(2'h1)) 
     counter1_carry_i_2
-       (.I0(counter_reg[4]),
-        .I1(counter_reg[5]),
+       (.I0(counter_reg[5]),
         .O(counter1_carry_i_2_n_0));
   LUT2 #(
-    .INIT(4'h7)) 
+    .INIT(4'h1)) 
     counter1_carry_i_3
        (.I0(counter_reg[0]),
         .I1(counter_reg[1]),
@@ -303,8 +302,8 @@ module design_1_divisor_clk_oscilador_0_0_divisor_clk_oscilador
   LUT2 #(
     .INIT(4'h2)) 
     counter1_carry_i_5
-       (.I0(counter_reg[4]),
-        .I1(counter_reg[5]),
+       (.I0(counter_reg[5]),
+        .I1(counter_reg[4]),
         .O(counter1_carry_i_5_n_0));
   LUT2 #(
     .INIT(4'h1)) 
@@ -313,7 +312,7 @@ module design_1_divisor_clk_oscilador_0_0_divisor_clk_oscilador
         .I1(counter_reg[3]),
         .O(counter1_carry_i_6_n_0));
   LUT2 #(
-    .INIT(4'h8)) 
+    .INIT(4'h2)) 
     counter1_carry_i_7
        (.I0(counter_reg[0]),
         .I1(counter_reg[1]),
