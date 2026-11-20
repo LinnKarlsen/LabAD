@@ -55,6 +55,8 @@ float ultimoDuty        = 0.0f;
 
 // FUNCIONES
 
+// ISR: Interrupt Service Routine 
+
 // Timer ISR: only raises a flag. ADC reads and Serial are not ISR-safe.
 void IRAM_ATTR onTimer() {
   sampleFlag = true;
@@ -66,9 +68,8 @@ void IRAM_ATTR onTimerLCD() {
 }
 
 // Converts sensor voltage [V] to temperature [°C].
-// TODO
 float voltageToTemperature(float voltage) {
-  return voltage;
+  return (voltage*100.0f)-273.15f;
 }
 
 // PI controller with saturation to [0, 1] and anti-windup
@@ -104,6 +105,7 @@ void pwmInit() {
 
 // Receives a duty cycle in [0, 1] (saturated) and writes it to the PWM pin.
 void setDutyCycle(float duty) {
+  // Satura a 0 o 1
   if (duty > 1.0f) duty = 1.0f;
   if (duty < 0.0f) duty = 0.0f;
 
