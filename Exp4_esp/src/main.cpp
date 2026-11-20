@@ -8,6 +8,7 @@ const int PIN_PWM         = 25;     // Any output-capable GPIO (not 34-39)
 
 // --- Tiempo de muestreo ---
 const uint32_t Ts_ms = 100;         // Sampling time [ms]
+const uint32_t Tlcd_ms = 500;       // LCD refresh period [ms]
 
 // --- Ganancias del controlador PI ---
 const float Kp         = 1.0f;      // Proportional gain
@@ -38,11 +39,17 @@ const uint32_t BAUD_RATE = 115200;     // Must match monitor_speed in platformio
 
 // --- Estados basado en los parámetros anteriores ---
 const float Ts = Ts_ms / 1000.0f;   // Sampling time [s], used by the integrator
-hw_timer_t *timer = nullptr;
+hw_timer_t *timer    = nullptr;     // Control timer (Ts)
+hw_timer_t *timerLCD = nullptr;     // LCD timer (Tlcd)
 
-volatile bool sampleFlag = false;   // Set by the timer ISR, cleared in loop()
+volatile bool sampleFlag = false;   // Set by the control timer ISR, cleared in loop()
+volatile bool lcdFlag    = false;   // Set by the LCD timer ISR, cleared in loop()
 
 float integral = 0.0f;              // PI integral state
+
+// Latest values, written by the control step and shown by the LCD step
+float ultimaTemperatura = 0.0f;
+float ultimoDuty        = 0.0f;
 
 
 
@@ -51,6 +58,11 @@ float integral = 0.0f;              // PI integral state
 // Timer ISR: only raises a flag. ADC reads and Serial are not ISR-safe.
 void IRAM_ATTR onTimer() {
   sampleFlag = true;
+}
+
+// LCD timer ISR: only raises a flag.
+void IRAM_ATTR onTimerLCD() {
+  lcdFlag = true;
 }
 
 // Converts sensor voltage [V] to temperature [°C].
@@ -119,6 +131,42 @@ void timerInit() {
 #endif
 }
 
+// Configures a second hardware timer to call onTimerLCD() every Tlcd_ms.
+void timerLCDInit() {
+#if ESP32_CORE_V3
+  timerLCD = timerBegin(1000000);                    // 1 MHz -> 1 tick = 1 us
+  timerAttachInterrupt(timerLCD, &onTimerLCD);
+  timerAlarm(timerLCD, Tlcd_ms * 1000, true, 0);     // auto-reload, unlimited
+#else
+  timerLCD = timerBegin(1, 80, true);                // hardware timer 1 (control uses timer 0)
+  timerAttachInterrupt(timerLCD, &onTimerLCD, true);
+  timerAlarmWrite(timerLCD, Tlcd_ms * 1000, true);   // auto-reload
+  timerAlarmEnable(timerLCD);
+#endif
+}
+
+// --- LCD ---
+
+// Sends a command byte to the LCD (clear, cursor position, mode, etc.).
+// TODO
+void lcd_cmd(uint8_t cmd) {
+}
+
+// Sends a data byte (a character) to the LCD.
+// TODO
+void lcd_dat(uint8_t dat) {
+}
+
+// Initializes the LCD (pins, init sequence, display mode).
+// TODO
+void lcd_init() {
+}
+
+// Shows the current values on the LCD.
+// TODO
+void lcd_display(float temperatura, float referencia, float duty) {
+}
+
 
 
 
@@ -133,9 +181,12 @@ void setup() {
   pwmInit();
   setDutyCycle(0.0f);
 
+  lcd_init();
+
   Serial.println("t_ms,voltaje_V,temperatura_C,referencia_C,duty");
 
   timerInit();
+  timerLCDInit();
 }
 
 
@@ -143,19 +194,31 @@ void setup() {
 // LOOP
 
 void loop() {
-  if (!sampleFlag) return;
-  sampleFlag = false;
+  // --- Lazo de control (cada Ts) ---
+  if (sampleFlag) {
+    sampleFlag = false;
 
-  unsigned long t = millis();
+    unsigned long t = millis();
 
-  // (1) lee voltaje
-  float voltage     = analogReadMilliVolts(PIN_TEMPERATURA) / 1000.0f;
-  // (2) lo convierte a temperatura
-  float temperatura = voltageToTemperature(voltage);
-  // (3) el controlador genera un duty cycle
-  float duty        = controladorPI(temperatura);
-  // (4) la PWM se actualiza con el nuevo dutycycle
-  setDutyCycle(duty);
-  // (5) imprimimos por consola serial los datos
-  Serial.printf("%lu,%.3f,%.2f,%.2f,%.3f\n", t, voltage, temperatura, referencia, duty);
+    // (1) lee voltaje
+    float voltage     = analogReadMilliVolts(PIN_TEMPERATURA) / 1000.0f;
+    // (2) lo convierte a temperatura
+    float temperatura = voltageToTemperature(voltage);
+    // (3) el controlador genera un duty cycle
+    float duty        = controladorPI(temperatura);
+    // (4) la PWM se actualiza con el nuevo dutycycle
+    setDutyCycle(duty);
+    // (5) imprimimos por consola serial los datos
+    Serial.printf("%lu,%.3f,%.2f,%.2f,%.3f\n", t, voltage, temperatura, referencia, duty);
+
+    // guardamos los últimos valores para el LCD
+    ultimaTemperatura = temperatura;
+    ultimoDuty        = duty;
+  }
+
+  // --- Actualización del LCD (cada Tlcd) ---
+  if (lcdFlag) {
+    lcdFlag = false;
+    lcd_display(ultimaTemperatura, referencia, ultimoDuty);
+  }
 }
