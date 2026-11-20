@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
--- Date        : Fri Oct 30 15:07:19 2026
+-- Date        : Fri Oct 30 16:46:40 2026
 -- Host        : TROND-ENVYX360 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix
 --               decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ design_1_PS2_rx_decoder_0_0_sim_netlist.vhdl
@@ -442,7 +442,6 @@ architecture STRUCTURE of decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_PS2_rx_decod
   signal O : STD_LOGIC;
   signal break_pending_i_1_n_0 : STD_LOGIC;
   signal break_pending_i_2_n_0 : STD_LOGIC;
-  signal break_pending_i_3_n_0 : STD_LOGIC;
   signal break_pending_reg_n_0 : STD_LOGIC;
   signal cnt : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal \cnt[0]_i_1_n_0\ : STD_LOGIC;
@@ -458,6 +457,7 @@ architecture STRUCTURE of decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_PS2_rx_decod
   signal \^keycode\ : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal new_byte : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal \^pressed_keycode\ : STD_LOGIC_VECTOR ( 7 downto 0 );
+  signal \pressed_keycode[7]_i_10_n_0\ : STD_LOGIC;
   signal \pressed_keycode[7]_i_1_n_0\ : STD_LOGIC;
   signal \pressed_keycode[7]_i_2_n_0\ : STD_LOGIC;
   signal \pressed_keycode[7]_i_3_n_0\ : STD_LOGIC;
@@ -466,14 +466,13 @@ architecture STRUCTURE of decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_PS2_rx_decod
   signal \pressed_keycode[7]_i_6_n_0\ : STD_LOGIC;
   signal \pressed_keycode[7]_i_7_n_0\ : STD_LOGIC;
   signal \pressed_keycode[7]_i_8_n_0\ : STD_LOGIC;
+  signal \pressed_keycode[7]_i_9_n_0\ : STD_LOGIC;
   signal \shift_reg_reg[9]_srl2_n_0\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of break_pending_i_2 : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \cnt[0]_i_1\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \cnt[1]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \cnt[0]_i_1\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \cnt[1]_i_1\ : label is "soft_lutpair5";
   attribute SOFT_HLUTNM of \cnt[2]_i_1\ : label is "soft_lutpair4";
   attribute SOFT_HLUTNM of \cnt[3]_i_3\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \pressed_keycode[7]_i_3\ : label is "soft_lutpair5";
   attribute srl_bus_name : string;
   attribute srl_bus_name of \shift_reg_reg[9]_srl2\ : label is "\U0/shift_reg_reg ";
   attribute srl_name : string;
@@ -483,28 +482,18 @@ begin
   pressed_keycode(7 downto 0) <= \^pressed_keycode\(7 downto 0);
 break_pending_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"8F888F888F88FF88"
-    )
-        port map (
-      I0 => break_pending_i_2_n_0,
-      I1 => break_pending_i_3_n_0,
-      I2 => data_ready,
-      I3 => break_pending_reg_n_0,
-      I4 => \pressed_keycode[7]_i_4_n_0\,
-      I5 => \pressed_keycode[7]_i_3_n_0\,
-      O => break_pending_i_1_n_0
-    );
-break_pending_i_2: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"01"
+      INIT => X"0100FFFF01000100"
     )
         port map (
       I0 => new_byte(2),
       I1 => new_byte(1),
       I2 => new_byte(0),
-      O => break_pending_i_2_n_0
+      I3 => break_pending_i_2_n_0,
+      I4 => data_ready,
+      I5 => break_pending_reg_n_0,
+      O => break_pending_i_1_n_0
     );
-break_pending_i_3: unisim.vcomponents.LUT6
+break_pending_i_2: unisim.vcomponents.LUT6
     generic map(
       INIT => X"1000000000000000"
     )
@@ -515,7 +504,7 @@ break_pending_i_3: unisim.vcomponents.LUT6
       I3 => new_byte(6),
       I4 => data_ready,
       I5 => new_byte(7),
-      O => break_pending_i_3_n_0
+      O => break_pending_i_2_n_0
     );
 break_pending_reg: unisim.vcomponents.FDRE
     generic map(
@@ -750,13 +739,26 @@ kclkf_d_reg: unisim.vcomponents.FDRE
       I5 => \pressed_keycode[7]_i_8_n_0\,
       O => \pressed_keycode[7]_i_1_n_0\
     );
-\pressed_keycode[7]_i_2\: unisim.vcomponents.LUT4
+\pressed_keycode[7]_i_10\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"4440"
+      INIT => X"0000000100000000"
     )
         port map (
-      I0 => break_pending_reg_n_0,
-      I1 => data_ready,
+      I0 => \^pressed_keycode\(4),
+      I1 => \^pressed_keycode\(5),
+      I2 => \^pressed_keycode\(6),
+      I3 => \^pressed_keycode\(7),
+      I4 => break_pending_reg_n_0,
+      I5 => data_ready,
+      O => \pressed_keycode[7]_i_10_n_0\
+    );
+\pressed_keycode[7]_i_2\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"8880"
+    )
+        port map (
+      I0 => \pressed_keycode[7]_i_9_n_0\,
+      I1 => \pressed_keycode[7]_i_10_n_0\,
       I2 => \pressed_keycode[7]_i_4_n_0\,
       I3 => \pressed_keycode[7]_i_3_n_0\,
       O => \pressed_keycode[7]_i_2_n_0\
@@ -828,6 +830,17 @@ kclkf_d_reg: unisim.vcomponents.FDRE
       I2 => new_byte(3),
       I3 => \^pressed_keycode\(3),
       O => \pressed_keycode[7]_i_8_n_0\
+    );
+\pressed_keycode[7]_i_9\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"0001"
+    )
+        port map (
+      I0 => \^pressed_keycode\(1),
+      I1 => \^pressed_keycode\(0),
+      I2 => \^pressed_keycode\(3),
+      I3 => \^pressed_keycode\(2),
+      O => \pressed_keycode[7]_i_9_n_0\
     );
 \pressed_keycode_reg[0]\: unisim.vcomponents.FDRE
     generic map(

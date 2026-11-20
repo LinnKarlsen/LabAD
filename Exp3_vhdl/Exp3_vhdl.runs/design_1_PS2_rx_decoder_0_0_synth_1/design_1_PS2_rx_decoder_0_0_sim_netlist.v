@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-// Date        : Fri Oct 30 15:07:19 2026
+// Date        : Fri Oct 30 16:46:40 2026
 // Host        : TROND-ENVYX360 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix
 //               decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ design_1_PS2_rx_decoder_0_0_sim_netlist.v
@@ -29,7 +29,6 @@ module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_PS2_rx_decoder
   wire O;
   wire break_pending_i_1_n_0;
   wire break_pending_i_2_n_0;
-  wire break_pending_i_3_n_0;
   wire break_pending_reg_n_0;
   wire clk;
   wire [3:0]cnt;
@@ -48,6 +47,7 @@ module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_PS2_rx_decoder
   wire [7:0]keycode;
   wire [7:0]new_byte;
   wire [7:0]pressed_keycode;
+  wire \pressed_keycode[7]_i_10_n_0 ;
   wire \pressed_keycode[7]_i_1_n_0 ;
   wire \pressed_keycode[7]_i_2_n_0 ;
   wire \pressed_keycode[7]_i_3_n_0 ;
@@ -56,37 +56,30 @@ module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_PS2_rx_decoder
   wire \pressed_keycode[7]_i_6_n_0 ;
   wire \pressed_keycode[7]_i_7_n_0 ;
   wire \pressed_keycode[7]_i_8_n_0 ;
+  wire \pressed_keycode[7]_i_9_n_0 ;
   wire [7:0]prev_keycode;
   wire \shift_reg_reg[9]_srl2_n_0 ;
 
   LUT6 #(
-    .INIT(64'h8F888F888F88FF88)) 
+    .INIT(64'h0100FFFF01000100)) 
     break_pending_i_1
-       (.I0(break_pending_i_2_n_0),
-        .I1(break_pending_i_3_n_0),
-        .I2(data_ready),
-        .I3(break_pending_reg_n_0),
-        .I4(\pressed_keycode[7]_i_4_n_0 ),
-        .I5(\pressed_keycode[7]_i_3_n_0 ),
-        .O(break_pending_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT3 #(
-    .INIT(8'h01)) 
-    break_pending_i_2
        (.I0(new_byte[2]),
         .I1(new_byte[1]),
         .I2(new_byte[0]),
-        .O(break_pending_i_2_n_0));
+        .I3(break_pending_i_2_n_0),
+        .I4(data_ready),
+        .I5(break_pending_reg_n_0),
+        .O(break_pending_i_1_n_0));
   LUT6 #(
     .INIT(64'h1000000000000000)) 
-    break_pending_i_3
+    break_pending_i_2
        (.I0(new_byte[3]),
         .I1(new_byte[4]),
         .I2(new_byte[5]),
         .I3(new_byte[6]),
         .I4(data_ready),
         .I5(new_byte[7]),
-        .O(break_pending_i_3_n_0));
+        .O(break_pending_i_2_n_0));
   FDRE #(
     .INIT(1'b0)) 
     break_pending_reg
@@ -95,13 +88,13 @@ module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_PS2_rx_decoder
         .D(break_pending_i_1_n_0),
         .Q(break_pending_reg_n_0),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \cnt[0]_i_1 
        (.I0(cnt[0]),
         .O(\cnt[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \cnt[1]_i_1 
@@ -260,15 +253,24 @@ module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_PS2_rx_decoder
         .I4(\pressed_keycode[7]_i_7_n_0 ),
         .I5(\pressed_keycode[7]_i_8_n_0 ),
         .O(\pressed_keycode[7]_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000100000000)) 
+    \pressed_keycode[7]_i_10 
+       (.I0(pressed_keycode[4]),
+        .I1(pressed_keycode[5]),
+        .I2(pressed_keycode[6]),
+        .I3(pressed_keycode[7]),
+        .I4(break_pending_reg_n_0),
+        .I5(data_ready),
+        .O(\pressed_keycode[7]_i_10_n_0 ));
   LUT4 #(
-    .INIT(16'h4440)) 
+    .INIT(16'h8880)) 
     \pressed_keycode[7]_i_2 
-       (.I0(break_pending_reg_n_0),
-        .I1(data_ready),
+       (.I0(\pressed_keycode[7]_i_9_n_0 ),
+        .I1(\pressed_keycode[7]_i_10_n_0 ),
         .I2(\pressed_keycode[7]_i_4_n_0 ),
         .I3(\pressed_keycode[7]_i_3_n_0 ),
         .O(\pressed_keycode[7]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
     \pressed_keycode[7]_i_3 
@@ -319,6 +321,14 @@ module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_PS2_rx_decoder
         .I2(new_byte[3]),
         .I3(pressed_keycode[3]),
         .O(\pressed_keycode[7]_i_8_n_0 ));
+  LUT4 #(
+    .INIT(16'h0001)) 
+    \pressed_keycode[7]_i_9 
+       (.I0(pressed_keycode[1]),
+        .I1(pressed_keycode[0]),
+        .I2(pressed_keycode[3]),
+        .I3(pressed_keycode[2]),
+        .O(\pressed_keycode[7]_i_9_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \pressed_keycode_reg[0] 

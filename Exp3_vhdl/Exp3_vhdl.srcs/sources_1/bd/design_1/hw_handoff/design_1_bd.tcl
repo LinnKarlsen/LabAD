@@ -283,7 +283,7 @@ proc create_root_design { parentCell } {
   # Create instance: vio_0, and set properties
   set vio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:vio:3.0 vio_0 ]
   set_property -dict [ list \
-   CONFIG.C_NUM_PROBE_IN {5} \
+   CONFIG.C_NUM_PROBE_IN {6} \
    CONFIG.C_PROBE_OUT0_WIDTH {5} \
  ] $vio_0
 
@@ -293,7 +293,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net Memory_manager_0_state [get_bd_pins Memory_manager_0/state] [get_bd_pins delay_0/data_in] [get_bd_pins vio_0/probe_in0]
   connect_bd_net -net PS2Clk_1 [get_bd_ports PS2Clk] [get_bd_pins PS2_rx_decoder_0/kclk]
   connect_bd_net -net PS2Data_1 [get_bd_ports PS2Data] [get_bd_pins PS2_rx_decoder_0/kdata]
-  connect_bd_net -net PS2_Interface_0_num [get_bd_pins PS2_Interface_0/num] [get_bd_pins debug_mux_0/num_PS2]
+  connect_bd_net -net PS2_Interface_0_num [get_bd_pins PS2_Interface_0/num] [get_bd_pins debug_mux_0/num_PS2] [get_bd_pins vio_0/probe_in5]
   connect_bd_net -net PS2_rx_decoder_0_keycode [get_bd_pins PS2_rx_decoder_0/keycode] [get_bd_pins vio_0/probe_in3]
   connect_bd_net -net PS2_rx_decoder_0_pressed_keycode [get_bd_pins PS2_Interface_0/code] [get_bd_pins PS2_rx_decoder_0/pressed_keycode] [get_bd_pins vio_0/probe_in1]
   connect_bd_net -net PS2_rx_decoder_0_prev_keycode [get_bd_pins PS2_rx_decoder_0/prev_keycode] [get_bd_pins vio_0/probe_in4]

@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
--- Date        : Fri Oct 30 13:13:20 2026
+-- Date        : Fri Oct 30 15:42:54 2026
 -- Host        : TROND-ENVYX360 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix
 --               decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ design_1_PS2_Interface_0_0_sim_netlist.vhdl
@@ -25,7 +25,6 @@ end decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_PS2_Interface;
 architecture STRUCTURE of decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_PS2_Interface is
   signal \num[0]_i_2_n_0\ : STD_LOGIC;
   signal \num[0]_i_3_n_0\ : STD_LOGIC;
-  signal \num[0]_i_4_n_0\ : STD_LOGIC;
   signal \num[1]_i_2_n_0\ : STD_LOGIC;
   signal \num[1]_i_3_n_0\ : STD_LOGIC;
   signal \num[2]_i_2_n_0\ : STD_LOGIC;
@@ -34,177 +33,159 @@ architecture STRUCTURE of decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_PS2_Interfac
   signal \num[3]_i_3_n_0\ : STD_LOGIC;
   signal \num[4]_i_2_n_0\ : STD_LOGIC;
   signal \num[4]_i_3_n_0\ : STD_LOGIC;
-  signal num_0 : STD_LOGIC_VECTOR ( 0 to 0 );
+  signal \num_reg[0]_i_1_n_0\ : STD_LOGIC;
   signal \num_reg[1]_i_1_n_0\ : STD_LOGIC;
   signal \num_reg[2]_i_1_n_0\ : STD_LOGIC;
   signal \num_reg[3]_i_1_n_0\ : STD_LOGIC;
   signal \num_reg[4]_i_1_n_0\ : STD_LOGIC;
 begin
-\num[0]_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B833B800"
-    )
-        port map (
-      I0 => \num[0]_i_2_n_0\,
-      I1 => code(7),
-      I2 => \num[0]_i_3_n_0\,
-      I3 => code(5),
-      I4 => \num[0]_i_4_n_0\,
-      O => num_0(0)
-    );
 \num[0]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000400000000"
+      INIT => X"FFFBBBFBFDFFFF7F"
     )
         port map (
       I0 => code(3),
-      I1 => code(4),
-      I2 => code(1),
-      I3 => code(2),
-      I4 => code(0),
-      I5 => code(6),
+      I1 => code(5),
+      I2 => code(6),
+      I3 => code(4),
+      I4 => code(7),
+      I5 => code(2),
       O => \num[0]_i_2_n_0\
     );
 \num[0]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000010003004"
-    )
-        port map (
-      I0 => code(4),
-      I1 => code(2),
-      I2 => code(1),
-      I3 => code(0),
-      I4 => code(3),
-      I5 => code(6),
-      O => \num[0]_i_3_n_0\
-    );
-\num[0]_i_4\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0004308000C00C00"
+      INIT => X"FFFBFEEBFFDFFFEF"
     )
         port map (
       I0 => code(3),
-      I1 => code(6),
-      I2 => code(4),
-      I3 => code(2),
-      I4 => code(1),
-      I5 => code(0),
-      O => \num[0]_i_4_n_0\
+      I1 => code(2),
+      I2 => code(7),
+      I3 => code(5),
+      I4 => code(4),
+      I5 => code(6),
+      O => \num[0]_i_3_n_0\
     );
 \num[1]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFEF35FFFFF77F7F"
+      INIT => X"FFFFFFFFEEB3FF7F"
     )
         port map (
-      I0 => code(6),
-      I1 => code(3),
+      I0 => code(7),
+      I1 => code(5),
       I2 => code(4),
-      I3 => code(1),
+      I3 => code(6),
       I4 => code(2),
-      I5 => code(0),
+      I5 => code(3),
       O => \num[1]_i_2_n_0\
     );
 \num[1]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFFFF7EFFBEF"
+      INIT => X"FFFFFFFFFF77BADF"
     )
         port map (
-      I0 => code(4),
-      I1 => code(1),
-      I2 => code(2),
-      I3 => code(0),
-      I4 => code(3),
-      I5 => code(6),
+      I0 => code(6),
+      I1 => code(4),
+      I2 => code(5),
+      I3 => code(7),
+      I4 => code(2),
+      I5 => code(3),
       O => \num[1]_i_3_n_0\
     );
 \num[2]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFAFF7FFFF97DF7F"
+      INIT => X"FEFFF9FFFD9BBFFF"
     )
         port map (
-      I0 => code(6),
-      I1 => code(3),
-      I2 => code(4),
-      I3 => code(1),
-      I4 => code(2),
-      I5 => code(0),
+      I0 => code(3),
+      I1 => code(2),
+      I2 => code(6),
+      I3 => code(4),
+      I4 => code(5),
+      I5 => code(7),
       O => \num[2]_i_2_n_0\
     );
 \num[2]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFFFFFEFD7EF"
+      INIT => X"FFFFFFFFFFBFFFD5"
     )
         port map (
-      I0 => code(4),
-      I1 => code(1),
-      I2 => code(2),
-      I3 => code(0),
-      I4 => code(3),
-      I5 => code(6),
+      I0 => code(7),
+      I1 => code(4),
+      I2 => code(6),
+      I3 => code(5),
+      I4 => code(2),
+      I5 => code(3),
       O => \num[2]_i_3_n_0\
     );
 \num[3]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FF2F377FFF975F7F"
+      INIT => X"FEFBF1FFF9FBFFBF"
     )
         port map (
-      I0 => code(6),
-      I1 => code(3),
-      I2 => code(4),
-      I3 => code(1),
-      I4 => code(2),
-      I5 => code(0),
+      I0 => code(3),
+      I1 => code(2),
+      I2 => code(6),
+      I3 => code(4),
+      I4 => code(5),
+      I5 => code(7),
       O => \num[3]_i_2_n_0\
     );
 \num[3]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFFFFFD7FFF7"
+      INIT => X"FFFFFFEAEFCFFFEF"
     )
         port map (
-      I0 => code(0),
-      I1 => code(1),
-      I2 => code(2),
-      I3 => code(4),
-      I4 => code(3),
+      I0 => code(3),
+      I1 => code(2),
+      I2 => code(7),
+      I3 => code(5),
+      I4 => code(4),
       I5 => code(6),
       O => \num[3]_i_3_n_0\
     );
 \num[4]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFAFBDFFFFBDFD7F"
+      INIT => X"FEFFFFFBB99BBFBF"
     )
         port map (
-      I0 => code(6),
-      I1 => code(3),
-      I2 => code(4),
-      I3 => code(1),
-      I4 => code(2),
-      I5 => code(0),
+      I0 => code(3),
+      I1 => code(2),
+      I2 => code(6),
+      I3 => code(4),
+      I4 => code(5),
+      I5 => code(7),
       O => \num[4]_i_2_n_0\
     );
 \num[4]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFFFE3EFD3EF"
+      INIT => X"FFFFFFFFF7F5FDDD"
     )
         port map (
-      I0 => code(4),
-      I1 => code(1),
-      I2 => code(2),
-      I3 => code(0),
-      I4 => code(3),
-      I5 => code(6),
+      I0 => code(6),
+      I1 => code(4),
+      I2 => code(7),
+      I3 => code(5),
+      I4 => code(2),
+      I5 => code(3),
       O => \num[4]_i_3_n_0\
     );
-\num_reg[0]\: unisim.vcomponents.FDRE
+\num_reg[0]\: unisim.vcomponents.FDSE
     generic map(
       INIT => '1'
     )
         port map (
       C => clk,
       CE => '1',
-      D => num_0(0),
+      D => \num_reg[0]_i_1_n_0\,
       Q => num(0),
-      R => '0'
+      S => code(0)
+    );
+\num_reg[0]_i_1\: unisim.vcomponents.MUXF7
+     port map (
+      I0 => \num[0]_i_2_n_0\,
+      I1 => \num[0]_i_3_n_0\,
+      O => \num_reg[0]_i_1_n_0\,
+      S => code(1)
     );
 \num_reg[1]\: unisim.vcomponents.FDSE
     generic map(
@@ -215,14 +196,14 @@ begin
       CE => '1',
       D => \num_reg[1]_i_1_n_0\,
       Q => num(1),
-      S => code(7)
+      S => code(0)
     );
 \num_reg[1]_i_1\: unisim.vcomponents.MUXF7
      port map (
       I0 => \num[1]_i_2_n_0\,
       I1 => \num[1]_i_3_n_0\,
       O => \num_reg[1]_i_1_n_0\,
-      S => code(5)
+      S => code(1)
     );
 \num_reg[2]\: unisim.vcomponents.FDSE
     generic map(
@@ -233,14 +214,14 @@ begin
       CE => '1',
       D => \num_reg[2]_i_1_n_0\,
       Q => num(2),
-      S => code(7)
+      S => code(0)
     );
 \num_reg[2]_i_1\: unisim.vcomponents.MUXF7
      port map (
       I0 => \num[2]_i_2_n_0\,
       I1 => \num[2]_i_3_n_0\,
       O => \num_reg[2]_i_1_n_0\,
-      S => code(5)
+      S => code(1)
     );
 \num_reg[3]\: unisim.vcomponents.FDSE
     generic map(
@@ -251,14 +232,14 @@ begin
       CE => '1',
       D => \num_reg[3]_i_1_n_0\,
       Q => num(3),
-      S => code(7)
+      S => code(0)
     );
 \num_reg[3]_i_1\: unisim.vcomponents.MUXF7
      port map (
       I0 => \num[3]_i_2_n_0\,
       I1 => \num[3]_i_3_n_0\,
       O => \num_reg[3]_i_1_n_0\,
-      S => code(5)
+      S => code(1)
     );
 \num_reg[4]\: unisim.vcomponents.FDSE
     generic map(
@@ -269,14 +250,14 @@ begin
       CE => '1',
       D => \num_reg[4]_i_1_n_0\,
       Q => num(4),
-      S => code(7)
+      S => code(0)
     );
 \num_reg[4]_i_1\: unisim.vcomponents.MUXF7
      port map (
       I0 => \num[4]_i_2_n_0\,
       I1 => \num[4]_i_3_n_0\,
       O => \num_reg[4]_i_1_n_0\,
-      S => code(5)
+      S => code(1)
     );
 end STRUCTURE;
 library IEEE;

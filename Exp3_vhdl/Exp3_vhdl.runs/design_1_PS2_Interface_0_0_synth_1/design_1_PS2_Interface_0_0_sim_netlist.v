@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-// Date        : Fri Oct 30 13:13:20 2026
+// Date        : Fri Oct 30 15:42:54 2026
 // Host        : TROND-ENVYX360 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix
 //               decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ design_1_PS2_Interface_0_0_sim_netlist.v
@@ -25,7 +25,6 @@ module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_PS2_Interface
   wire [4:0]num;
   wire \num[0]_i_2_n_0 ;
   wire \num[0]_i_3_n_0 ;
-  wire \num[0]_i_4_n_0 ;
   wire \num[1]_i_2_n_0 ;
   wire \num[1]_i_3_n_0 ;
   wire \num[2]_i_2_n_0 ;
@@ -34,139 +33,125 @@ module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_PS2_Interface
   wire \num[3]_i_3_n_0 ;
   wire \num[4]_i_2_n_0 ;
   wire \num[4]_i_3_n_0 ;
-  wire [0:0]num_0;
+  wire \num_reg[0]_i_1_n_0 ;
   wire \num_reg[1]_i_1_n_0 ;
   wire \num_reg[2]_i_1_n_0 ;
   wire \num_reg[3]_i_1_n_0 ;
   wire \num_reg[4]_i_1_n_0 ;
 
-  LUT5 #(
-    .INIT(32'hB833B800)) 
-    \num[0]_i_1 
-       (.I0(\num[0]_i_2_n_0 ),
-        .I1(code[7]),
-        .I2(\num[0]_i_3_n_0 ),
-        .I3(code[5]),
-        .I4(\num[0]_i_4_n_0 ),
-        .O(num_0));
   LUT6 #(
-    .INIT(64'h0000000400000000)) 
+    .INIT(64'hFFFBBBFBFDFFFF7F)) 
     \num[0]_i_2 
        (.I0(code[3]),
-        .I1(code[4]),
-        .I2(code[1]),
-        .I3(code[2]),
-        .I4(code[0]),
-        .I5(code[6]),
+        .I1(code[5]),
+        .I2(code[6]),
+        .I3(code[4]),
+        .I4(code[7]),
+        .I5(code[2]),
         .O(\num[0]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h0000000010003004)) 
+    .INIT(64'hFFFBFEEBFFDFFFEF)) 
     \num[0]_i_3 
-       (.I0(code[4]),
+       (.I0(code[3]),
         .I1(code[2]),
-        .I2(code[1]),
-        .I3(code[0]),
-        .I4(code[3]),
+        .I2(code[7]),
+        .I3(code[5]),
+        .I4(code[4]),
         .I5(code[6]),
         .O(\num[0]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'h0004308000C00C00)) 
-    \num[0]_i_4 
-       (.I0(code[3]),
-        .I1(code[6]),
-        .I2(code[4]),
-        .I3(code[2]),
-        .I4(code[1]),
-        .I5(code[0]),
-        .O(\num[0]_i_4_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFEF35FFFFF77F7F)) 
+    .INIT(64'hFFFFFFFFEEB3FF7F)) 
     \num[1]_i_2 
-       (.I0(code[6]),
-        .I1(code[3]),
+       (.I0(code[7]),
+        .I1(code[5]),
         .I2(code[4]),
-        .I3(code[1]),
+        .I3(code[6]),
         .I4(code[2]),
-        .I5(code[0]),
+        .I5(code[3]),
         .O(\num[1]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFF7EFFBEF)) 
+    .INIT(64'hFFFFFFFFFF77BADF)) 
     \num[1]_i_3 
-       (.I0(code[4]),
-        .I1(code[1]),
-        .I2(code[2]),
-        .I3(code[0]),
-        .I4(code[3]),
-        .I5(code[6]),
+       (.I0(code[6]),
+        .I1(code[4]),
+        .I2(code[5]),
+        .I3(code[7]),
+        .I4(code[2]),
+        .I5(code[3]),
         .O(\num[1]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'hFFAFF7FFFF97DF7F)) 
+    .INIT(64'hFEFFF9FFFD9BBFFF)) 
     \num[2]_i_2 
-       (.I0(code[6]),
-        .I1(code[3]),
-        .I2(code[4]),
-        .I3(code[1]),
-        .I4(code[2]),
-        .I5(code[0]),
+       (.I0(code[3]),
+        .I1(code[2]),
+        .I2(code[6]),
+        .I3(code[4]),
+        .I4(code[5]),
+        .I5(code[7]),
         .O(\num[2]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFFEFD7EF)) 
+    .INIT(64'hFFFFFFFFFFBFFFD5)) 
     \num[2]_i_3 
-       (.I0(code[4]),
-        .I1(code[1]),
-        .I2(code[2]),
-        .I3(code[0]),
-        .I4(code[3]),
-        .I5(code[6]),
+       (.I0(code[7]),
+        .I1(code[4]),
+        .I2(code[6]),
+        .I3(code[5]),
+        .I4(code[2]),
+        .I5(code[3]),
         .O(\num[2]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'hFF2F377FFF975F7F)) 
+    .INIT(64'hFEFBF1FFF9FBFFBF)) 
     \num[3]_i_2 
-       (.I0(code[6]),
-        .I1(code[3]),
-        .I2(code[4]),
-        .I3(code[1]),
-        .I4(code[2]),
-        .I5(code[0]),
+       (.I0(code[3]),
+        .I1(code[2]),
+        .I2(code[6]),
+        .I3(code[4]),
+        .I4(code[5]),
+        .I5(code[7]),
         .O(\num[3]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFFD7FFF7)) 
+    .INIT(64'hFFFFFFEAEFCFFFEF)) 
     \num[3]_i_3 
-       (.I0(code[0]),
-        .I1(code[1]),
-        .I2(code[2]),
-        .I3(code[4]),
-        .I4(code[3]),
+       (.I0(code[3]),
+        .I1(code[2]),
+        .I2(code[7]),
+        .I3(code[5]),
+        .I4(code[4]),
         .I5(code[6]),
         .O(\num[3]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'hFFAFBDFFFFBDFD7F)) 
+    .INIT(64'hFEFFFFFBB99BBFBF)) 
     \num[4]_i_2 
-       (.I0(code[6]),
-        .I1(code[3]),
-        .I2(code[4]),
-        .I3(code[1]),
-        .I4(code[2]),
-        .I5(code[0]),
+       (.I0(code[3]),
+        .I1(code[2]),
+        .I2(code[6]),
+        .I3(code[4]),
+        .I4(code[5]),
+        .I5(code[7]),
         .O(\num[4]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFE3EFD3EF)) 
+    .INIT(64'hFFFFFFFFF7F5FDDD)) 
     \num[4]_i_3 
-       (.I0(code[4]),
-        .I1(code[1]),
-        .I2(code[2]),
-        .I3(code[0]),
-        .I4(code[3]),
-        .I5(code[6]),
+       (.I0(code[6]),
+        .I1(code[4]),
+        .I2(code[7]),
+        .I3(code[5]),
+        .I4(code[2]),
+        .I5(code[3]),
         .O(\num[4]_i_3_n_0 ));
-  FDRE #(
+  FDSE #(
     .INIT(1'b1)) 
     \num_reg[0] 
        (.C(clk),
         .CE(1'b1),
-        .D(num_0),
+        .D(\num_reg[0]_i_1_n_0 ),
         .Q(num[0]),
-        .R(1'b0));
+        .S(code[0]));
+  MUXF7 \num_reg[0]_i_1 
+       (.I0(\num[0]_i_2_n_0 ),
+        .I1(\num[0]_i_3_n_0 ),
+        .O(\num_reg[0]_i_1_n_0 ),
+        .S(code[1]));
   FDSE #(
     .INIT(1'b1)) 
     \num_reg[1] 
@@ -174,12 +159,12 @@ module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_PS2_Interface
         .CE(1'b1),
         .D(\num_reg[1]_i_1_n_0 ),
         .Q(num[1]),
-        .S(code[7]));
+        .S(code[0]));
   MUXF7 \num_reg[1]_i_1 
        (.I0(\num[1]_i_2_n_0 ),
         .I1(\num[1]_i_3_n_0 ),
         .O(\num_reg[1]_i_1_n_0 ),
-        .S(code[5]));
+        .S(code[1]));
   FDSE #(
     .INIT(1'b1)) 
     \num_reg[2] 
@@ -187,12 +172,12 @@ module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_PS2_Interface
         .CE(1'b1),
         .D(\num_reg[2]_i_1_n_0 ),
         .Q(num[2]),
-        .S(code[7]));
+        .S(code[0]));
   MUXF7 \num_reg[2]_i_1 
        (.I0(\num[2]_i_2_n_0 ),
         .I1(\num[2]_i_3_n_0 ),
         .O(\num_reg[2]_i_1_n_0 ),
-        .S(code[5]));
+        .S(code[1]));
   FDSE #(
     .INIT(1'b1)) 
     \num_reg[3] 
@@ -200,12 +185,12 @@ module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_PS2_Interface
         .CE(1'b1),
         .D(\num_reg[3]_i_1_n_0 ),
         .Q(num[3]),
-        .S(code[7]));
+        .S(code[0]));
   MUXF7 \num_reg[3]_i_1 
        (.I0(\num[3]_i_2_n_0 ),
         .I1(\num[3]_i_3_n_0 ),
         .O(\num_reg[3]_i_1_n_0 ),
-        .S(code[5]));
+        .S(code[1]));
   FDSE #(
     .INIT(1'b1)) 
     \num_reg[4] 
@@ -213,12 +198,12 @@ module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_PS2_Interface
         .CE(1'b1),
         .D(\num_reg[4]_i_1_n_0 ),
         .Q(num[4]),
-        .S(code[7]));
+        .S(code[0]));
   MUXF7 \num_reg[4]_i_1 
        (.I0(\num[4]_i_2_n_0 ),
         .I1(\num[4]_i_3_n_0 ),
         .O(\num_reg[4]_i_1_n_0 ),
-        .S(code[5]));
+        .S(code[1]));
 endmodule
 
 (* CHECK_LICENSE_TYPE = "design_1_PS2_Interface_0_0,PS2_Interface,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* ip_definition_source = "module_ref" *) 

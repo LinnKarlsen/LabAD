@@ -60,15 +60,15 @@ module PS2_rx_decoder(
             if (new_byte == 8'hE0) begin
                 break_pending <= 1'b1;               // next byte is a release
             end
-            else if (new_byte == 8'hE0) begin
-                // Extended prefix: ignore, keep state
-            end
+            //else if (new_byte == 8'hE0) begin
+            //    // Extended prefix: ignore, keep state
+            //end
             else if (break_pending) begin
                 break_pending <= 1'b0;
                 if (new_byte == pressed_keycode)
                     pressed_keycode <= 8'h00;        // the held key was released
             end
-            else begin
+            else if (pressed_keycode == 8'h00) begin
                 pressed_keycode <= new_byte;         // make code (or typematic repeat)
             end
         end

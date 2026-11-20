@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Oct 30 15:05:03 2026" VIVADOVERSION="2020.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Oct 30 16:45:09 2026" VIVADOVERSION="2020.1">
 
   <SYSTEMINFO ARCH="artix7" BOARD="digilentinc.com:basys3:part0:1.2" DEVICE="7a35t" NAME="design_1" PACKAGE="cpg236" SPEEDGRADE="-1"/>
 
@@ -9,10 +9,10 @@
         <CONNECTION INSTANCE="blk_mem_gen_0" PORT="clka"/>
         <CONNECTION INSTANCE="vio_0" PORT="clk"/>
         <CONNECTION INSTANCE="ila_0" PORT="clk"/>
-        <CONNECTION INSTANCE="divisor_clk_oscilador_0" PORT="clk_in"/>
         <CONNECTION INSTANCE="debug_mux_0" PORT="clk"/>
         <CONNECTION INSTANCE="delay_0" PORT="clk"/>
         <CONNECTION INSTANCE="PS2_Interface_0" PORT="clk"/>
+        <CONNECTION INSTANCE="divisor_clk_oscilador_0" PORT="clk_in"/>
         <CONNECTION INSTANCE="PS2_rx_decoder_0" PORT="clk"/>
       </CONNECTIONS>
     </PORT>
@@ -123,6 +123,7 @@
         <PORT DIR="O" LEFT="4" NAME="num" RIGHT="0" SIGIS="undef" SIGNAME="PS2_Interface_0_num">
           <CONNECTIONS>
             <CONNECTION INSTANCE="debug_mux_0" PORT="num_PS2"/>
+            <CONNECTION INSTANCE="vio_0" PORT="probe_in5"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -162,8 +163,8 @@
         </PORT>
         <PORT DIR="O" LEFT="7" NAME="pressed_keycode" RIGHT="0" SIGIS="undef" SIGNAME="PS2_rx_decoder_0_pressed_keycode">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="PS2_Interface_0" PORT="code"/>
             <CONNECTION INSTANCE="vio_0" PORT="probe_in1"/>
+            <CONNECTION INSTANCE="PS2_Interface_0" PORT="code"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -3614,7 +3615,7 @@
         <PARAMETER NAME="C_PIPE_IFACE" VALUE="0"/>
         <PARAMETER NAME="C_BUS_ADDR_WIDTH" VALUE="17"/>
         <PARAMETER NAME="C_BUS_DATA_WIDTH" VALUE="16"/>
-        <PARAMETER NAME="C_NUM_PROBE_IN" VALUE="5"/>
+        <PARAMETER NAME="C_NUM_PROBE_IN" VALUE="6"/>
         <PARAMETER NAME="C_EN_PROBE_IN_ACTIVITY" VALUE="1"/>
         <PARAMETER NAME="C_NUM_PROBE_OUT" VALUE="1"/>
         <PARAMETER NAME="C_EN_SYNCHRONIZATION" VALUE="1"/>
@@ -3623,7 +3624,7 @@
         <PARAMETER NAME="C_PROBE_IN2_WIDTH" VALUE="5"/>
         <PARAMETER NAME="C_PROBE_IN3_WIDTH" VALUE="8"/>
         <PARAMETER NAME="C_PROBE_IN4_WIDTH" VALUE="8"/>
-        <PARAMETER NAME="C_PROBE_IN5_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_PROBE_IN5_WIDTH" VALUE="5"/>
         <PARAMETER NAME="C_PROBE_IN6_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_IN7_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_IN8_WIDTH" VALUE="1"/>
@@ -4418,6 +4419,11 @@
         <PORT DIR="I" LEFT="7" NAME="probe_in4" RIGHT="0" SIGIS="undef" SIGNAME="PS2_rx_decoder_0_prev_keycode">
           <CONNECTIONS>
             <CONNECTION INSTANCE="PS2_rx_decoder_0" PORT="prev_keycode"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="4" NAME="probe_in5" RIGHT="0" SIGIS="undef" SIGNAME="PS2_Interface_0_num">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="PS2_Interface_0" PORT="num"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="4" NAME="probe_out0" RIGHT="0" SIGIS="undef" SIGNAME="vio_0_probe_out0">
