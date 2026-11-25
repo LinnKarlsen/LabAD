@@ -7,12 +7,16 @@
 const int PIN_TEMPERATURA = 34;     // ADC1 input (GPIO32-39 recommended; ADC2 fails with WiFi on)
 const int PIN_PWM  = 25;            // Any output-capable GPIO (not 34-39)
 const int PIN_RS = 23;
-const int PIN_RW = 22;
 const int PIN_EN = 21;
 const int PIN_D4 = 19;
 const int PIN_D5 = 18;
 const int PIN_D6 = 27;
 const int PIN_D7 = 26;
+
+// --- LCD (16x2, 4-bit mode) ---
+const uint8_t LCD_COLS = 16;
+const uint8_t LCD_ROWS = 2;
+LiquidCrystal lcd(PIN_RS, PIN_EN, PIN_D4, PIN_D5, PIN_D6, PIN_D7);
 
 // --- Tiempo de muestreo ---
 const uint32_t Ts_ms = 100;         // Sampling time [ms]
@@ -26,6 +30,9 @@ const float referencia = 40.0f;     // Reference temperature [°C]
 // --- PWM ---
 const uint32_t PWM_FREQ       = 1000;  // PWM frequency [Hz]
 const uint8_t  PWM_RESOLUTION = 12;    // Bits -> duty from 0 to 4095
+
+// --- Potencia ---
+const float POTENCIA_MAX_W = 10.0f;    // TODO: set to the real heater power at 100% [W] (V^2 / R)
 
 // --- Puerto serial ---
 const uint32_t BAUD_RATE = 115200;     // Must match monitor_speed in platformio.ini
@@ -65,7 +72,9 @@ void IRAM_ATTR onTimerLCD() {
 
 // Converts sensor voltage [V] to temperature [°C].
 float voltageToTemperature(float voltage) {
-  return (voltage*100.0f)-273.15f;
+  float v_med = 2.73f + (voltage - 0.1f) * (3.73f - 2.73f) / 2.99f;
+
+  return v_med * 100.0f - 273.0f;
 }
 
 // PI controller with saturation to [0, 1] and anti-windup
@@ -123,26 +132,41 @@ void timerLCDInit() {
 // --- LCD ---
 
 // Sends a command byte to the LCD (clear, cursor position, mode, etc.).
-// TODO
 void lcd_cmd(uint8_t cmd) {
+  lcd.command(cmd);
 }
 
 // Sends a data byte (a character) to the LCD.
-// TODO
 void lcd_dat(uint8_t dat) {
+  lcd.write(dat);
 }
 
 // Initializes the LCD (pins, init sequence, display mode).
-// TODO
 void lcd_init() {
-  LiquidCrystal(rs, rw, enable, d4, d5, d6, d7)
-  lcd.begin(16, 2, LCD_5x8DOTS)lcd.print("hello, world!");
-  lcd.print("hello, world!");
+  lcd.begin(LCD_COLS, LCD_ROWS);
+  lcd.clear();
+  lcd.print("Hola Pau :)");
 }
 
-// Shows the current values on the LCD.
-// TODO
+// Shows the current values on the LCD:
+//   T: 25C    R: 20C
+//   P: 2.4W
 void lcd_display(float temperatura, float referencia, float duty) {
+  // PWM output is inverted: duty = 1 -> heater off
+  float potencia = (1.0f - duty) * POTENCIA_MAX_W;
+
+  char campo[LCD_COLS + 1];
+  char linea[LCD_COLS + 1];
+
+  // Lines are padded to LCD_COLS so old characters get overwritten (no clear -> no flicker)
+  snprintf(campo, sizeof(campo), "T: %ldC", lroundf(temperatura));
+  snprintf(linea, sizeof(linea), "%-10sR: %ldC", campo, lroundf(referencia));
+  lcd.setCursor(0, 0);
+  lcd.printf("%-*s", LCD_COLS, linea);
+
+  snprintf(linea, sizeof(linea), "P: %.1fW", potencia);
+  lcd.setCursor(0, 1);
+  lcd.printf("%-*s", LCD_COLS, linea);
 }
 
 
@@ -183,8 +207,7 @@ void loop() {
     // (2) lo convierte a temperatura
     float temperatura = voltageToTemperature(voltage);
     // (3) el controlador genera un duty cycle
-    // 1 - controladorPI(temperatura)
-    float duty        = 1.0;
+    float duty        = 1.0f - controladorPI(temperatura);  // inverted output
     // (4) la PWM se actualiza con el nuevo dutycycle
     setDutyCycle(duty);
     // (5) imprimimos por consola serial los datos
