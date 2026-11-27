@@ -406,7 +406,7 @@ void setup() {
   pwmInit();
   setDutyCycle(1.0f);   // inverted output: duty = 1 -> heater OFF at boot
 
-  Serial.println("t_ms,voltaje_V,temperatura_C,referencia_C,duty");
+  Serial.println("dt_ms");   // time between control samples, measured with millis()
 
   // LCD en core 0 (la tarea inicializa y refresca el LCD)
   xTaskCreatePinnedToCore(
@@ -443,7 +443,11 @@ void loop() {
   if (sampleFlag) {
     sampleFlag = false;
 
-    unsigned long t = millis();
+    // tiempo entre muestras del controlador, medido con millis()
+    static unsigned long tAnterior = 0;   // millis() of the previous sample (kept between calls)
+    unsigned long t  = millis();
+    unsigned long dt = (tAnterior == 0) ? Ts_ms : t - tAnterior;   // first sample: assume Ts_ms
+    tAnterior = t;
 
     // (1) lee voltaje
     float voltage     = analogReadMilliVolts(PIN_TEMPERATURA) / 1000.0f;
@@ -460,8 +464,8 @@ void loop() {
     float duty        = 1.0f - controladorPI(temperatura, kp, ki, ref);
     // (4) la PWM se actualiza con el nuevo dutycycle
     setDutyCycle(duty);
-    // (5) imprimimos por consola serial los datos
-    Serial.printf("%lu,%.3f,%.2f,%.2f,%.3f\n", t, voltage, temperatura, ref, duty);
+    // (5) imprimimos por consola serial el tiempo entre muestras [ms]
+    Serial.println(dt);
 
     // guardamos los últimos valores para el LCD (core 0)
     taskENTER_CRITICAL(&datosMux);
