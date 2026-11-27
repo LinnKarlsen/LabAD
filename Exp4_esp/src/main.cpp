@@ -30,12 +30,24 @@ const float referencia = 40.0f;     // Reference temperature [°C]
 // --- PWM ---
 const uint32_t PWM_FREQ       = 1000;  // PWM frequency [Hz]
 const uint8_t  PWM_RESOLUTION = 12;    // Bits -> duty from 0 to 4095
+const uint8_t  PWM_CHANNEL    = 0;     // LEDC channel (only used on core 2.x)
 
 // --- Potencia ---
 const float POTENCIA_MAX_W = 10.0f;    // TODO: set to the real heater power at 100% [W] (V^2 / R)
 
 // --- Puerto serial ---
 const uint32_t BAUD_RATE = 115200;     // Must match monitor_speed in platformio.ini
+
+
+
+//  VERSIÓN DEL CORE (hay dos versiones, y cambian algunas funciones dependiendo de eso)
+
+#if defined(ESP_ARDUINO_VERSION_MAJOR) && ESP_ARDUINO_VERSION_MAJOR >= 3
+  #define ESP32_CORE_V3 1
+#else
+  #define ESP32_CORE_V3 0
+#endif
+
 
 
 // ESTADOS
@@ -100,7 +112,12 @@ float controladorPI(float temperatura) {
 
 // Configures the PWM peripheral (LEDC).
 void pwmInit() {
+#if ESP32_CORE_V3
   ledcAttach(PIN_PWM, PWM_FREQ, PWM_RESOLUTION);
+#else
+  ledcSetup(PWM_CHANNEL, PWM_FREQ, PWM_RESOLUTION);
+  ledcAttachPin(PIN_PWM, PWM_CHANNEL);
+#endif
 }
 
 // Receives a duty cycle in [0, 1] (saturated) and writes it to the PWM pin.
@@ -112,21 +129,39 @@ void setDutyCycle(float duty) {
   const uint32_t maxDuty = (1UL << PWM_RESOLUTION) - 1;
   uint32_t dutyCounts = (uint32_t)(duty * maxDuty + 0.5f);
 
+#if ESP32_CORE_V3
   ledcWrite(PIN_PWM, dutyCounts);
+#else
+  ledcWrite(PWM_CHANNEL, dutyCounts);
+#endif
 }
 
 // Configures a hardware timer to call onTimer() every Ts_ms.
 void timerInit() {
+#if ESP32_CORE_V3
   timer = timerBegin(1000000);                       // 1 MHz -> 1 tick = 1 us
   timerAttachInterrupt(timer, &onTimer);
   timerAlarm(timer, Ts_ms * 1000, true, 0);          // auto-reload, unlimited
+#else
+  timer = timerBegin(0, 80, true);                   // 80 MHz / 80 = 1 MHz -> 1 tick = 1 us
+  timerAttachInterrupt(timer, &onTimer, true);
+  timerAlarmWrite(timer, Ts_ms * 1000, true);        // auto-reload
+  timerAlarmEnable(timer);
+#endif
 }
 
 // Configures a second hardware timer to call onTimerLCD() every Tlcd_ms.
 void timerLCDInit() {
+#if ESP32_CORE_V3
   timerLCD = timerBegin(1000000);                    // 1 MHz -> 1 tick = 1 us
   timerAttachInterrupt(timerLCD, &onTimerLCD);
   timerAlarm(timerLCD, Tlcd_ms * 1000, true, 0);     // auto-reload, unlimited
+#else
+  timerLCD = timerBegin(1, 80, true);                // hardware timer 1 (control uses timer 0)
+  timerAttachInterrupt(timerLCD, &onTimerLCD, true);
+  timerAlarmWrite(timerLCD, Tlcd_ms * 1000, true);   // auto-reload
+  timerAlarmEnable(timerLCD);
+#endif
 }
 
 // --- LCD ---
