@@ -124,19 +124,19 @@ void setDutyCycle(float duty) {
 
 // Inicializa el LCD
 void lcd_init() {
-  lcd.begin(LCD_COLS, LCD_ROWS);
+  lcd.begin(LCD_COLS, LCD_ROWS);    // default charsize es LCD_5x8DOTS
   lcd.clear();
   lcd.print("Hola Pau :)");
 }
 
 // Actualiza valores en pantalla
 void lcd_display(float temperatura, float referencia, float duty) {
-  float potencia = (1.0f - duty) * POTENCIA_MAX_W;
+  float potencia = duty * POTENCIA_MAX_W;
 
   char campo[LCD_COLS + 1];
   char linea[LCD_COLS + 1];
 
-  // Sobreescribimos con padding (no usmos clear)
+  // Sobreescribimos con padding y no usamos clear
   snprintf(campo, sizeof(campo), "T: %ldC", lroundf(temperatura));
   snprintf(linea, sizeof(linea), "%-10sR: %ldC", campo, lroundf(referencia));
   lcd.setCursor(0, 0);
@@ -313,11 +313,9 @@ void webTask(void *pvParameters) {
 
   for (;;) {
     server.handleClient();          // responer request de la página web
-    vTaskDelay(pdMS_TO_TICKS(2));   // watchdog
+    vTaskDelay(pdMS_TO_TICKS(2));   // pausa por 2 ms
   }
 }
-
-
 
 
 // SETUP / INICIALIZACIÓN
