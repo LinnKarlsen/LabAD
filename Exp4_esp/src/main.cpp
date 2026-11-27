@@ -28,7 +28,7 @@ const float Ki         = 0.1f;      // Integral gain [1/s]
 const float referencia = 40.0f;     // Reference temperature [°C]
 
 // --- PWM ---
-const uint32_t PWM_FREQ       = 1000;  // PWM frequency [Hz]
+const uint32_t PWM_FREQ       = 10000;  // PWM frequency [Hz]
 const uint8_t  PWM_RESOLUTION = 12;    // Bits -> duty from 0 to 4095
 const uint8_t  PWM_CHANNEL    = 0;     // LEDC channel (only used on core 2.x)
 
@@ -37,6 +37,11 @@ const float POTENCIA_MAX_W = 10.0f;    // TODO: set to the real heater power at 
 
 // --- Puerto serial ---
 const uint32_t BAUD_RATE = 115200;     // Must match monitor_speed in platformio.ini
+
+// --- Tarea del LCD (core 0) ---
+const uint32_t LCD_TASK_STACK    = 4096;  // Stack size [bytes]
+const UBaseType_t LCD_TASK_PRIO  = 1;     // Priority of the LCD task
+const BaseType_t LCD_TASK_CORE   = 0;     // Core where the LCD task runs
 
 
 
@@ -55,16 +60,17 @@ const uint32_t BAUD_RATE = 115200;     // Must match monitor_speed in platformio
 // --- Estados basado en los parámetros anteriores ---
 const float Ts = Ts_ms / 1000.0f;   // Sampling time [s], used by the integrator
 hw_timer_t *timer    = nullptr;     // Control timer (Ts)
-hw_timer_t *timerLCD = nullptr;     // LCD timer (Tlcd)
+TaskHandle_t lcdTaskHandle = nullptr;  // LCD task (core 0)
 
 volatile bool sampleFlag = false;   // Set by the control timer ISR, cleared in loop()
-volatile bool lcdFlag    = false;   // Set by the LCD timer ISR, cleared in loop()
 
 float integral = 0.0f;              // PI integral state
 
-// Latest values, written by the control step and shown by the LCD step
+// Latest values, written by the control loop (core 1) and read by the LCD task (core 0).
+// Always access them inside the spinlock.
 float ultimaTemperatura = 0.0f;
 float ultimoDuty        = 0.0f;
+static portMUX_TYPE datosMux = portMUX_INITIALIZER_UNLOCKED;
 
 
 
@@ -75,11 +81,6 @@ float ultimoDuty        = 0.0f;
 // Timer ISR: only raises a flag. ADC reads and Serial are not ISR-safe.
 void IRAM_ATTR onTimer() {
   sampleFlag = true;
-}
-
-// LCD timer ISR: only raises a flag.
-void IRAM_ATTR onTimerLCD() {
-  lcdFlag = true;
 }
 
 // Converts sensor voltage [V] to temperature [°C].
@@ -150,20 +151,6 @@ void timerInit() {
 #endif
 }
 
-// Configures a second hardware timer to call onTimerLCD() every Tlcd_ms.
-void timerLCDInit() {
-#if ESP32_CORE_V3
-  timerLCD = timerBegin(1000000);                    // 1 MHz -> 1 tick = 1 us
-  timerAttachInterrupt(timerLCD, &onTimerLCD);
-  timerAlarm(timerLCD, Tlcd_ms * 1000, true, 0);     // auto-reload, unlimited
-#else
-  timerLCD = timerBegin(1, 80, true);                // hardware timer 1 (control uses timer 0)
-  timerAttachInterrupt(timerLCD, &onTimerLCD, true);
-  timerAlarmWrite(timerLCD, Tlcd_ms * 1000, true);   // auto-reload
-  timerAlarmEnable(timerLCD);
-#endif
-}
-
 // --- LCD ---
 
 // Sends a command byte to the LCD (clear, cursor position, mode, etc.).
@@ -185,7 +172,7 @@ void lcd_init() {
 
 // Shows the current values on the LCD:
 //   T: 25C    R: 20C
-//   P: 2.4W
+//   P: 2.4W  D: 0.76
 void lcd_display(float temperatura, float referencia, float duty) {
   // PWM output is inverted: duty = 1 -> heater off
   float potencia = (1.0f - duty) * POTENCIA_MAX_W;
@@ -199,9 +186,29 @@ void lcd_display(float temperatura, float referencia, float duty) {
   lcd.setCursor(0, 0);
   lcd.printf("%-*s", LCD_COLS, linea);
 
-  snprintf(linea, sizeof(linea), "P: %.1fW", potencia);
+  snprintf(campo, sizeof(campo), "P: %.1fW", potencia);
+  snprintf(linea, sizeof(linea), "%-9sD: %.2f", campo, duty);
   lcd.setCursor(0, 1);
   lcd.printf("%-*s", LCD_COLS, linea);
+}
+
+// LCD task, pinned to core 0. All LCD access happens here.
+// Refreshes the display every Tlcd_ms with the latest values from the control loop.
+void lcdTask(void *pvParameters) {
+  lcd_init();
+
+  TickType_t ultimoDespertar = xTaskGetTickCount();
+  for (;;) {
+    vTaskDelayUntil(&ultimoDespertar, pdMS_TO_TICKS(Tlcd_ms));
+
+    // copiamos los valores compartidos dentro del spinlock (sección crítica corta)
+    taskENTER_CRITICAL(&datosMux);
+    float temperatura = ultimaTemperatura;
+    float duty        = ultimoDuty;
+    taskEXIT_CRITICAL(&datosMux);
+
+    lcd_display(temperatura, referencia, duty);
+  }
 }
 
 
@@ -218,17 +225,26 @@ void setup() {
   pwmInit();
   setDutyCycle(0.0f);
 
-  lcd_init();
-
   Serial.println("t_ms,voltaje_V,temperatura_C,referencia_C,duty");
 
+  // LCD en core 0 (la tarea inicializa y refresca el LCD)
+  xTaskCreatePinnedToCore(
+    lcdTask,         /* Task function */
+    "LCD",           /* Name of task */
+    LCD_TASK_STACK,  /* Stack size of task */
+    nullptr,         /* Parameter of the task */
+    LCD_TASK_PRIO,   /* Priority of the task */
+    &lcdTaskHandle,  /* Task handle */
+    LCD_TASK_CORE    /* Pin task to core 0 */
+  );
+
+  // Control y medición en core 1 (loop() corre en core 1)
   timerInit();
-  timerLCDInit();
 }
 
 
 
-// LOOP
+// LOOP (core 1): medición y control
 
 void loop() {
   // --- Lazo de control (cada Ts) ---
@@ -248,14 +264,10 @@ void loop() {
     // (5) imprimimos por consola serial los datos
     Serial.printf("%lu,%.3f,%.2f,%.2f,%.3f\n", t, voltage, temperatura, referencia, duty);
 
-    // guardamos los últimos valores para el LCD
+    // guardamos los últimos valores para el LCD (core 0)
+    taskENTER_CRITICAL(&datosMux);
     ultimaTemperatura = temperatura;
     ultimoDuty        = duty;
-  }
-
-  // --- Actualización del LCD (cada Tlcd) ---
-  if (lcdFlag) {
-    lcdFlag = false;
-    lcd_display(ultimaTemperatura, referencia, ultimoDuty);
+    taskEXIT_CRITICAL(&datosMux);
   }
 }
