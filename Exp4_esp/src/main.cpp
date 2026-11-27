@@ -78,7 +78,9 @@ WebServer server(80);
 volatile bool sampleFlag = false;   // Set by the control timer ISR, cleared in loop()
 volatile bool controlHabilitado = false;  // Set by the web task once WiFi is up; heater stays OFF until then
 
-float integral = 0.0f;              // PI integral state
+float integral = 0.0f;              // PI integral state (only touched by the control loop, core 1)
+bool reiniciarIntegral = false;     // Set by the web task when T_ref changes; the control loop resets
+                                    // the integral and clears it (access inside the spinlock)
 
 // Shared between cores. Always access them inside the spinlock:
 //   ultimaTemperatura, ultimoDuty: written by the control loop (core 1), read by the LCD task (core 0)
@@ -247,6 +249,9 @@ const char index_html[] PROGMEM = R"rawliteral(
     input {font-size: 1.6rem; width: 180px; padding: 6px; text-align: center;}
     button {font-size: 1.6rem; margin-top: 28px; padding: 10px 30px;}
     #status {font-size: 1.2rem; margin-top: 16px; color: #006600;}
+    #datos {margin-top: 30px; border-top: 1px solid #ccc; padding-top: 10px;}
+    .dato {font-size: 1.6rem; margin-top: 12px;}
+    .dato span {font-weight: bold;}
   </style>
 </head>
 <body>
@@ -265,7 +270,28 @@ const char index_html[] PROGMEM = R"rawliteral(
   <button onclick="sendValues()">Actualizar</button>
   <div id="status"></div>
 
+  <div id="datos">
+    <div class="dato">Temperatura: <span id="temp">--</span> &deg;C</div>
+    <div class="dato">Potencia: <span id="pot">--</span> W</div>
+    <div class="dato">Duty cycle: <span id="duty">--</span></div>
+  </div>
+
 <script>
+// Asks the ESP32 for the latest values every 500 ms and shows them
+function actualizarDatos() {
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    var d = JSON.parse(xhr.responseText);
+    document.getElementById("temp").innerText = d.temp.toFixed(2);
+    document.getElementById("pot").innerText  = d.pot.toFixed(2);
+    document.getElementById("duty").innerText = d.duty.toFixed(3);
+  };
+  xhr.open("GET", "/datos", true);
+  xhr.send();
+}
+setInterval(actualizarDatos, 500);
+actualizarDatos();
+
 function sendValues() {
   var kp   = document.getElementById("kp").value;
   var ki   = document.getElementById("ki").value;
@@ -309,7 +335,10 @@ void handleUpdate() {
   taskENTER_CRITICAL(&datosMux);
   if (hayKp)  Kp         = kp;
   if (hayKi)  Ki         = ki;
-  if (hayRef) referencia = ref;
+  if (hayRef && ref != referencia) {
+    referencia = ref;
+    reiniciarIntegral = true;         // new reference -> the control loop resets the integral
+  }
   kp = Kp; ki = Ki; ref = referencia;
   taskEXIT_CRITICAL(&datosMux);
 
@@ -317,6 +346,22 @@ void handleUpdate() {
   Serial.printf("# Kp = %.3f | Ki = %.3f | T_ref = %.2f\n", kp, ki, ref);
 
   server.send(200, "text/plain", "OK");
+}
+
+// Called by the page every 500 ms: sends the latest temperature, power and duty as JSON
+void handleDatos() {
+  taskENTER_CRITICAL(&datosMux);
+  float temperatura = ultimaTemperatura;
+  float duty        = ultimoDuty;
+  taskEXIT_CRITICAL(&datosMux);
+
+  // PWM output is inverted: duty = 1 -> heater off
+  float potencia = (1.0f - duty) * POTENCIA_MAX_W;
+
+  char json[96];
+  snprintf(json, sizeof(json), "{\"temp\":%.2f,\"pot\":%.3f,\"duty\":%.4f}",
+           temperatura, potencia, duty);
+  server.send(200, "application/json", json);
 }
 
 // Web task, pinned to core 0. Starts the Access Point and answers the web page.
@@ -330,6 +375,7 @@ void webTask(void *pvParameters) {
 
   server.on("/", handleRoot);
   server.on("/update", handleUpdate);
+  server.on("/datos", handleDatos);
   server.begin();
   Serial.println("# HTTP server started");
 
@@ -406,13 +452,14 @@ void loop() {
     // (3) el controlador genera un duty cycle (con los parámetros actuales de la página web)
     taskENTER_CRITICAL(&datosMux);
     float kp = Kp, ki = Ki, ref = referencia;
+    bool reiniciar = reiniciarIntegral;
+    reiniciarIntegral = false;
     taskEXIT_CRITICAL(&datosMux);
+    if (reiniciar) integral = 0.0f;   // T_ref changed from the web page
     // heater OFF (duty = 1, inverted) until WiFi has started -> avoids brownout
-    float duty        = controlHabilitado
-                        ? 1.0f - controladorPI(temperatura, kp, ki, ref)  // inverted output
-                        : 1.0f;
+    float duty        = 1.0f - controladorPI(temperatura, kp, ki, ref);
     // (4) la PWM se actualiza con el nuevo dutycycle
-    setDutyCycle(0.5);
+    setDutyCycle(duty);
     // (5) imprimimos por consola serial los datos
     Serial.printf("%lu,%.3f,%.2f,%.2f,%.3f\n", t, voltage, temperatura, ref, duty);
 
