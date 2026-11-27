@@ -9,7 +9,7 @@
 
 // --- Pins ---
 const int PIN_TEMPERATURA = 34;
-const int PIN_PWM  = 25;
+const int PIN_PWM  = 25;       // **
 const int PIN_RS = 23;
 const int PIN_EN = 21;
 const int PIN_D4 = 19;
@@ -48,9 +48,9 @@ const char* AP_PASSWORD = "pass123456";
 
 // --- Tareas para core0 ---
 // LCD
-const uint32_t LCD_TASK_STACK    = 4096;  // Tamaño del stack [bytes]
-const UBaseType_t LCD_TASK_PRIO  = 1;
-const BaseType_t LCD_TASK_CORE   = 0;
+const uint32_t LCD_TASK_STACK    = 4096;  // Cuanto espacio ocupa en la memoria [bytes]
+const UBaseType_t LCD_TASK_PRIO  = 1;     // Prioridad
+const BaseType_t LCD_TASK_CORE   = 0;     // Core
 // Página web
 const uint32_t WEB_TASK_STACK    = 8192;
 const UBaseType_t WEB_TASK_PRIO  = 1;
@@ -60,32 +60,24 @@ const BaseType_t WEB_TASK_CORE   = 0;
 // ESTADOS
 
 // --- Estados basado en los parámetros anteriores ---
-const float Ts = Ts_ms / 1000.0f;   // Sampling time [s], used by the integrator
-hw_timer_t *timer    = nullptr;     // Control timer (Ts)
-TaskHandle_t lcdTaskHandle = nullptr;  // LCD task (core 0)
-TaskHandle_t webTaskHandle = nullptr;  // Web server task (core 0)
+hw_timer_t *timer    = nullptr;     // Control timer (Ts) **
 WebServer server(80);
 
 volatile bool sampleFlag = false;   // Set by the control timer ISR, cleared in loop()
 
-float integral = 0.0f;              // PI integral state (only touched by the control loop, core 1)
-bool reiniciarIntegral = false;     // Set by the web task when T_ref changes; the control loop resets
-                                    // the integral and clears it (access inside the spinlock)
+float integral = 0.0f;
+bool reiniciarIntegral = false;
 
-// Shared between cores. Always access them inside the spinlock:
-//   ultimaTemperatura, ultimoDuty: written by the control loop (core 1), read by the LCD task (core 0)
-//   Kp, Ki, referencia:            written by the web task (core 0), read by the control loop (core 1)
-//                                  and the LCD task
+// Datos compartidos entre cores gracias al portMUX
 float ultimaTemperatura = 0.0f;
 float ultimoDuty        = 0.0f;
-static portMUX_TYPE datosMux = portMUX_INITIALIZER_UNLOCKED;
+static portMUX_TYPE datosMux = portMUX_INITIALIZER_UNLOCKED;   // ++
 
 
 
 // FUNCIONES
 
-// ISR: Interrupt Service Routine 
-// Timer ISR: levanta un Flag
+// Timer ISR (Interrupt Service Routine): levanta un Flag
 void IRAM_ATTR onTimer() {
   sampleFlag = true;
 }
@@ -96,6 +88,7 @@ float voltageToTemperature(float voltage) {
   return v_med * 100.0f - 273.0f;
 }
 
+const float Ts = Ts_ms / 1000.0f;   // Sampling time [s], used by the integrator
 // Controlador PI, satura en [0, 1] y tiene anti-windup
 float controladorPI(float temperatura, float kp, float ki, float ref) {
   float error = ref - temperatura;
@@ -121,23 +114,13 @@ void setDutyCycle(float duty) {
   if (duty > 1.0f) duty = 1.0f;
   if (duty < 0.0f) duty = 0.0f;
 
-  const uint32_t maxDuty = (1UL << PWM_RESOLUTION) - 1;
+  const uint32_t maxDuty = (1UL << PWM_RESOLUTION) - 1;      // **
   uint32_t dutyCounts = (uint32_t)(duty * maxDuty + 0.5f);
 
   ledcWrite(PIN_PWM, dutyCounts);
 }
 
 // --- LCD ---
-
-// Envia un commando al LCD
-void lcd_cmd(uint8_t cmd) {
-  lcd.command(cmd);
-}
-
-// Envia datos al LCD
-void lcd_dat(uint8_t dat) {
-  lcd.write(dat);
-}
 
 // Inicializa el LCD
 void lcd_init() {
@@ -356,7 +339,7 @@ void setup() {
     LCD_TASK_STACK,  /* Stack size of task */
     nullptr,         /* Parameter of the task */
     LCD_TASK_PRIO,   /* Priority of the task */
-    &lcdTaskHandle,  /* Task handle */
+    nullptr,         /* Task handle (not needed) */
     LCD_TASK_CORE    /* Pin task to core 0 */
   );
 
@@ -367,7 +350,7 @@ void setup() {
     WEB_TASK_STACK,
     nullptr,
     WEB_TASK_PRIO,
-    &webTaskHandle,
+    nullptr,
     WEB_TASK_CORE
   );
 
